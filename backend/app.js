@@ -7,7 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var app = express();
 
-// view engine setup
+// View engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -30,30 +30,32 @@ database:'help'
 connection.connect((err) => {
   if (err) throw err;
   console.log('Connected!');
-  // var query1 = "CREATE DATABASE IF NOT EXISTS help";
-  // connection.query(query1, function(err) {
-  //   if(err) throw err;
-  //   console.log("Database created");
-  // });
-  // var query2 = 'CREATE TABLE IF NOT EXISTS users ('
-  // + 'id INT AUTO_INCREMENT NOT NULL, '
-  // + 'email VARCHAR(255) NOT NULL, '
-  // + 'password VARCHAR(255) NOT NULL, '
-  // + 'name VARCHAR(255) NOT NULL, '
-  // + 'PRIMARY KEY (id))';
-  // connection.query(query2, function (err, result) {
-  //   if (err) throw err;
-  //   console.log("Table created");
-  // });
 });
 
-// Add user to db
+// Adds user to db
 app.post('/userAdded', function(req) {
   var sql = `INSERT INTO users (email, password, name)`
-  + `VALUES ('${req.body.email}', ${req.body.password}, '${req.body.name}')`;
+  + `VALUES ('${req.body.email}', '${req.body.password}', '${req.body.name}')`;
   connection.query(sql, function (err) {
     if (err) throw err;
     console.log("User added");
+  });
+});
+
+// Logs user in if email/password match
+app.get('/login', function(req, res, next) {
+  var sql = `SELECT * FROM users WHERE email = '${req.body.email}' ` 
+  + `AND password = '${req.body.password}'`;
+  connection.query(sql, function (err, data, fields) {
+    if (err) throw err;
+    console.log(data);
+    if (data.length >= 1) {
+      res.render('homepage', {title: 'Homepage', userData: data})
+      console.log("Log in successful");
+    }
+    else {
+      console.log("Log in failed");
+    }
   });
 });
 
