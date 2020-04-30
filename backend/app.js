@@ -43,18 +43,20 @@ app.post('/userAdded', function(req) {
 });
 
 // Logs user in if email/password match
-app.get('/login', function(req, res, next) {
-  var sql = `SELECT * FROM users WHERE email = '${req.body.email}' ` 
-  + `AND password = '${req.body.password}'`;
-  connection.query(sql, function (err, data, fields) {
+app.get('/login', function(req, res) {
+  console.log(req.query.email);
+  console.log(req.query.password);
+  var sql = `SELECT * FROM users WHERE email = '${req.query.email}' ` 
+  + `AND password = '${req.query.password}'`;
+  connection.query(sql, function (err, result, fields) {
     if (err) throw err;
-    console.log(data);
-    if (data.length >= 1) {
-      res.render('homepage', {title: 'Homepage', userData: data})
-      console.log("Log in successful");
+    console.log(result);
+    if (!result.length) { // If that user email/password combo doesn't exist in db
+      console.log("Log in failed");
     }
     else {
-      console.log("Log in failed");
+      res.render('homepage', {title: 'Homepage', userData: result})
+      console.log("Log in successful");
     }
   });
 });
@@ -62,5 +64,3 @@ app.get('/login', function(req, res, next) {
 require('./routes/html-routes')(app, connection);
 
 module.exports = app;
-
-
