@@ -11,10 +11,10 @@ const toolbar = props => (
     <Navbar.Toggle id="collapseButton" aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">
-        <Nav.Link id="navLink" href="/JobBoard">Job Board</Nav.Link>
-        <Nav.Link id="navLink" href="/login">Log In</Nav.Link>
-        <Nav.Link id="navLink" href="/pickaffiliation">Sign Up</Nav.Link>
-        <Nav.Link id="navLink" href="/admin">Admin Page</Nav.Link>
+        <Nav.Link id="navLink" href="/logIn">Log In</Nav.Link>
+        <Nav.Link id="navLink" href="/register">Register</Nav.Link>
+        <Nav.Link id="navLink" href="/jobPosts">Job Board</Nav.Link>
+        <Nav.Link id="navLink" href="/add">Add Job</Nav.Link>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
