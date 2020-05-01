@@ -2,7 +2,7 @@
 doctype html
 html(lang='en')
   head
-    title Expense List
+    title Homepage
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     style.
@@ -24,18 +24,12 @@ html(lang='en')
       }
   body
         .table-data
-        h2 Expense List
+        h2 Job Listings
         ul 
          table
             thead
                 tr
-                    th Name
-                    th Email
+                    th Organization
+                    th Position
             tbody
-                each item in userData
-                    tr
-                        td=item.name
-                        td=item.email
-                        td 
-                            form(method='POST' action='/itemDeleted:item')
-                                input.btn.btn-primary(type='submit', value='Delete')
+                
