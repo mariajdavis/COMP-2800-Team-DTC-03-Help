@@ -8,6 +8,8 @@ import JobPost from "./components/jobPost.component";
 import JobPostsList from "./components/jobPosts-list.component";
 import Register from "./components/register.component";
 import LogIn from "./components/logIn.component";
+import Bodyframe from './components/Bodyframe/Bodyframe.js';
+import Footer from './components/Footer/Footer.js';
 
 class App extends Component {
   render() {
@@ -41,7 +43,6 @@ class App extends Component {
               </li>
             </div>
           </nav>
-
           <div className="container mt-3">
             <Switch>
               <Route exact path="/logIn" component={LogIn} />
@@ -51,7 +52,9 @@ class App extends Component {
               <Route path="/jobPosts/:id" component={JobPost} />
             </Switch>
           </div>
+          <Bodyframe/>
         </div>
+        <Footer/>
       </Router>
     );
   }
