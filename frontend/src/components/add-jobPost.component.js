@@ -41,7 +41,8 @@ export default class AddJobPost extends Component {
   saveJobPost() {
     var data = {
       title: this.state.title,
-      description: this.state.description
+      description: this.state.description,
+      jobType: this.state.jobType
     };
 
     JobPostDataService.create(data)
