@@ -110,7 +110,7 @@ export default class JobPostsList extends Component {
           </div>
         </div>
         <div className="col-md-6">
-          <h4>JobPosts List</h4>
+          <h4>Job Posts</h4>
 
           <ul className="list-group">
             {jobPosts &&
@@ -138,7 +138,7 @@ export default class JobPostsList extends Component {
         <div className="col-md-6">
           {currentJobPost ? (
             <div>
-              <h4>JobPost</h4>
+              <h4>Job Post</h4>
               <div>
                 <label>
                   <strong>Title:</strong>
@@ -153,7 +153,7 @@ export default class JobPostsList extends Component {
               </div>
               <div>
                 <label>
-                  <strong>Status:</strong>
+                  <strong>Job Type:</strong>
                 </label>{" "}
                 {currentJobPost.jobType}
               </div>
