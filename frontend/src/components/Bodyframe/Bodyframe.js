@@ -13,9 +13,9 @@ const imgStyle = {
 
 function mainBody() {
     return (
-        <Fragment>
+        <div>
             <img id="backgroundImage" src={backgroundFrame} style={imgStyle}/>
-        </Fragment>
+        </div>
     );
 }
 

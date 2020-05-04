@@ -2,7 +2,7 @@ main > * {
   margin: 0;
   padding: 0;
 }
-main {
+main#root {
   display: grid;
   grid-template-areas: 
       "header"
@@ -16,6 +16,13 @@ body {
   margin: 0 auto;
 }
 
+header {grid-area: header;}
+nav {grid-area: nav;}
+section {grid-area: section;}
+#forms {
+  grid-area: article;
+}
+footer {grid-area: footer;}
 
 
 /* Form Stylings */
@@ -48,7 +55,18 @@ body {
   margin: auto;
 }
 
+main#root {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: 
+    "header header header"
+    "nav nav nav"
+    "section section aside"
+    "article article aside"
+    "footer footer footer";
+}
+
 @media only screen and (min-width: 1025px) {
+
   #backgroundImage {
     padding-top: 50px;
     padding-bottom: 50px;

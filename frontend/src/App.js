@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -16,26 +16,36 @@ import Footer from './components/Footer/Footer.js';
 class App extends Component {
   render() {
     return (
-      <main>
+      <Fragment>
         <header>
           <Navbar/>
         </header>
-        <Router>
-            <div>
-              <div className="container mt-3">
-              <Switch>
-                <Route exact path="/logIn" component={LogIn} />
-                <Route exact path="/register" component={Register} />
-                <Route exact path={["/", "/jobPosts"]} component={JobPostsList} />
-                <Route exact path="/add" component={AddJobPost} />
-                <Route path="/jobPosts/:id" component={JobPost} />
-              </Switch>
+        <nav>
+          Nav
+        </nav>
+        <section>
+          Some content
+        </section>
+        <aside>
+          aside
+        </aside>
+        <article>
+          <Router>
+              <div id="forms" className="container mt-3">
+                <Switch>
+                  <Route exact path="/logIn" component={LogIn} />
+                  <Route exact path="/register" component={Register} />
+                  <Route exact path={["/", "/jobPosts"]} component={JobPostsList} />
+                  <Route exact path="/add" component={AddJobPost} />
+                  <Route path="/jobPosts/:id" component={JobPost} />
+                </Switch>
               </div>
-            <Bodyframe/>
-            </div>
-          <Footer/>
-        </Router>
-      </main>
+          </Router>
+        </article>
+ 
+        <Footer/>
+    
+      </Fragment>
     );
   }
 }
