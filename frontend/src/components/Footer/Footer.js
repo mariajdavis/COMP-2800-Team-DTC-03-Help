@@ -5,7 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const footerStyle = {
     position: 'absolute',
     backgroundColor: '#2743A5',
-    width: '100%'
+    width: '100%',
+    bottom: '0px'
 }
 
 const fontStyle = {
