@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import JobPostDataService from "../services/jobPost.service";
+import JobPostDataService from "../../services/jobPost.service";
 import { Link } from "react-router-dom";
 
 export default class JobPostsList extends Component {
@@ -117,7 +117,7 @@ export default class JobPostsList extends Component {
               jobPosts.map((jobPost, index) => (
                 <li
                   className={
-                    "list-group-item " +
+                    "joblists list-group-item " +
                     (index === currentIndex ? "active" : "")
                   }
                   onClick={() => this.setActiveJobPost(jobPost, index)}

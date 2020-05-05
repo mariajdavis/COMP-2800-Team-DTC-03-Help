@@ -1,101 +1,18 @@
-main > * {
-  margin: 0;
-  padding: 0;
-}
-main#root {
-  display: grid;
-  grid-template-areas: 
-      "header"
-      "nav"
-      "section"
-      "aside"
-      "article"
-      "footer";
-}
-body {
-  margin: 0 auto;
-}
-
-header {grid-area: header;}
-nav {grid-area: nav;}
-section {grid-area: section;}
-#forms {
-  grid-area: article;
-}
-footer {grid-area: footer;}
-
-
 /* Form Stylings */
 
 .list {
-  position: absolute;
-  z-index: 1;
-  left: 35%;
-  top: 20%;
   text-align: left;
   max-width: 750px;
   margin: auto;
 }
 
 .submit-form {
-  position: fixed;
-  z-index: 1;
-  left: 40%;
-  top: 20%;
   max-width: 300px;
   margin: auto;
 }
 
 .edit-form {
-  position: absolute;
-  z-index: 1;
-  left: 40%;
-  top: 20%;
   max-width: 300px;
   margin: auto;
 }
 
-main#root {
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-areas: 
-    "header header header"
-    "nav nav nav"
-    "section section aside"
-    "article article aside"
-    "footer footer footer";
-}
-
-@media only screen and (min-width: 1025px) {
-
-  #backgroundImage {
-    padding-top: 50px;
-    padding-bottom: 50px;
-    min-width: 1025px;
-    max-width: 5120px;
-    min-height: 800px;
-    max-height: 1100px;
-    object-fit: cover
-  }
-}
-
-@media only screen and (min-width: 500px) and (max-width: 1024px) {
-  #backgroundImage {
-    padding-top: 50px;
-    padding-bottom: 50px;
-    height: 700px;
-    max-height: 1000px;
-    object-fit: cover;
-  }
-}
-
-/* mobile view */
-@media only screen and (max-width: 500px) {
-  #backgroundImage {
-    padding-top: 50px;
-    padding-bottom: 50px;
-    width: 500px;
-    height: 700px;
-    max-height: 1100px;
-    object-fit: cover;
-  }
-}

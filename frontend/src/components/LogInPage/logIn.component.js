@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import RegisterService from "../services/register.service";
+import RegisterService from "../../services/register.service";
 
 export default class logIn extends Component {
   constructor(props) {
@@ -51,7 +51,7 @@ export default class logIn extends Component {
 
   render() {
     return (
-      <div className="submit-form">
+      <div id="logInForm" className="submit-form">
         {this.state.submitted ? (
           <div>
             <h4>You submitted successfully!</h4>
@@ -87,9 +87,16 @@ export default class logIn extends Component {
               />
             </div>
 
-            <button onClick={this.signIn} className="btn btn-success">
-              Register
-            </button>
+            <div>
+              <button onClick={this.signIn} className="btn btn-success">
+                Sign In
+              </button>
+              <a href="./register">
+                <button style={{marginLeft:'20px'}} className="btn btn-success">
+                  Register
+                </button>
+              </a>
+            </div>
           </div>
         )}
       </div>
