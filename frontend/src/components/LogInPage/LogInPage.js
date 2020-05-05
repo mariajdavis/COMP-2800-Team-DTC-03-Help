@@ -9,16 +9,12 @@ import Footer from '../Footer/Footer'
 
 function LogInPage(props) {
     return (
-        <div id="main">
-            <nav>Nav</nav>
+        <div id="logInPage">
             <section>Section</section>
             <article>
                 <LogInComponent />
             </article>
             <aside>aside</aside>
-            <footer>
-                <Footer />
-            </footer> 
         </div>
     )
 }

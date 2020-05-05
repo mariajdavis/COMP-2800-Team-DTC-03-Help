@@ -1,73 +1,43 @@
-main > * {
-    margin: 0;
-    padding: 0;
-  }
-div#main {
+div#registerPage {
     display: grid;
     grid-template-areas: 
-        "header"
-        "nav"
-        "section"
-        "aside"
-        "article"
-        "footer";
-    /* background-image: url('./img/background_frame.png');
-    background-size: cover; */
-    grid-template-rows: 50px 50px repeat(2, 1fr) 50px;
+        "ancement"
+        "content"
+        "bottom";
+    grid-template-rows: 1fr 500px 1fr;
 }
 
 body {
     margin: 0 auto;
 }
   
-header {grid-area: header;}
-nav {
-    grid-area: nav;
+section#ancement {
+    grid-area: ancement;
+    border: 1px solid black;
 }
-section {
-    grid-area: section;
+section#content {
+    grid-area: content;
 }
-article {
-    grid-area: article;
+section#bottom {
+    grid-area: bottom;
+    border: 1px solid black;
 }
-aside {
-    grid-area: aside;
+
+div#registerPage section#content {
+  grid-area: content;
+  background-image: url('../../img/background_frame.png');
+  background-size: 100% 100%;
 }
-footer {grid-area: footer;}
+
+
   
-  div#logInForm {
-    margin-left: 20px;
-    margin-bottom: 20px;
-  }
-  
-  
-  /* Form Stylings */
-  
-  .list {
-    text-align: left;
-    max-width: 750px;
-    margin: auto;
-  }
-  
-  .submit-form {
-    max-width: 300px;
-    margin: auto;
-  }
-  
-  .edit-form {
-    max-width: 300px;
-    margin: auto;
-  }
-  
-  div#main {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: 
-      "header header header"
-      "nav nav nav"
-      "section section aside"
-      "article article aside"
-      "footer footer footer";
-  }
+div#registerPage {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: 
+    "ancement ancement ancement"
+    "content content content"
+    "bottom bottom bottom";
+}
   
   @media only screen and (min-width: 1025px) {
   

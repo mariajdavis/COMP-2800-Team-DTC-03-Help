@@ -1,18 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Jaldi|Racing+Sans+One&display=swap');
 
-main > * {
-    margin: 0;
-    padding: 0;
-  }
+
 main#JobBoard {
     display: grid;
     grid-template-areas: 
-        "header"
         "ancement"
         "content"
-        "bottom"
-        "footer";
-    grid-template-rows: 1fr 1fr 10fr 1fr;
+        "bottom";
+    grid-template-rows: 1fr 10fr 1fr;
 }
 
 body {
@@ -20,12 +15,8 @@ body {
 }
 
 /* main grid areas */
-header {grid-area: header;}
 section#ancement {
     grid-area: ancement;
-}
-section#category {
-    grid-area: category;
 }
 section#content {
     grid-area: content;
@@ -40,7 +31,6 @@ section#content {
 section#bottom {
     grid-area: bottom;
 }
-footer {grid-area: footer;}
 
 ul#category {
     display: flex;
@@ -97,11 +87,9 @@ li.joblists {
 main#JobBoard {
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: 
-      "header header header"
       "ancement ancement ancement"
       "content content content"
-      "bottom bottom bottom"
-      "footer footer footer";
+      "bottom bottom bottom";
 }
   
   @media only screen and (min-width: 1025px) {

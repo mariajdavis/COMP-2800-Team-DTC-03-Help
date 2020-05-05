@@ -11,7 +11,8 @@ import Register from "./components/RegisterPage/RegisterPage";
 import LogIn from "./components/LogInPage/LogInPage";
 import UserProfile from "./components/user-profile.component";
 
-import { Nav, Navbar } from 'react-bootstrap'
+import { Nav, Navbar } from 'react-bootstrap';
+import Footer from './components/Footer/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Navbar.css'
 import AuthService from "./services/auth.service";
@@ -76,6 +77,9 @@ class App extends Component {
               <Route path="/userProfile" component={UserProfile}/>
             </Switch>
         </div>
+        <footer>
+          <Footer />
+        </footer>
       </Router>
     );
   }

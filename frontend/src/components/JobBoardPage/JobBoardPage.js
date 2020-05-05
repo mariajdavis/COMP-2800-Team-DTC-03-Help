@@ -203,9 +203,6 @@ class JobBoardPage extends Component {
                 <section id="bottom">
                     Bottom
                 </section>
-                <footer>
-                    <Footer />
-                </footer> 
             </main>
         )
     }

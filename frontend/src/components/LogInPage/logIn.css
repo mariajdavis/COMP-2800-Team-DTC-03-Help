@@ -2,25 +2,19 @@ main > * {
     margin: 0;
     padding: 0;
   }
-div#main {
+div#logInPage {
     display: grid;
     grid-template-areas: 
-        "header"
-        "nav"
         "section"
         "aside"
-        "article"
-        "footer";
-    /* background-image: url('./img/background_frame.png');
-    background-size: cover; */
-    grid-template-rows: 50px 50px repeat(2, 1fr) 50px;
+        "article";
+    grid-template-rows: 50px repeat(2, 1fr) 50px;
 }
 
 body {
     margin: 0 auto;
 }
   
-header {grid-area: header;}
 nav {
     grid-area: nav;
 }
@@ -62,11 +56,8 @@ footer {grid-area: footer;}
   div#main {
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: 
-      "header header header"
-      "nav nav nav"
       "section section aside"
-      "article article aside"
-      "footer footer footer";
+      "article article aside";
   }
   
   @media only screen and (min-width: 1025px) {
