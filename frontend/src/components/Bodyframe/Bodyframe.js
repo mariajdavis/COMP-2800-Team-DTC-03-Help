@@ -3,19 +3,20 @@ import './Bodyframe.css'
 import backgroundFrame from "../../img/background_frame.png"
 
 const imgStyle = {
-    paddingTop: '50px',
-    paddingBottom: '50px',
-    width: '100%',
-    maxHeight: '1100px',
-    objectFit: 'cover'
+
+    zIndex: '-1',
+
 }
 
 
 function mainBody() {
     return (
-        <div>
-            <img id="backgroundImage" src={backgroundFrame} style={imgStyle}/>
-        </div>
+            <Fragment>
+                <div id="bgDiv">
+                    <img id="backgroundImg" src={backgroundFrame} style={imgStyle}/>
+                </div>
+            </Fragment>
+
     );
 }
 
