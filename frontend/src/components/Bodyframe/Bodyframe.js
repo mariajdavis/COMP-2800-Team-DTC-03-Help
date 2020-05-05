@@ -3,8 +3,8 @@ import './Bodyframe.css'
 import backgroundFrame from "../../img/background_frame.png"
 
 const imgStyle = {
-    zIndex: '-1',
 
+    zIndex: '-1',
 
 }
 
@@ -16,6 +16,7 @@ function mainBody() {
                     <img id="backgroundImg" src={backgroundFrame} style={imgStyle}/>
                 </div>
             </Fragment>
+
     );
 }
 
