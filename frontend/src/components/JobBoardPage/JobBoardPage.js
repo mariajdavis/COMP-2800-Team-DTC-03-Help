@@ -63,6 +63,7 @@ class JobBoardPage extends Component {
           currentJobPost: jobPost,
           currentIndex: index
         });
+        // $('#jobboard').addClass('postClicked')
       }
     
       removeAllJobPosts() {
@@ -134,7 +135,7 @@ class JobBoardPage extends Component {
                     </form>
                     <article id='jobboard'>
                         <div id='jobboardImage'>
-                            <div className="col-md-6">
+                            <div className="col-md-12">
                                 <h4>Job Posts</h4>
 
                                 <ul className="list-group">
@@ -145,7 +146,9 @@ class JobBoardPage extends Component {
                                             "joblists list-group-item " +
                                             (index === currentIndex ? "active" : "")
                                         }
-                                        onClick={() => this.setActiveJobPost(jobPost, index)}
+                                        onClick={() => {
+                                            this.setActiveJobPost(jobPost, index)
+                                        }}
                                         key={index}
                                         >
                                         {jobPost.title}
@@ -160,7 +163,7 @@ class JobBoardPage extends Component {
                                     Remove All
                                 </button>
                                 </div>
-                                <div className="col-md-6">
+                                <div id="openPost" className="col-md-6">
                                 {currentJobPost ? (
                                     <div>
                                     <h4>Job Post</h4>

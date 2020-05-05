@@ -76,6 +76,11 @@ ul#category {
 article#jobboard {
     grid-area: jobboard;
 }
+article.postClicked {
+    display: grid;
+    grid-template-areas:  
+        "list jobpost";
+}
 div#jobboardImage {
     background-image: url('../../img/rectangle_24.png');
     background-size: 100% 100%;
