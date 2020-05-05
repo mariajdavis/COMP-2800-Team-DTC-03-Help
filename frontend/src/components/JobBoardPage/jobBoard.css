@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css?family=Jaldi|Racing+Sans+One&display=swap');
+
+main > * {
+    margin: 0;
+    padding: 0;
+  }
+main#JobBoard {
+    display: grid;
+    grid-template-areas: 
+        "header"
+        "ancement"
+        "content"
+        "bottom"
+        "footer";
+    grid-template-rows: 1fr 1fr 10fr 1fr;
+}
+
+body {
+    margin: 0 auto;
+}
+
+/* main grid areas */
+header {grid-area: header;}
+section#ancement {
+    grid-area: ancement;
+}
+section#category {
+    grid-area: category;
+}
+section#content {
+    grid-area: content;
+    background-image: url('../../img/background_frame.png');
+    background-size: 100% 100%;
+    display: grid;
+    grid-template-areas: 
+        "category search"
+        "jobboard jobboard";
+    grid-template-rows: 1fr 8fr;
+}
+section#bottom {
+    grid-area: bottom;
+}
+footer {grid-area: footer;}
+
+ul#category {
+    display: flex;
+    justify-content: flex-start;
+    list-style: none;
+}
+
+li {
+    margin-right: 20px;
+    font-family: Racing Sans One;
+    color: white;
+    font-size: larger;
+}
+a#ex {
+    background-image: url('../../img/category.png');
+    background-size: 100% 100%;
+}
+form#searchbar {
+    grid-area: search;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 100px;
+    padding: 10px;
+}
+form button {
+    margin-left: 10px;
+}
+
+/* sub grid areas */
+ul#category {
+    grid-area: category;
+}
+article#jobboard {
+    grid-area: jobboard;
+}
+article.postClicked {
+    display: grid;
+    grid-template-areas:  
+        "list jobpost";
+}
+div#jobboardImage {
+    background-image: url('../../img/rectangle_24.png');
+    background-size: 100% 100%;
+    margin: 10px;
+    margin-left: 100px;
+    margin-right: 100px;
+    padding: 20px;
+}
+li.joblists {
+    color: black;
+}
+
+  
+main#JobBoard {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 
+      "header header header"
+      "ancement ancement ancement"
+      "content content content"
+      "bottom bottom bottom"
+      "footer footer footer";
+}
+  
+  @media only screen and (min-width: 1025px) {
+  
+    #backgroundImage {
+      padding-top: 50px;
+      padding-bottom: 50px;
+      min-width: 1025px;
+      max-width: 5120px;
+      min-height: 800px;
+      max-height: 1100px;
+      object-fit: cover
+    }
+  }
+  
+  @media only screen and (min-width: 500px) and (max-width: 1024px) {
+    #backgroundImage {
+      padding-top: 50px;
+      padding-bottom: 50px;
+      height: 700px;
+      max-height: 1000px;
+      object-fit: cover;
+    }
+  }
+  
+  /* mobile view */
+  @media only screen and (max-width: 500px) {
+    #backgroundImage {
+      padding-top: 50px;
+      padding-bottom: 50px;
+      width: 500px;
+      height: 700px;
+      max-height: 1100px;
+      object-fit: cover;
+    }
+  }
