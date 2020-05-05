@@ -1,17 +1,20 @@
-module.exports = app => {
-    const users = require("../controllers/user.controller.js");
-  
-    var router = require("express").Router();
-  
-    // Create a new User
-    router.post("/", users.create);
-  
-    // Create a new OrgUser
-    router.post("/", users.orgCreate);
-  
-    // Checks if a User exists
-    router.get("/", users.findUser);
+const { authJwt } = require("../middleware");
+const controller = require("../controllers/user.controller");
 
-    app.use('/api/users', router);
-  };
-  
+module.exports = function(app) {
+  app.use(function(req, res, next) {
+    res.header(
+      "Access-Control-Allow-Headers",
+      "x-access-token, Origin, Content-Type, Accept"
+    );
+    next();
+  });
+
+  app.get("/api/test/all", controller.allAccess);
+
+  app.get(
+    "/api/test/user",
+    [authJwt.verifyToken],
+    controller.userBoard
+  );
+};
