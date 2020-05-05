@@ -4,11 +4,12 @@
   "description": "Database for the Help! App",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \" node server.js \" \"cd frontend && npm install && npm start\""
   },
   "engines": {
-    "node": "0.11.x",
-    "npm": "^2.1.0"
+    "node": "13.1.0",
+    "npm": "6.12.1"
   },
   "keywords": [
     "nodejs",
