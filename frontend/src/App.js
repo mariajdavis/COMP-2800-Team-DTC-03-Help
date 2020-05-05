@@ -18,7 +18,6 @@ class App extends Component {
       <Router>
         <Navbar/>
           <div>
-            <div className="container mt-3">
             <Switch>
               <Route exact path="/logIn" component={LogIn} />
               <Route exact path="/register" component={Register} />
@@ -26,7 +25,6 @@ class App extends Component {
               <Route exact path="/add" component={AddJobPost} />
               <Route path="/jobPosts/:id" component={JobPost} />
             </Switch>
-            </div>
           <Bodyframe/>
           </div>
         <Footer/>
