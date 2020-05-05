@@ -45,10 +45,6 @@ class App extends Component {
     const {currentUser}=this.state;
     return (
       <Router>
-<<<<<<< HEAD
-        <Navbar/>
-          <div>
-=======
         <Navbar style={{ backgroundColor: "#2743A5" }} expand="sm">
           <Navbar.Brand class="navBrand" id="navBrand" style={{ fontFamily: "Racing Sans One", color: "white", fontSize: "30px" }}>help!</Navbar.Brand>
           <Navbar.Toggle id="collapseButton" aria-controls="basic-navbar-nav" />
@@ -65,7 +61,6 @@ class App extends Component {
         </Navbar>
         <div>
           <div className="container mt-3">
->>>>>>> bbce3d98cc60dff702f53706730c1715b459c0c5
             <Switch>
               <Route exact path="/logIn" component={LogIn} />
               <Route exact path="/register" component={Register} />
@@ -74,10 +69,6 @@ class App extends Component {
               <Route path="/jobPosts/:id" component={JobPost} />
               <Route path="/userProfile" component={UserProfile}/>
             </Switch>
-<<<<<<< HEAD
-          <Bodyframe/>
-=======
->>>>>>> bbce3d98cc60dff702f53706730c1715b459c0c5
           </div>
           <Bodyframe />
         </div>
