@@ -1,0 +1,20 @@
+#bgDiv {
+    position: absolute;
+    display: grid;
+    width: 100%;
+    top:100px;
+    bottom: 100px;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        "bgImg"
+
+}
+
+#backgroundImg {
+    height: 100%;
+    width: 100%;
+}
+
+#backgroundImg{grid-area: bgImg;}
+#placeholderOne{grid-area: placeOne;}
+#placeholderTwo{grid-area: placeTwo;}
