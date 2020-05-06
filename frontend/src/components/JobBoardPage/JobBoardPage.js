@@ -103,6 +103,7 @@ class JobBoardPage extends Component {
                     <div class='line'>Help! App</div>
                     <div class='line'>DTC Team03</div>
                     <div class='line'>Covid 19</div>
+                    <div class='line'>Year 2020</div>
                   </div>
                 </section>
                 <section id="content">
@@ -144,8 +145,13 @@ class JobBoardPage extends Component {
                                             "list-group-item " +
                                             (index === currentIndex ? "active" : "")
                                         }
-                                        onClick={() => {
-                                            this.setActiveJobPost(jobPost, index)
+                                        id={jobPost.title + jobPost.id}
+                                        onClick={() => { 
+                                            this.setActiveJobPost(jobPost, index); // shows the post description
+                                            let clickedPost = document.getElementById(jobPost.title + jobPost.id);
+                                            clickedPost.classList.toggle("postClick");
+                                            // let postDescription = document.getElementById('openPost');
+                                            // postDescription.classList.toggle("postClick");
                                         }}
                                         key={index}
                                         style={{color: 'black'}}

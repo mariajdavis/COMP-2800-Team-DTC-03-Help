@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Jaldi|Racing+Sans+One&display=swap');
 
+.list-group{
+    -webkit-transition: all 10s ease;  
+    -moz-transition: all 10s ease;  
+    -o-transition: all 10s ease;  
+    -ms-transition: all 10s ease;  
+    transition: all 10s ease;
+}
 
 main#JobBoard {
     display: grid;
@@ -15,7 +22,9 @@ body {
 }
 
 .postClick {
-    background-color: crimson;
+    background-color: #45CEE0;
+    height: 200px;
+    width: 200px;
 }
 
 /* main grid areas */
