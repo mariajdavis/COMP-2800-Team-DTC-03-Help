@@ -10,11 +10,20 @@ import Footer from '../Footer/Footer'
 function LogInPage(props) {
     return (
         <div id="logInPage">
-            <section>Section</section>
-            <article>
-                <LogInComponent />
-            </article>
-            <aside>aside</aside>
+            <section id="ancementLoginPage">
+                <p>Announcement</p>
+            </section>
+            <section id='contentLoginPage'>
+                <article id='introduction'>
+                    <p>Some introductions...</p>
+                </article>
+                <article id="loginContainer">
+                    <LogInComponent />
+                </article>
+            </section>
+            <section id="bottomLoginPage">
+                <p>bottom</p>
+            </section>
         </div>
     )
 }

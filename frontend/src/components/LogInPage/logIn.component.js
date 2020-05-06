@@ -61,8 +61,8 @@ export default class logIn extends Component {
           </div>
         ) : (
           <div>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
+            <div id="emailInput" className="form-group">
+              <label htmlFor="email" class="logInLabel">Email:</label>
               <input
                 type="text"
                 className="form-control"
@@ -74,10 +74,10 @@ export default class logIn extends Component {
               />
             </div>
 
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
+            <div id="passwordInput" className="form-group">
+              <label htmlFor="password" class="logInLabel">Password:</label>
               <input
-                type="text"
+                type="password"
                 className="form-control"
                 id="password"
                 required
@@ -88,11 +88,11 @@ export default class logIn extends Component {
             </div>
 
             <div>
-              <button onClick={this.signIn} className="btn btn-success">
+              <button onClick={this.signIn} className="loginBtn btn btn-success">
                 Sign In
               </button>
               <a href="./register">
-                <button style={{marginLeft:'20px'}} className="btn btn-success">
+                <button className="loginBtn btn btn-success">
                   Register
                 </button>
               </a>

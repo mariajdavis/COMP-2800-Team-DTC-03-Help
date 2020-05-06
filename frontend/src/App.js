@@ -10,6 +10,7 @@ import JobPostsList from "./components/JobBoardPage/JobBoardPage";
 import Register from "./components/RegisterPage/RegisterPage";
 import LogIn from "./components/LogInPage/LogInPage";
 import UserProfile from "./components/user-profile.component";
+import AboutUs from "./components/AboutUs/aboutUs.component";
 
 import { Nav, Navbar } from 'react-bootstrap';
 import Footer from './components/Footer/Footer';
@@ -60,6 +61,7 @@ class App extends Component {
                 {!currentUser && <Nav.Link href="/register">Register</Nav.Link>}
                 <Nav.Link href="/jobPosts">Job Board</Nav.Link>
                 <Nav.Link href="/add">Add Job</Nav.Link>
+                <Nav.Link href="/aboutus">About Us</Nav.Link>
                 {currentUser && <Nav.Link href="/userProfile">My Profile</Nav.Link>}
                 {!currentUser && <Nav.Link href="/logIn">Log In</Nav.Link>}
                 {currentUser && <Nav.Link href="/logIn" onClick={this.logOut}>Log Out</Nav.Link>}
@@ -74,6 +76,7 @@ class App extends Component {
               <Route exact path="/add" component={AddJobPost} />
               <Route path="/jobPosts/:id" component={JobPost} />
               <Route exact path="/logIn" component={LogIn} />
+              <Route exact path="/aboutus" component={AboutUs} />
               <Route path="/userProfile" component={UserProfile}/>
             </Switch>
         </div>

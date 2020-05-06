@@ -63,7 +63,6 @@ class JobBoardPage extends Component {
           currentJobPost: jobPost,
           currentIndex: index
         });
-        // $('#jobboard').addClass('postClicked')
       }
     
       removeAllJobPosts() {
@@ -98,7 +97,13 @@ class JobBoardPage extends Component {
         return (
             <main id="JobBoard">
                 <section id='ancement'>
-                    <p>Announcement</p>
+                  <div class='animated-text'>
+                    <div class='line'>Announcement</div>
+                    <div class='line'>Section</div>
+                    <div class='line'>Help! App</div>
+                    <div class='line'>DTC Team03</div>
+                    <div class='line'>Covid 19</div>
+                  </div>
                 </section>
                 <section id="content">
                     <ul id="category">
@@ -109,10 +114,6 @@ class JobBoardPage extends Component {
                         <li>More</li>
                     </ul>
                     <form id='searchbar'>
-                        {/* <input 
-                            type='text'
-                            placeholder='Search by title'
-                        ></input> */}
                         <input
                             type="text"
                             className="form-control"
@@ -140,13 +141,14 @@ class JobBoardPage extends Component {
                                     jobPosts.map((jobPost, index) => (
                                         <li
                                         className={
-                                            "joblists list-group-item " +
+                                            "list-group-item " +
                                             (index === currentIndex ? "active" : "")
                                         }
                                         onClick={() => {
                                             this.setActiveJobPost(jobPost, index)
                                         }}
                                         key={index}
+                                        style={{color: 'black'}}
                                         >
                                         {jobPost.title}
                                         </li>
@@ -160,7 +162,8 @@ class JobBoardPage extends Component {
                                     Remove All
                                 </button>
                                 </div>
-                                <div id="openPost" className="col-md-6">
+                        </div>
+                        <div id="openPost" className="col-md-6">
                                 {currentJobPost ? (
                                     <div>
                                     <h4>Job Post</h4>
@@ -196,8 +199,7 @@ class JobBoardPage extends Component {
                                     <p>Please click on a JobPost...</p>
                                     </div>
                                 )}
-                            </div>
-                        </div>
+                          </div>
                     </article>
                 </section>
                 <section id="bottom">

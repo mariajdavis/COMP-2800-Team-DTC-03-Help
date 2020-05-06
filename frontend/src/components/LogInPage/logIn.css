@@ -1,64 +1,94 @@
-main > * {
-    margin: 0;
-    padding: 0;
-  }
-div#logInPage {
-    display: grid;
-    grid-template-areas: 
-        "section"
-        "aside"
-        "article";
-    grid-template-rows: 50px repeat(2, 1fr) 50px;
-}
+@import url('https://fonts.googleapis.com/css?family=Jaldi|Racing+Sans+One&display=swap');
 
 body {
     margin: 0 auto;
 }
-  
-nav {
-    grid-area: nav;
-}
-section {
-    grid-area: section;
-}
-article {
-    grid-area: article;
-}
-aside {
-    grid-area: aside;
-}
-footer {grid-area: footer;}
-  
-  div#logInForm {
-    margin-left: 20px;
-    margin-bottom: 20px;
-  }
-  
-  
-  /* Form Stylings */
-  
-  .list {
-    text-align: left;
-    max-width: 750px;
-    margin: auto;
-  }
-  
-  .submit-form {
-    max-width: 300px;
-    margin: auto;
-  }
-  
-  .edit-form {
-    max-width: 300px;
-    margin: auto;
-  }
-  
-  div#main {
-    grid-template-columns: repeat(3, 1fr);
+
+div#logInPage {
+    display: grid;
     grid-template-areas: 
-      "section section aside"
-      "article article aside";
-  }
+        "ancement"
+        "content"
+        "bottom";
+    grid-template-rows: 1fr 10fr 1fr;
+}
+
+
+  
+section#ancementLoginPage {
+  grid-area: ancement;
+}
+section#contentLoginPage {
+  grid-area: content;
+  background-image: url('../../img/background_frame.png');
+  background-size: 100% 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: 
+    "intro intro intro"
+    "signin signin signin";
+}
+section#bottomLoginPage {
+  grid-area: bottom;
+}
+
+
+article#loginContainer {
+    grid-area: signin;
+    margin-left: 20px;
+    background-image: url('../../img/signin_box.png');
+    width: 400px;
+    height: 200px;
+    background-size: 100% 100%;
+}
+article#introduction {
+  grid-area: intro;
+}
+  
+div#logInForm {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+button.loginBtn {
+  margin-left: 50px;
+  font-family: Racing Sans One;
+  color: black;
+  background-color: white;
+  border-radius: 20px;
+  width: 100px
+}
+
+div#emailInput {
+  display: flex;
+  margin: 10px;
+  justify-content: center;
+}
+
+div#passwordInput {
+  display: flex;
+  margin: 10px;
+  justify-content: center;
+}
+label.logInLabel {
+  color: white;
+  font-size: large;
+  font-weight: bold;
+  opacity: 0.8;
+}
+div.form-group input {
+  margin: 5px;
+  display: inline-flex;
+  justify-content: flex-end;
+}
+div#main {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: 
+    "ancement ancement ancement"
+    "content content content"
+    "bottom bottom bottom";
+}
   
   @media only screen and (min-width: 1025px) {
   
