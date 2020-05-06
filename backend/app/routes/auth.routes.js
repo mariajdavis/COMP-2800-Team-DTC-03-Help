@@ -17,4 +17,12 @@ module.exports = function (app) {
     );
 
     app.post("/api/auth/signin", controller.signin);
+    
+    app.post(
+        "/api/auth/orgsignup",
+        [verifySignUp.checkDuplicateUsernameOrEmailOrg],
+        controller.orgsignup
+    );
+
+    app.post("/api/auth/orgsignin", controller.orgsignin);
 };
