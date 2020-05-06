@@ -1,7 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import "./components/Navbar/Navbar.css";
+
 import AddJobPost from "./components/add-jobPost.component";
 import JobPost from "./components/jobPost.component";
 import Register from "./components/register.component";
@@ -14,6 +16,9 @@ import { Nav, Navbar } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Navbar.css'
 import AuthService from "./services/auth.service";
+
+
+
 
 class App extends Component {
   constructor(props) {
@@ -43,6 +48,7 @@ class App extends Component {
 
   render() {
     const {currentUser}=this.state;
+
     return (
       <Router>
         <Navbar style={{ backgroundColor: "#2743A5" }} expand="sm">
@@ -62,18 +68,22 @@ class App extends Component {
         </Navbar>
         <div>
           <div className="container mt-3">
+
             <Switch>
-              <Route exact path="/logIn" component={LogIn} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/add" component={AddJobPost} />
               <Route path="/jobPosts/:id" component={JobPost} />
+
               <Route path="/aboutUs" component={AboutUs} />
+
+              <Route exact path="/logIn" component={LogIn} />
+
               <Route path="/userProfile" component={UserProfile}/>
             </Switch>
-          </div>
-          <Bodyframe />
         </div>
-        <Footer />
+        <footer>
+          <Footer />
+        </footer>
       </Router>
     );
   }
