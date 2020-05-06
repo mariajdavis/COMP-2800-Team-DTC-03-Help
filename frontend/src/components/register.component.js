@@ -53,13 +53,15 @@ export default class Register extends Component {
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
+    this.handleRegisterType = this.handleRegisterType.bind(this);
 
     this.state = {
       username: "",
       email: "",
       password: "",
       successful: false,
-      message: ""
+      message: "",
+      registerType: "user"
     };
   }
 
@@ -81,6 +83,20 @@ export default class Register extends Component {
     });
   }
 
+  handleRegisterType(e) {
+    this.setState({
+      registerType: e.target.value
+    });
+    console.log(e.target.value);
+  }
+
+  componentDidMount(message, successful){
+    this.setState({
+      meesage: message,
+      successful: successful
+    });
+  }
+
   handleRegister(e) {
     e.preventDefault();
 
@@ -90,33 +106,60 @@ export default class Register extends Component {
     });
 
     this.form.validateAll();
-
+    console.log(this.state.registerType);
     if (this.checkBtn.context._errors.length === 0) {
-      AuthService.register(
-        this.state.username,
-        this.state.email,
-        this.state.password
-      ).then(
-        response => {
-          this.setState({
-            message: response.data.message,
-            successful: true
-          });
-        },
-        error => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+      if (this.state.registerType === "user") {
+        AuthService.register(
+          this.state.username,
+          this.state.email,
+          this.state.password
+        ).then(
+          response => {
+            this.componentDidMount(response.data.message,true);
+            // this.props.history.push("/");
+            // window.location.reload();
+          },
+          error => {
+            const resMessage =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
 
-          this.setState({
-            successful: false,
-            message: resMessage
-          });
-        }
-      );
+            this.setState({
+              successful: false,
+              message: resMessage
+            });
+          }
+        );
+      }
+      else {
+        AuthService.orgRegister(
+          this.state.username,
+          this.state.email,
+          this.state.password
+        ).then(
+          response => {
+            this.componentDidMount(response.data.message,true);
+            // this.props.history.push("/");
+            // window.location.reload();
+          },
+          error => {
+            const resMessage =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
+
+            this.setState({
+              successful: false,
+              message: resMessage
+            });
+          }
+        );
+      }
     }
   }
 
@@ -132,6 +175,12 @@ export default class Register extends Component {
           >
             {!this.state.successful && (
               <div>
+                <div>
+                  <label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="user" autocomplete="off" value="user" checked={this.state.registerType==="user"} onChange={this.handleRegisterType} />Register As Individual User</label>
+                  <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="orgUser" autocomplete="off" value="orgUser" checked={this.state.registerType==="orgUser"} onChange={this.handleRegisterType} />Register As Organization</label>
+                </div>
                 <div className="form-group">
                   <label htmlFor="username">Username</label>
                   <Input

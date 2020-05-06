@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import './Bodyframe.css'
 import backgroundFrame from "../../img/background_frame.png"
 
@@ -14,7 +14,7 @@ const imgStyle = {
 function mainBody() {
     return (
         <Fragment>
-            <img src={backgroundFrame} style={imgStyle}/>
+            <img src={backgroundFrame} style={imgStyle} alt=""/>
         </Fragment>
     );
 }
