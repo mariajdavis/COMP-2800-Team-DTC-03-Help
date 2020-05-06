@@ -81,9 +81,11 @@ class App extends Component {
               <Route path="/userProfile" component={UserProfile}/>
             </Switch>
         </div>
+        <Bodyframe/>
         <footer>
           <Footer />
         </footer>
+        </div>
       </Router>
     );
   }
