@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import AddJobPost from "./components/add-jobPost.component";
 import JobPost from "./components/jobPost.component";
-import JobPostsList from "./components/jobPosts-list.component";
+import JobPostsList from "./components/JobBoardPage/JobBoardPage";
 import Register from "./components/register.component";
 import LogIn from "./components/logIn.component";
 import Bodyframe from './components/Bodyframe/Bodyframe.js';
@@ -76,7 +76,6 @@ class App extends Component {
               <Route path="/userProfile" component={UserProfile}/>
             </Switch>
           </div>
-          <Bodyframe />
         </div>
         <Footer />
       </Router>

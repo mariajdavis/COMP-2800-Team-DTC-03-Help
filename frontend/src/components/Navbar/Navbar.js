@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import { Nav, Navbar } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Navbar.css'
+import '../../Navbar.css';
 
 
 const toolbar = props => (
