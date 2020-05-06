@@ -1,27 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Jaldi|Racing+Sans+One&display=swap');
+
+/* Form Stylings */
+
 .list {
-  position: absolute;
-  z-index: 1;
-  left: 35%;
-  top: 20%;
   text-align: left;
   max-width: 750px;
   margin: auto;
 }
 
 .submit-form {
-  position: fixed;
-  z-index: 1;
-  left: 40%;
-  top: 20%;
   max-width: 300px;
   margin: auto;
 }
 
 .edit-form {
-  position: absolute;
-  z-index: 1;
-  left: 40%;
-  top: 20%;
   max-width: 300px;
   margin: auto;
+}
+
+.menu {
+  font-family: Racing Sans One; 
+  color: white;
 }
