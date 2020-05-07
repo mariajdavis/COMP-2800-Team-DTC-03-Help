@@ -67,7 +67,7 @@ class App extends Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <div>
+        <Bodyframe/>
           <div className="container mt-3">
             <Switch>
               <Route exact path="/logIn" component={LogIn} />
@@ -79,11 +79,9 @@ class App extends Component {
               <Route path="/aboutUs" component={AboutUs} />
             </Switch>
           </div>
-          <Bodyframe/>
         <footer>
           <Footer />
         </footer>
-        </div>
       </Router>
     );
   }

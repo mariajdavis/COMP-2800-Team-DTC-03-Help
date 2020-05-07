@@ -21,7 +21,8 @@ class JobBoardPage extends Component {
           jobPosts: [],
           currentJobPost: null,
           currentIndex: -1,
-          searchTitle: ""
+          searchTitle: "",
+          toggleHandler: true
         };
       }
     
@@ -95,16 +96,7 @@ class JobBoardPage extends Component {
         const { searchTitle, jobPosts, currentJobPost, currentIndex } = this.state;
 
         return (
-            <main id="JobBoard">
-                <section id='ancement'>
-                  <div class='animated-text'>
-                    <div class='line'>Announcement</div>
-                    <div class='line'>Section</div>
-                    <div class='line'>Help! App</div>
-                    <div class='line'>DTC Team03</div>
-                    <div class='line'>Covid 19</div>
-                  </div>
-                </section>
+         
                 <section id="content">
                     <ul id="category">
                         <a id='ex'>
@@ -133,7 +125,7 @@ class JobBoardPage extends Component {
                     </form>
                     <article id='jobboard'>
                         <div id='jobboardImage'>
-                            <div className="col-md-12">
+                            <div id="job-list" className="col-md-12">
                                 <h4>Job Posts</h4>
 
                                 <ul className="list-group">
@@ -144,8 +136,23 @@ class JobBoardPage extends Component {
                                             "list-group-item " +
                                             (index === currentIndex ? "active" : "")
                                         }
+                                        id={jobPost.title + jobPost.id}
                                         onClick={() => {
-                                            this.setActiveJobPost(jobPost, index)
+                
+                                          if (this.state.toggleHandler) { // triggers open job post animation             
+                                            this.setActiveJobPost(jobPost, index);
+                                            this.state.toggleHandler = false;
+                                            document.getElementById('job-list').classList.remove('col-md-12');
+                                            document.getElementById('job-list').classList.add('col-md-7');
+                                            document.getElementById('contentArea').classList.add('bgOpacity');
+                                          } else { // revert back
+                                            this.setActiveJobPost("", "")
+                                            this.state.toggleHandler = true;
+                                            document.getElementById('job-list').classList.remove('col-md-7');
+                                            document.getElementById('job-list').classList.add('col-md-12');
+                                            document.getElementById('contentArea').classList.remove('bgOpacity');
+                                          }
+                                          
                                         }}
                                         key={index}
                                         style={{color: 'black'}}
@@ -163,8 +170,9 @@ class JobBoardPage extends Component {
                                 </button>
                                 </div>
                         </div>
-                        <div id="openPost" className="col-md-6">
-                                {currentJobPost ? (
+                        <div id="job-description-wrapper" className="col-md-6">
+                          <div id='job-description'>
+                                {currentJobPost && (
                                     <div>
                                     <h4>Job Post</h4>
                                     <div>
@@ -193,19 +201,12 @@ class JobBoardPage extends Component {
                                         Edit
                                     </Link>
                                     </div>
-                                ) : (
-                                    <div>
-                                    <br />
-                                    <p>Please click on a JobPost...</p>
-                                    </div>
-                                )}
+                                ) }
                           </div>
+                        </div>
                     </article>
                 </section>
-                <section id="bottom">
-                    Bottom
-                </section>
-            </main>
+        
         )
     }
 }

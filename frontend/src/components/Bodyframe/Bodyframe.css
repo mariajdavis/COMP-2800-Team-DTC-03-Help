@@ -1,5 +1,49 @@
-#bgDiv {
+@import url('https://fonts.googleapis.com/css?family=Jaldi|Racing+Sans+One&display=swap');
+
+.list-group{
+    -webkit-transition: all 10s ease;  
+    -moz-transition: all 10s ease;  
+    -o-transition: all 10s ease;  
+    -ms-transition: all 10s ease;  
+    transition: all 10s ease;
+}
+
+main#contentArea {
+    display: grid;
+    grid-template-areas: 
+        "ancement"
+        "content"
+        "bottom";
+    grid-template-rows: 1fr 10fr 1fr;
+}
+
+body {
+    margin: 0 auto;
+}
+
+.postClick {
+    background-color: #45CEE0;
+    height: 200px;
+    width: 200px;
+}
+
+/* main grid areas */
+section#ancement {
+    grid-area: ancement;
+}
+/* section#bgImg {
+    grid-area: content;
+    background-image: url('../../img/background_frame.png');
+    background-size: 100% 100%;
+    display: grid;
+    grid-template-areas: 
+        "category search"
+        "jobboard jobboard";
+    grid-template-rows: 1fr 8fr;
+} */
+section#bgImg {
     position: absolute;
+    z-index: -1;
     display: grid;
     width: 100%;
     top:100px;
@@ -9,12 +53,121 @@
         "bgImg"
 
 }
-
 #backgroundImg {
     height: 100%;
     width: 100%;
 }
 
 #backgroundImg{grid-area: bgImg;}
-#placeholderOne{grid-area: placeOne;}
-#placeholderTwo{grid-area: placeTwo;}
+section#bottom {
+    grid-area: bottom;
+}
+
+ul#category {
+    display: flex;
+    justify-content: flex-start;
+    list-style: none;
+}
+
+
+
+
+/* announcement styling (animation) */
+.animated-text {
+    background-color: rgb(63, 89, 135);
+    color: white;
+    transform: translate(-505, -50%);
+    padding: 0 40px;
+    height: 50px;
+    overflow: hidden;
+}
+.line {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 30px;
+    line-height: 50px;
+}
+.line:first-child {
+    animation: slide 12s infinite;
+}
+
+@keyframes slide {
+    0% {
+        margin-top: 0px;
+    }
+    2% {
+        margin-top: 0px;
+    }
+    16% {
+        margin-top: -50px;
+    }
+    18% {
+        margin-top: -50px;
+    }
+    33% {
+        margin-top: -100px;
+    }
+    35% {
+        margin-top: -100px;
+    }
+    66% {
+        margin-top: -150px;
+    }
+    82% {
+        margin-top: -200px;
+    }
+    100% {
+        margin-top: -250px;
+    }
+}
+
+/* open job post */
+div#openPost {
+    border: 1px solid black;
+    background-color: cornsilk;
+    margin-left: 100px;
+}
+
+  
+main#contentArea {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 
+      "ancement ancement ancement"
+      "content content content"
+      "bottom bottom bottom";
+}
+  
+  @media only screen and (min-width: 1025px) {
+  
+    #backgroundImage {
+      padding-top: 50px;
+      padding-bottom: 50px;
+      min-width: 1025px;
+      max-width: 5120px;
+      min-height: 800px;
+      max-height: 1100px;
+      object-fit: cover
+    }
+  }
+  
+  @media only screen and (min-width: 500px) and (max-width: 1024px) {
+    #backgroundImage {
+      padding-top: 50px;
+      padding-bottom: 50px;
+      height: 700px;
+      max-height: 1000px;
+      object-fit: cover;
+    }
+  }
+  
+  /* mobile view */
+  @media only screen and (max-width: 500px) {
+    #backgroundImage {
+      padding-top: 50px;
+      padding-bottom: 50px;
+      width: 500px;
+      height: 700px;
+      max-height: 1100px;
+      object-fit: cover;
+    }
+  }
