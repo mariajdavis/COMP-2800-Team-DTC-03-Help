@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 const PROXY_URL = "https://cors-anywhere.herokuapp.com";
 const API_URL = "http://localhost:8080/api/auth/";
 
