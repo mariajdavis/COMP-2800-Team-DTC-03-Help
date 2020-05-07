@@ -177,9 +177,9 @@ export default class Register extends Component {
               <div>
                 <div>
                   <label class="btn btn-secondary active">
-                    <input type="radio" name="options" id="user" autocomplete="off" value="user" checked={this.state.registerType==="user"} onChange={this.handleRegisterType} />Register As Individual User</label>
-                  <label class="btn btn-secondary">
-                    <input type="radio" name="options" id="orgUser" autocomplete="off" value="orgUser" checked={this.state.registerType==="orgUser"} onChange={this.handleRegisterType} />Register As Organization</label>
+                    <input class="m-2" type="radio" name="options" id="user" autocomplete="off" value="user" checked={this.state.registerType==="user"} onChange={this.handleRegisterType} />Register As Individual User</label>
+                  <label class="ml-2 btn btn-secondary">
+                    <input class="m-2" type="radio" name="options" id="orgUser" autocomplete="off" value="orgUser" checked={this.state.registerType==="orgUser"} onChange={this.handleRegisterType} />Register As Organization</label>
                 </div>
                 <div className="form-group">
                   <label htmlFor="username">Username</label>
