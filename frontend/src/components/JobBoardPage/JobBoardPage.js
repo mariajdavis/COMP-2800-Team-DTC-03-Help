@@ -95,8 +95,7 @@ class JobBoardPage extends Component {
     render() {
         const { searchTitle, jobPosts, currentJobPost, currentIndex } = this.state;
 
-        return (
-         
+        return (       
                 <section id="content">
                     <ul id="category">
                         <a id='ex'>

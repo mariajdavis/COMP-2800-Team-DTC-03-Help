@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import './Layouts/AboutUs.css'
+import './AboutUs.css'
 
 export default class AboutUs extends Component {
 

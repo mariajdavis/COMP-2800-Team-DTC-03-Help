@@ -11,6 +11,9 @@ body {
 
 /* main grid areas */
 section#content {
+    position: absolute;
+    top: 110px;
+    width: 1000px;
     background-size: 100% 100%;
     display: grid;
     grid-template-areas: 
@@ -77,8 +80,8 @@ div#job-description-wrapper {
     overflow: hidden;
     width: 500px;
     height: 300px;
-    right: 100px;
-    bottom: 280px;
+    right: -100px;
+    bottom: 100px;
 }
 div#job-description > div {
     position: absolute;

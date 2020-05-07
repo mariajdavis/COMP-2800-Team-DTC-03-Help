@@ -13,7 +13,7 @@ import UserProfile from "./components/user-profile.component";
 import { Nav, Navbar } from 'react-bootstrap'
 import './Navbar.css'
 import AuthService from "./services/auth.service";
-import AboutUs from './components/aboutUs.component'
+import AboutUs from './components/AboutUs/aboutUs.component'
 
 class App extends Component {
   constructor(props) {
