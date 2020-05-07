@@ -54,6 +54,11 @@ h3 {
 
 #aboutHead {
     min-width: 180px;
+    margin-left: 5px;
+}
+
+#itemOne, #itemTwo, #itemThree, #itemFour {
+    margin-left: 5px;
 }
 
 #itemOne{grid-area: placeOne;}
