@@ -3,6 +3,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
+import "./Layouts/ContentLayout.css"
 
 import AuthService from "../services/auth.service";
 
@@ -165,8 +166,10 @@ export default class Register extends Component {
 
   render() {
     return (
-      <div className="col-md-12">
-        <div className="card card-container">
+      <div id="contentLayout">
+        <div id="contentDiv">
+          <div>
+        <div className="card">
           <Form
             onSubmit={this.handleRegister}
             ref={c => {
@@ -175,10 +178,10 @@ export default class Register extends Component {
           >
             {!this.state.successful && (
               <div>
-                <div>
-                  <label class="btn btn-secondary active">
+                <div style={{display:'flex', justifyContent:'center'}}>
+                  <label class="btn btn-secondary">
                     <input class="m-2" type="radio" name="options" id="user" autocomplete="off" value="user" checked={this.state.registerType==="user"} onChange={this.handleRegisterType} />Register As Individual User</label>
-                  <label class="ml-2 btn btn-secondary">
+                  <label class="btn btn-secondary"style={{margin:'0px !important', padding:'0px !important'}}>
                     <input class="m-2" type="radio" name="options" id="orgUser" autocomplete="off" value="orgUser" checked={this.state.registerType==="orgUser"} onChange={this.handleRegisterType} />Register As Organization</label>
                 </div>
                 <div className="form-group">
@@ -218,13 +221,13 @@ export default class Register extends Component {
                 </div>
 
                 <div className="form-group">
-                  <button className="btn btn-primary btn-block">Sign Up</button>
+                  <button className="btn btn-primary btn-block" style={{margin:'0px'}}>Sign Up</button>
                 </div>
               </div>
             )}
 
             {this.state.message && (
-              <div className="form-group">
+              <div className="">
                 <div
                   className={
                     this.state.successful
@@ -243,7 +246,10 @@ export default class Register extends Component {
                 this.checkBtn = c;
               }}
             />
+            
           </Form>
+          </div>
+          </div>
         </div>
       </div>
     );

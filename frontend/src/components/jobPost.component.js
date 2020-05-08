@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import JobPostDataService from "../services/jobPost.service";
+import "./Layouts/ContentLayout.css"
 
 export default class JobPost extends Component {
   constructor(props) {
@@ -105,6 +106,8 @@ export default class JobPost extends Component {
     const { currentJobPost } = this.state;
 
     return (
+      <div id="contentLayout">
+        <div id="contentDiv">
       <div>
         {currentJobPost ? (
           <div className="edit-form">
@@ -167,6 +170,8 @@ export default class JobPost extends Component {
             <p>Please click on a JobPost...</p>
           </div>
         )}
+        </div>
+        </div>
       </div>
     );
   }
