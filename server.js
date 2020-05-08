@@ -32,7 +32,7 @@ require('./app/routes/tag.routes')(app);
 
 // The following code lets the server know to serve all 
 // static React files from the build directory
-app.use(express.static(path.join(__dirname, 'build')));
+//app.use(express.static(path.join(__dirname, 'build')));
 
 // Keep our client side routing functional, essentially 
 // serves the index.html file on any unknown routes
