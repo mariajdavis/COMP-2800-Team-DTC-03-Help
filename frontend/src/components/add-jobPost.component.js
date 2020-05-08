@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import JobPostDataService from "../services/jobPost.service";
+import AuthService from '../services/auth.service';
 
 export default class AddJobPost extends Component {
   constructor(props) {
@@ -47,15 +48,18 @@ export default class AddJobPost extends Component {
 
     JobPostDataService.create(data)
       .then(response => {
+        console.log(response.data.id)
         this.setState({
           id: response.data.id,
           title: response.data.title,
           description: response.data.description,
           jobType: response.data.jobType,
+          
 
           submitted: true
         });
         console.log(response.data);
+        console.log(AuthService.getCurrentOrgUser())
       })
       .catch(e => {
         console.log(e);
