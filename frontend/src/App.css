@@ -8,6 +8,12 @@
   margin: auto;
 }
 
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-gap: 20px 20px;
+}
+
 .submit-form {
   position: fixed;
   z-index: 1;

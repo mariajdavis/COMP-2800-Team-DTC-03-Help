@@ -7,7 +7,7 @@ exports.create = (req, res) => {
   // Validate request
   if (!req.body.title) {
     res.status(400).send({
-      message: "Content can not be empty!"
+      message: "Content cannot be empty!"
     });
     return;
   }
@@ -16,7 +16,11 @@ exports.create = (req, res) => {
   const jobPost = {
     title: req.body.title,
     description: req.body.description,
-    jobType: req.body.jobType
+    jobType: req.body.jobType,
+    rate: req.body.rate,
+    contractLength: req.body.contractLength,
+    startDate: req.body.startDate,
+    orgID: req.body.orgID
   };
 
   // Save JobPost in the database
