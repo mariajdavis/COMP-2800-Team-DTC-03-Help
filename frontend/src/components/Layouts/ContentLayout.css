@@ -1,0 +1,74 @@
+#contentLayout {
+    position: absolute;
+    display: grid;
+    width: 80vw;
+    top:100px;
+    bottom: 100px;
+    margin-left:10vw;
+    margin-right:10vw;
+    top:25%;
+    overflow-x:hidden;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "contentArea"
+}
+
+#contentDiv {
+    position: absolute;
+    display: grid;
+    font-family:Jaldi;
+    width: 100%;
+    height: 100%;
+}
+
+#contentUserProfileDiv {
+    background-image: url('../../img/rectangle_24.png');
+    background-size: 100% 100%;
+    position: absolute;
+    display: grid;
+    font-family:Jaldi;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+}
+
+#contentLayoutJobs {
+    position: absolute;
+    display: grid;
+    width: 100vw;
+    top:100px;
+    bottom: 100px;
+    overflow-x:hidden;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "contentArea"
+}
+
+#contentDiv li {
+    max-width: 80vw;
+    word-wrap:break-word;
+}
+
+#contentDiv ul {
+    max-width: 80vw;
+}
+
+#contentLayoutUserProfile {
+    position: absolute;
+    display: grid;
+    width: 80vw;
+    top:100px;
+    bottom: 100px;
+    margin-left:10vw;
+    margin-right:10vw;
+    top:25%;
+    overflow-x:hidden;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "contentArea"
+}
+
+#contentDiv{grid-area: contentArea}

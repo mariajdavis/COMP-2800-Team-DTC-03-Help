@@ -95,7 +95,10 @@ class JobBoardPage extends Component {
     render() {
         const { searchTitle, jobPosts, currentJobPost, currentIndex } = this.state;
 
-        return (       
+        return ( 
+          <div id="contentLayoutJobs">
+            <div id="contentDiv">
+              <div>
                 <section id="content">
                     <ul id="category">
                         <a id='ex'>
@@ -205,7 +208,9 @@ class JobBoardPage extends Component {
                         </div>
                     </article>
                 </section>
-        
+                </div>
+                </div>
+        </div>
         )
     }
 }

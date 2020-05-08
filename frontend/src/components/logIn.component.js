@@ -5,6 +5,16 @@ import CheckButton from "react-validation/build/button";
 import AuthService from "../services/auth.service";
 import { isEmail } from "validator";
 import "bootstrap/dist/js/bootstrap.js";
+import "./Layouts/ContentLayout.css"
+
+
+
+const loginPosition = {
+  position: 'absolute',
+  top: '100px',
+  bottom: '100px',
+  
+}
 
 const required = value => {
   if (!value) {
@@ -126,14 +136,16 @@ export default class logIn extends Component {
 
   render() {
     return (
-      <div className="col-md-12">
-        <div className="card card-container">
-          <div>
+      <div id="contentLayout">
+        <div id="contentDiv">
+        <div>
+        <div className="card">
+            <div >
             <label class="btn btn-secondary">
               <input type="radio" name="options" id="user" autoComplete="off" value="user" checked={this.state.loginType==="user"} onChange={this.onChangeLoginType} />Log In As Individual User</label>
             <label class="btn btn-secondary">
               <input type="radio" name="options" id="orgUser" autoComplete="off" value="orgUser" checked={this.state.loginType==="orgUser"} onChange={this.onChangeLoginType} />Log In As Organization</label>
-          </div>
+              </div>
           <Form
             onSubmit={this.handleLogin}
             ref={c => {
@@ -168,6 +180,7 @@ export default class logIn extends Component {
               <button
                 className="btn btn-primary btn-block"
                 disabled={this.state.loading}
+                style={{margin:'0px'}}
               >
                 {this.state.loading && (
                   <span className="spinner-border spinner-border-sm"></span>
@@ -190,6 +203,8 @@ export default class logIn extends Component {
               }}
             />
           </Form>
+          </div>
+          </div>
         </div>
       </div>
     );
