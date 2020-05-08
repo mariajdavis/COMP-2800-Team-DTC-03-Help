@@ -13,7 +13,7 @@ export default class AboutUs extends Component {
             <div id="aboutDiv">
                 <div id="headDiv">
                     <h2 id="aboutHead">About the help! team:</h2>
-                    <p id="aboutPara">Covid-19 pandemic has brought many challenges to people's lives and we are currently living in a time that needs each other's helps more than ever. We, the Help! app team, have recognized that issue and wanted to provide some aids to the society by connecting people who can help. In our Help! app, people will be able to post and apply for works that are related to solving the problems that are caused by the pandemic.</p>
+                    <p id="aboutPara">Covid-19 pandemic has brought many challenges to people's lives and we are currently living in a time that needs each other's helps more than ever. We, the help! app team, have recognized that issue and wanted to provide some aids to the society by connecting people who can help. In our help! app, people will be able to post and apply for works that are related to solving the problems that are caused by the pandemic.</p>
                 </div>
                 <div class="items" id="itemOne">
                     <h3>Maria Davis</h3>
