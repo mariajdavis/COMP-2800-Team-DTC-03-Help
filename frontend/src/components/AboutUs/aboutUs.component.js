@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import './AboutUs.css'
+import HelpLogo from '../../img/logo.jpg'
+import Catepillar from '../../img/catepillar.jpg'
 
 export default class AboutUs extends Component {
 
@@ -14,18 +16,22 @@ export default class AboutUs extends Component {
                 <div id="itemOne">
                     <h3>Maria Davis</h3>
                     <p> yo</p>
+                    <img src={HelpLogo}></img>
                 </div>
                 <div id="itemTwo">
                     <h3>Chase Lu</h3>
                     <p> yo</p>
+                    <img src={HelpLogo}></img>
                 </div>
                 <div id="itemThree">
                     <h3>Geun Uoo Kim</h3>
                     <p> yo</p>
+                    <img src={HelpLogo}></img>
                 </div>
                 <div id="itemFour">
                     <h3>Ethan Sadowski</h3>
-                    <p> yo</p>
+                    <p>I am a first semester student in BCIT's CST Program, I chose to enroll at BCIT because I have always had an interest in computing and I wanted to gain some more applied skills.</p>
+                    <img src={Catepillar}></img>
                 </div>
             </div>
           </div>

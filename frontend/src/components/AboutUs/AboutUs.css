@@ -15,6 +15,7 @@
 }
 
 #aboutDiv {
+    
     position: absolute;
     display: grid;
     font-family:Jaldi;
@@ -45,12 +46,13 @@ p {
     word-wrap:normal;
 }
 
-h1, h2, h3 {
+h1, h2{
     font-size: calc(1.2vw + 14px);
 }
 
 h3 {
     text-decoration: underline rgba(0, 0, 0, 0.3);
+    font-size: 2.5vw;
 }
 
 #aboutHead {
@@ -62,6 +64,48 @@ h3 {
     margin-left: 5px;
 }
 
+#itemOne {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 45px 1fr;
+    grid-template-areas:
+        "headOne paraOne"
+        "imgOne paraOne" 
+}
+
+#itemTwo {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 45px 1fr;
+    grid-template-areas:
+        "headTwo paraTwo"
+        "imgTwo paraTwo" 
+}
+
+#itemThree {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 45px 1fr;
+    grid-template-areas:
+        "headThree paraThree"
+        "imgThree paraThree" 
+}
+
+#itemFour {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    grid-template-rows: 45px 1fr;
+    grid-template-areas:
+        "headFour paraFour"
+        "imgFour paraFour" 
+}
+
+img {
+    height: 15vh;
+    width: 15vw;
+    margin-top: 0px;
+}
+
 #itemOne{grid-area: placeOne;}
 #itemTwo{grid-area: placeTwo;}
 #itemThree{grid-area: placeThree;}
@@ -70,3 +114,15 @@ h3 {
 #aboutPara{grid-area: aboutPara;}
 #aboutDiv{grid-area: aboutArea}
 #headDiv{grid-area: headDiv;}
+#itemOne p{grid-area: paraOne;}
+#itemTwo p{grid-area: paraTwo;}
+#itemThree p{grid-area: paraThree}
+#itemFour p{grid-area: paraFour}
+#itemOne h3{grid-area: headOne;}
+#itemTwo h3{grid-area: headTwo;}
+#itemThree h3{grid-area: headThree}
+#itemFour h3{grid-area: headFour}
+#itemOne img{grid-area: imgOne;}
+#itemTwo img{grid-area: imgTwo;}
+#itemThree img{grid-area: imgThree;}
+#itemFour img{grid-area: imgFour;}
