@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import JobPostDataService from "../services/jobPost.service";
+
 import AuthService from "../services/auth.service";
 import TagDataService from "../services/tag.service";
 
@@ -100,11 +101,13 @@ export default class AddJobPost extends Component {
 
     JobPostDataService.create(data)
       .then(response => {
+        console.log(response.data.id)
         this.setState({
           id: response.data.id,
           title: response.data.title,
           description: response.data.description,
           jobType: response.data.jobType,
+
           rate: response.data.rate,
           contractLength: response.data.contractLength,
           startDate: response.data.startDate,
@@ -114,6 +117,7 @@ export default class AddJobPost extends Component {
         this.tagArray.forEach(tag => {
           saveJobTag(tag, response.data.id);
         });
+
       })
       .catch(e => {
         console.log(e);

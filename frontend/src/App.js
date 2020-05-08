@@ -14,6 +14,8 @@ import { Nav, Navbar } from 'react-bootstrap'
 import './Navbar.css'
 import AuthService from "./services/auth.service";
 import AboutUs from './components/AboutUs/aboutUs.component'
+import OrgUserProfile from './components/org-profile.component'
+
 
 class App extends Component {
   constructor(props) {
@@ -56,10 +58,11 @@ class App extends Component {
           <Navbar.Toggle id="collapseButton" aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              {!currentUser && <Nav.Link id="navLink" href="/register">Register</Nav.Link>}
+              {!currentUser &&! currentOrgUser && <Nav.Link id="navLink" href="/register">Register</Nav.Link>}
               <Nav.Link id="navLink" href="/jobPosts">Job Board</Nav.Link>
               {currentOrgUser && <Nav.Link id="navLink" href="/add">Add Job</Nav.Link>}
               {currentUser && <Nav.Link id="navLink" href="/userProfile">My Profile</Nav.Link>}
+              {currentOrgUser && <Nav.Link id="navLink" href="/orgUserProfile">My Profile</Nav.Link>}
               {!currentUser &&! currentOrgUser && <Nav.Link id="navLink" href="/logIn">Log In</Nav.Link>}
               {currentUser && <Nav.Link  id="navLink"href="/logIn" onClick={this.logOut}>Log Out</Nav.Link>}
               {currentOrgUser && <Nav.Link id="navLink" href="/logIn" onClick={this.orgLogOut}>Log Out</Nav.Link>}
@@ -76,6 +79,7 @@ class App extends Component {
               <Route path="/jobPosts/:id" component={JobPost} />
               <Route path="/userProfile" component={UserProfile}/>
               <Route path="/aboutUs" component={AboutUs} />
+              <Route path="/orgUserProfile" component={OrgUserProfile} />
             </Switch>
           
         <footer>
