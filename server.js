@@ -28,6 +28,7 @@ db.sequelize.sync();
 require("./app/routes/jobPost.routes")(app);
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
+require('./app/routes/tag.routes')(app);
 
 // The following code lets the server know to serve all 
 // static React files from the build directory

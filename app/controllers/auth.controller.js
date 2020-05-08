@@ -68,7 +68,7 @@ exports.signin = (req, res) => {
             });
 
             res.status(200).send({
-                id: user._id,
+                id: user.id,
                 username: user.username,
                 email: user.email,
                 accessToken: token
@@ -107,7 +107,7 @@ exports.orgsignin = (req, res) => {
             });
 
             res.status(200).send({
-                id: orgUser._id,
+                id: orgUser.id,
                 username: orgUser.username,
                 email: orgUser.email,
                 accessToken: token

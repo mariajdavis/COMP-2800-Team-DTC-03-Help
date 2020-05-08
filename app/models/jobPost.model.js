@@ -8,6 +8,18 @@ module.exports = (sequelize, Sequelize) => {
     },
     jobType: {
       type: Sequelize.STRING
+    },
+    rate: {
+      type: Sequelize.STRING
+    },
+    contractLength: {
+      type: Sequelize.STRING
+    },
+    startDate: {
+      type: Sequelize.STRING
+    },
+    orgID: {
+      type: Sequelize.INTEGER
     }
   });
 

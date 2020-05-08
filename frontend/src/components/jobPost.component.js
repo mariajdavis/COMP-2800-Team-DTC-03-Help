@@ -6,6 +6,10 @@ export default class JobPost extends Component {
     super(props);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChangeJobType = this.onChangeJobType.bind(this);
+    this.onChangeStartDate = this.onChangeStartDate.bind(this);
+    this.onChangeRate = this.onChangeRate.bind(this);
+    this.onChangeContractLength = this.onChangeContractLength.bind(this);
     this.getJobPost = this.getJobPost.bind(this);
     this.updateJobPost = this.updateJobPost.bind(this);
     this.deleteJobPost = this.deleteJobPost.bind(this);
@@ -15,7 +19,11 @@ export default class JobPost extends Component {
         id: null,
         title: "",
         description: "",
-        jobType: ""
+        jobType: "",
+        rate: "",
+        contractLength: "",
+        startDate: "",
+        orgID: ""
       },
       message: ""
     };
@@ -56,6 +64,42 @@ export default class JobPost extends Component {
       currentJobPost: {
         ...prevState.currentJobPost,
         jobType: jobType
+      }
+    }));
+  }
+
+
+  onChangeStartDate(e) {
+    const startDate = e.target.value;
+
+    this.setState(function(prevState) {
+      return {
+        currentJobPost: {
+          ...prevState.currentJobPost,
+          startDate: startDate
+        }
+      };
+    });
+  }
+
+  onChangeRate(e) {
+    const rate = e.target.value;
+    
+    this.setState(prevState => ({
+      currentJobPost: {
+        ...prevState.currentJobPost,
+        rate: rate
+      }
+    }));
+  }
+
+  onChangeContractLength(e) {
+    const contractLength = e.target.value;
+    
+    this.setState(prevState => ({
+      currentJobPost: {
+        ...prevState.currentJobPost,
+        contractLength: contractLength
       }
     }));
   }
@@ -143,6 +187,46 @@ export default class JobPost extends Component {
                   onChange={this.onChangeJobType}
                 />
               </div>
+
+              <div className="form-group">
+                <label>
+                  <strong>Hourly Rate: </strong>
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="rate"
+                  value={currentJobPost.jobType}
+                  onChange={this.onChangeJobType}
+                />
+              </div>
+
+              <div className="form-group">
+                <label>
+                  <strong>Start Date: </strong>
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="startDate"
+                  value={currentJobPost.jobType}
+                  onChange={this.onChangeJobType}
+                />
+              </div>
+
+              <div className="form-group">
+                <label>
+                  <strong>Contract Length: </strong>
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="contractLength"
+                  value={currentJobPost.jobType}
+                  onChange={this.onChangeJobType}
+                />
+              </div>
+
             </form>
 
             <button

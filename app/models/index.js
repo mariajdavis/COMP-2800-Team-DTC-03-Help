@@ -20,6 +20,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.jobPosts = require("./jobPost.model.js")(sequelize, Sequelize);
-db.users=require("./user.model.js")(sequelize,Sequelize);
-db.orgUsers=require("./orgUser.model.js")(sequelize,Sequelize);
+db.users = require("./user.model.js")(sequelize,Sequelize);
+db.orgUsers = require("./orgUser.model.js")(sequelize,Sequelize);
+db.tags = require("./tag.model.js")(sequelize, Sequelize);
 module.exports = db;

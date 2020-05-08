@@ -185,6 +185,24 @@ class JobBoardPage extends Component {
                                         </label>{" "}
                                         {currentJobPost.jobType}
                                     </div>
+                                    <div>
+                                        <label>
+                                        <strong>Hourly Rate:</strong>
+                                        </label>{" "}
+                                        {currentJobPost.rate}
+                                    </div>
+                                    <div>
+                                        <label>
+                                        <strong>Start Date:</strong>
+                                        </label>{" "}
+                                        {currentJobPost.startDate}
+                                    </div>
+                                    <div>
+                                        <label>
+                                        <strong>Contract Length:</strong>
+                                        </label>{" "}
+                                        {currentJobPost.contractLength}
+                                    </div>
 
                                     <Link
                                         to={"/jobPosts/" + currentJobPost.id}

@@ -7,7 +7,7 @@ const imgStyle = {
     paddingTop: '50px',
     paddingBottom: '50px',
     width: '100%',
-    height: 'auto'
+    height: 'auto',
 }
 
 
