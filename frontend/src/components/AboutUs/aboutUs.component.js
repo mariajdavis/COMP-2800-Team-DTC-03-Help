@@ -3,6 +3,7 @@ import './AboutUs.css'
 import HelpLogo from '../../img/logo.jpg'
 import Catepillar from '../../img/catepillar.jpg'
 import farmer from '../../img/farmer.JPG'
+import beach from '../../img/beach.png'
 
 export default class AboutUs extends Component {
 
@@ -12,12 +13,12 @@ export default class AboutUs extends Component {
             <div id="aboutDiv">
                 <div id="headDiv">
                     <h2 id="aboutHead">About the help! team:</h2>
-                    <p id="aboutPara">Covid-19 pandemic has brought many challenges to people's lives and we are currently living in a time that needs each other's helps more than ever. We, the Help! app team, have recognized that issue and wanted to provide some aids to the society by connecting people who can help. In our Help! app, people will be able to post and apply for works that are related to solving the problems that are caused by the pandemic.</p>
+                    <p id="aboutPara">Covid-19 pandemic has brought many challenges to people's lives and we are currently living in a time that needs each other's helps more than ever. We, the help! app team, have recognized that issue and wanted to provide some aids to the society by connecting people who can help. In our help! app, people will be able to post and apply for works that are related to solving the problems that are caused by the pandemic.</p>
                 </div>
                 <div class="items" id="itemOne">
                     <h3>Maria Davis</h3>
-                    <p> yo</p>
-                    <img class="selfImg" src={HelpLogo}></img>
+                    <p>I am a second term student in BCIT's CST program. I love designing apps to bring people together and make life easier. I hope help! assists our communities in overcoming the COVID-19 crisis.</p>
+                    <img class="selfImg" src={beach}></img>
                 </div>
                 <div class="items" id="itemTwo">
                     <h3>Chase Lu</h3>
