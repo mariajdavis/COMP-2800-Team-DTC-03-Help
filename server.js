@@ -36,9 +36,9 @@ require('./app/routes/tag.routes')(app);
 
 // Keep our client side routing functional, essentially 
 // serves the index.html file on any unknown routes
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+// app.get('/*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
