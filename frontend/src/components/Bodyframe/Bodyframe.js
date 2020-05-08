@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './Bodyframe.css'
 import backgroundFrame from "../../img/background_frame.png"
 
-<<<<<<< HEAD
 const imgStyle = {
     zIndex: '-1',
     paddingTop: '50px',
@@ -10,8 +9,6 @@ const imgStyle = {
     width: '100%',
     height: 'auto',
 }
-=======
->>>>>>> 40bc610625ba7c77f2d3cd6f2537489624e401a0
 
 
 function mainBody() {
