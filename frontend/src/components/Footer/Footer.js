@@ -1,15 +1,23 @@
-import React, { Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const footerStyle = {
-    position: 'absolute',
     backgroundColor: '#2743A5',
-    width: '100%'
+    position: 'absolute',
+    width: '100%',
+    bottom: '0px',
+    height: '50px',
+    zIndex: '2',
+    marginBottom:'0px',
 }
 
 const fontStyle = {
-    color: 'white'
+    position: 'absolute',
+    color: 'white',
+    paddingBottom:'0px',
+    verticalAlign:'center',
+    bottom:'12.5px'
 }
 
 
@@ -17,9 +25,9 @@ function Footer () {
     return (
         <Fragment>
             <footer style={footerStyle} class="page-footer font-small blue">
-                <div style={fontStyle} class="footer-copyright text-left py-3">
+                <span style={fontStyle} class="footer-copyright text-left">
                     © 2020 Copyright: Help!
-                </div>
+                </span>
             </footer>
         </Fragment>
     );

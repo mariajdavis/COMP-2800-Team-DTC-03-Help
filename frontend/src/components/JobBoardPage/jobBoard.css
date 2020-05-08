@@ -1,45 +1,33 @@
 @import url('https://fonts.googleapis.com/css?family=Jaldi|Racing+Sans+One&display=swap');
 
 
-main#JobBoard {
-    display: grid;
-    grid-template-areas: 
-        "ancement"
-        "content"
-        "bottom";
-    grid-template-rows: 1fr 10fr 1fr;
-}
-
 body {
-    margin: 0 auto;
+    margin: 0;
 }
 
-.postClick {
+.active {
     background-color: crimson;
 }
 
 /* main grid areas */
-section#ancement {
-    grid-area: ancement;
-}
 section#content {
-    grid-area: content;
-    background-image: url('../../img/background_frame.png');
-    background-size: 100% 100%;
+    
+    position: absolute;
+    top: 0px;
+    width: 100vw;
     display: grid;
     grid-template-areas: 
         "category search"
         "jobboard jobboard";
-    grid-template-rows: 1fr 8fr;
-}
-section#bottom {
-    grid-area: bottom;
+    grid-template-rows: 75x 1fr;
+    grid-template-columns: 230px 1fr;
 }
 
 ul#category {
     display: flex;
     justify-content: flex-start;
     list-style: none;
+    flex-grow: 1;
 }
 
 li {
@@ -55,9 +43,10 @@ a#ex {
 form#searchbar {
     grid-area: search;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     margin-right: 100px;
     padding: 10px;
+    flex-grow: 3;
 }
 form button {
     margin-left: 10px;
@@ -83,15 +72,53 @@ div#jobboardImage {
     margin-right: 100px;
     padding: 20px;
 }
+
 li.joblists {
     color: black;
+}
+
+
+/* open job post (animation) */
+div#job-description-wrapper {
+    position: absolute;
+    overflow: hidden;
+    width: 500px;
+    height: 200px;
+    right: -300px;
+    bottom: 100px;
+}
+div#job-description > div {
+    position: absolute;
+    background-color: cornsilk;
+    right: -500px;
+    width: 500px;
+    animation: JobPostAnimation 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    z-index:2;
+    word-wrap:break-word;
+}
+@keyframes JobPostAnimation {
+    100% {
+        right: 0px;
+    }
+}
+.bgOpacity {
+    animation: bgOpacity 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+@keyframes bgOpacity {
+    100% {
+        opacity: 0.5;
+    }
 }
 
 /* announcement styling (animation) */
 .animated-text {
     background-color: rgb(63, 89, 135);
     color: white;
-    transform: translate(-505, -50%);
+    transform: translate(-50, -50%);
     padding: 0 40px;
     height: 50px;
     overflow: hidden;
@@ -105,7 +132,6 @@ li.joblists {
 .line:first-child {
     animation: slide 12s infinite;
 }
-
 @keyframes slide {
     0% {
         margin-top: 0px;
@@ -135,54 +161,3 @@ li.joblists {
         margin-top: -250px;
     }
 }
-
-/* open job post */
-div#openPost {
-    border: 1px solid black;
-    background-color: cornsilk;
-    margin-left: 100px;
-}
-
-  
-main#JobBoard {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: 
-      "ancement ancement ancement"
-      "content content content"
-      "bottom bottom bottom";
-}
-  
-  @media only screen and (min-width: 1025px) {
-  
-    #backgroundImage {
-      padding-top: 50px;
-      padding-bottom: 50px;
-      min-width: 1025px;
-      max-width: 5120px;
-      min-height: 800px;
-      max-height: 1100px;
-      object-fit: cover
-    }
-  }
-  
-  @media only screen and (min-width: 500px) and (max-width: 1024px) {
-    #backgroundImage {
-      padding-top: 50px;
-      padding-bottom: 50px;
-      height: 700px;
-      max-height: 1000px;
-      object-fit: cover;
-    }
-  }
-  
-  /* mobile view */
-  @media only screen and (max-width: 500px) {
-    #backgroundImage {
-      padding-top: 50px;
-      padding-bottom: 50px;
-      width: 500px;
-      height: 700px;
-      max-height: 1100px;
-      object-fit: cover;
-    }
-  }

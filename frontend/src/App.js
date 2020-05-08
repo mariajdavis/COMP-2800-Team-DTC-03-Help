@@ -13,6 +13,7 @@ import UserProfile from "./components/user-profile.component";
 import { Nav, Navbar } from 'react-bootstrap'
 import './Navbar.css'
 import AuthService from "./services/auth.service";
+import AboutUs from './components/AboutUs/aboutUs.component'
 
 class App extends Component {
   constructor(props) {
@@ -55,18 +56,18 @@ class App extends Component {
           <Navbar.Toggle id="collapseButton" aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              {!currentUser && <Nav.Link href="/register">Register</Nav.Link>}
-              <Nav.Link href="/jobPosts">Job Board</Nav.Link>
-              {currentOrgUser && <Nav.Link href="/add">Add Job</Nav.Link>}
-              {currentUser && <Nav.Link href="/userProfile">My Profile</Nav.Link>}
-              {!currentUser &&! currentOrgUser && <Nav.Link href="/logIn">Log In</Nav.Link>}
-              {currentUser && <Nav.Link href="/logIn" onClick={this.logOut}>Log Out</Nav.Link>}
-              {currentOrgUser && <Nav.Link href="/logIn" onClick={this.orgLogOut}>Log Out</Nav.Link>}
+              {!currentUser && <Nav.Link id="navLink" href="/register">Register</Nav.Link>}
+              <Nav.Link id="navLink" href="/jobPosts">Job Board</Nav.Link>
+              {currentOrgUser && <Nav.Link id="navLink" href="/add">Add Job</Nav.Link>}
+              {currentUser && <Nav.Link id="navLink" href="/userProfile">My Profile</Nav.Link>}
+              {!currentUser &&! currentOrgUser && <Nav.Link id="navLink" href="/logIn">Log In</Nav.Link>}
+              {currentUser && <Nav.Link  id="navLink"href="/logIn" onClick={this.logOut}>Log Out</Nav.Link>}
+              {currentOrgUser && <Nav.Link id="navLink" href="/logIn" onClick={this.orgLogOut}>Log Out</Nav.Link>}
+              <Nav.Link id="navLink" href="/aboutUs">About Us</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <div>
-          <div className="container mt-3">
+        <Bodyframe/>
             <Switch>
               <Route exact path="/logIn" component={LogIn} />
               <Route exact path="/register" component={Register} />
@@ -74,10 +75,12 @@ class App extends Component {
               <Route exact path="/add" component={AddJobPost} />
               <Route path="/jobPosts/:id" component={JobPost} />
               <Route path="/userProfile" component={UserProfile}/>
+              <Route path="/aboutUs" component={AboutUs} />
             </Switch>
-          </div>
-        </div>
-        <Footer />
+          
+        <footer>
+          <Footer />
+        </footer>
       </Router>
     );
   }
