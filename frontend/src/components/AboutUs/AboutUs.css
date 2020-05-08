@@ -42,6 +42,7 @@
 
 p {
     font-size: calc(1.2vw + 8px);
+    word-wrap:normal;
 }
 
 h1, h2, h3 {
