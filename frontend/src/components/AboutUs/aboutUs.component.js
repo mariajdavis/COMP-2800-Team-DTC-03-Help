@@ -5,6 +5,7 @@ import Catepillar from '../../img/catepillar.jpg'
 import farmer from '../../img/farmer.JPG'
 import beach from '../../img/beach.png'
 
+
 export default class AboutUs extends Component {
 
     render() {
@@ -22,8 +23,8 @@ export default class AboutUs extends Component {
                 </div>
                 <div class="items" id="itemTwo">
                     <h3>Chase Lu</h3>
-                    <p> yo</p>
-                    <img class="selfImg" src={HelpLogo}></img>
+                    <p>I am a second going on third semester student in BCIT's CST program. My favorite plugin to use while coding is Sequelize and I love working with many-to-many data models.</p>
+                    <img class="selfImg" src={'https://www.fintechfutures.com/files/2017/10/Chase-Logo.png'}></img>
                 </div>
                 <div class="items" id="itemThree">
                     <h3>Geun Uoo Kim</h3>
