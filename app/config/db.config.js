@@ -1,8 +1,8 @@
 module.exports = {
-  HOST: "us-mm-auto-dca-06-a.cleardb.net",
-  USER: "b579dcc74221d6",
-  PASSWORD: "dd453f4a",
-  DB: "heroku_72211f91d285493",
+  HOST: "sql3.freemysqlhosting.net",
+  USER: "sql3339704",
+  PASSWORD: "eJSdtzMRaC",
+  DB: "sql3339704",
   dialect: "mysql",
   pool: {
     max: 5,
