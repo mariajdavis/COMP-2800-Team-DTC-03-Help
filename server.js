@@ -37,7 +37,7 @@ app.use(express.static('./frontend/public'));
 // Keep our client side routing functional, essentially 
 // serves the index.html file on any unknown routes
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend/public', 'index.html'));
+  res.sendFile('./frontend/public/index.html');
 });
 
 // set port, listen for requests
