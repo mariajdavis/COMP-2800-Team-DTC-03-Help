@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL: "sql3.freemysqlhosting.net",
   headers: {
     "Content-type": "application/json",
-    "Access-Control-Allow-Origin": "http://localhost:8080"
+    "Access-Control-Allow-Origin": "sql3.freemysqlhosting.net"
   }
 });
