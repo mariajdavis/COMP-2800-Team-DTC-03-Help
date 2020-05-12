@@ -4,6 +4,17 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import AuthService from "../services/auth.service";
 import { isEmail } from "validator";
+import "bootstrap/dist/js/bootstrap.js";
+import "./Layouts/ContentLayout.css"
+
+
+
+const loginPosition = {
+  position: 'absolute',
+  top: '100px',
+  bottom: '100px',
+  
+}
 
 const required = value => {
   if (!value) {
@@ -32,12 +43,14 @@ export default class logIn extends Component {
     this.handleLogin = this.handleLogin.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
+    this.onChangeLoginType = this.onChangeLoginType.bind(this);
 
     this.state = {
       email: "",
       password: "",
       loading: false,
-      message: ""
+      message: "",
+      loginType: "user"
     };
   }
 
@@ -53,6 +66,14 @@ export default class logIn extends Component {
     });
   }
 
+  onChangeLoginType(e) {
+    this.setState({
+      loginType: e.target.value
+    });
+    console.log("state: "+this.state.loginType);
+    console.log("e: "+e.target.value);
+    console.log("test: "+this);
+  }
   handleLogin(e) {
     e.preventDefault();
 
@@ -64,25 +85,48 @@ export default class logIn extends Component {
     this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
-      AuthService.login(this.state.email, this.state.password).then(
-        () => {
-          this.props.history.push("/");
-          window.location.reload();
-        },
-        error => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+      if (this.state.loginType === "user") {
+        AuthService.login(this.state.email, this.state.password).then(
+          () => {
+            this.props.history.push("/");
+            window.location.reload();
+          },
+          error => {
+            const resMessage =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
 
-          this.setState({
-            loading: false,
-            message: resMessage
-          });
-        }
-      );
+            this.setState({
+              loading: false,
+              message: resMessage
+            });
+          }
+        );
+      }
+      else {
+        AuthService.orgLogin(this.state.email, this.state.password).then(
+          () => {
+            this.props.history.push("/");
+            window.location.reload();
+          },
+          error => {
+            const resMessage =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
+
+            this.setState({
+              loading: false,
+              message: resMessage
+            });
+          }
+        );
+      }
     } else {
       this.setState({
         loading: false
@@ -92,8 +136,16 @@ export default class logIn extends Component {
 
   render() {
     return (
-      <div className="col-md-12">
-        <div className="card card-container">
+      <div id="contentLayout">
+        <div id="contentDiv">
+        <div>
+        <div className="card">
+            <div >
+            <label class="btn btn-secondary">
+              <input type="radio" name="options" id="user" autoComplete="off" value="user" checked={this.state.loginType==="user"} onChange={this.onChangeLoginType} />Log In As Individual User</label>
+            <label class="btn btn-secondary">
+              <input type="radio" name="options" id="orgUser" autoComplete="off" value="orgUser" checked={this.state.loginType==="orgUser"} onChange={this.onChangeLoginType} />Log In As Organization</label>
+              </div>
           <Form
             onSubmit={this.handleLogin}
             ref={c => {
@@ -128,6 +180,7 @@ export default class logIn extends Component {
               <button
                 className="btn btn-primary btn-block"
                 disabled={this.state.loading}
+                style={{margin:'0px'}}
               >
                 {this.state.loading && (
                   <span className="spinner-border spinner-border-sm"></span>
@@ -150,6 +203,8 @@ export default class logIn extends Component {
               }}
             />
           </Form>
+          </div>
+          </div>
         </div>
       </div>
     );

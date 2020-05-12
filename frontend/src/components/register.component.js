@@ -3,6 +3,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
+import "./Layouts/ContentLayout.css"
 
 import AuthService from "../services/auth.service";
 
@@ -53,13 +54,15 @@ export default class Register extends Component {
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
+    this.handleRegisterType = this.handleRegisterType.bind(this);
 
     this.state = {
       username: "",
       email: "",
       password: "",
       successful: false,
-      message: ""
+      message: "",
+      registerType: "user"
     };
   }
 
@@ -81,6 +84,20 @@ export default class Register extends Component {
     });
   }
 
+  handleRegisterType(e) {
+    this.setState({
+      registerType: e.target.value
+    });
+    console.log(e.target.value);
+  }
+
+  componentDidMount(message, successful){
+    this.setState({
+      meesage: message,
+      successful: successful
+    });
+  }
+
   handleRegister(e) {
     e.preventDefault();
 
@@ -90,40 +107,69 @@ export default class Register extends Component {
     });
 
     this.form.validateAll();
-
+    console.log(this.state.registerType);
     if (this.checkBtn.context._errors.length === 0) {
-      AuthService.register(
-        this.state.username,
-        this.state.email,
-        this.state.password
-      ).then(
-        response => {
-          this.setState({
-            message: response.data.message,
-            successful: true
-          });
-        },
-        error => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+      if (this.state.registerType === "user") {
+        AuthService.register(
+          this.state.username,
+          this.state.email,
+          this.state.password
+        ).then(
+          response => {
+            this.componentDidMount(response.data.message,true);
+            // this.props.history.push("/");
+            // window.location.reload();
+          },
+          error => {
+            const resMessage =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
 
-          this.setState({
-            successful: false,
-            message: resMessage
-          });
-        }
-      );
+            this.setState({
+              successful: false,
+              message: resMessage
+            });
+          }
+        );
+      }
+      else {
+        AuthService.orgRegister(
+          this.state.username,
+          this.state.email,
+          this.state.password
+        ).then(
+          response => {
+            this.componentDidMount(response.data.message,true);
+            // this.props.history.push("/");
+            // window.location.reload();
+          },
+          error => {
+            const resMessage =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
+
+            this.setState({
+              successful: false,
+              message: resMessage
+            });
+          }
+        );
+      }
     }
   }
 
   render() {
     return (
-      <div className="col-md-12">
-        <div className="card card-container">
+      <div id="contentLayout">
+        <div id="contentDiv">
+          <div>
+        <div className="card">
           <Form
             onSubmit={this.handleRegister}
             ref={c => {
@@ -132,6 +178,12 @@ export default class Register extends Component {
           >
             {!this.state.successful && (
               <div>
+                <div style={{display:'flex', justifyContent:'center'}}>
+                  <label class="btn btn-secondary">
+                    <input class="m-2" type="radio" name="options" id="user" autocomplete="off" value="user" checked={this.state.registerType==="user"} onChange={this.handleRegisterType} />Register As Individual User</label>
+                  <label class="btn btn-secondary"style={{margin:'0px !important', padding:'0px !important'}}>
+                    <input class="m-2" type="radio" name="options" id="orgUser" autocomplete="off" value="orgUser" checked={this.state.registerType==="orgUser"} onChange={this.handleRegisterType} />Register As Organization</label>
+                </div>
                 <div className="form-group">
                   <label htmlFor="username">Username</label>
                   <Input
@@ -169,13 +221,13 @@ export default class Register extends Component {
                 </div>
 
                 <div className="form-group">
-                  <button className="btn btn-primary btn-block">Sign Up</button>
+                  <button className="btn btn-primary btn-block" style={{margin:'0px'}}>Sign Up</button>
                 </div>
               </div>
             )}
 
             {this.state.message && (
-              <div className="form-group">
+              <div className="">
                 <div
                   className={
                     this.state.successful
@@ -194,7 +246,10 @@ export default class Register extends Component {
                 this.checkBtn = c;
               }}
             />
+            
           </Form>
+          </div>
+          </div>
         </div>
       </div>
     );

@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css?family=Jaldi|Racing+Sans+One&display=swap');
+
+#aboutUs {
+    position: absolute;
+    display: grid;
+    width: 100vw;
+    top:100px;
+    bottom: 100px;
+    left:0px;
+    margin-left:0px;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "aboutArea"
+}
+
+#aboutDiv {
+    
+    position: absolute;
+    display: grid;
+    font-family:Jaldi;
+    width: 100%;
+    height: 100%;
+    z-index:1;
+    align-items: left;
+    grid-template-rows: 0.3fr repeat(2, 3fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+        "headDiv headDiv"
+        "placeOne placeTwo"
+        "placeThree placeFour"
+}
+
+#headDiv {
+    display: grid;
+    grid-template-columns: 0.5fr 1.4fr;
+    margin-bottom: 5px;
+    border-bottom: 2px rgba(0, 0, 0, 0.3) solid;
+    grid-template-areas:
+        "pagehead aboutPara"
+}
+
+
+p {
+    font-size: calc(1.2vw + 8px);
+    word-wrap:normal;
+}
+
+h1, h2{
+    font-size: calc(1.2vw + 14px);
+}
+
+h3 {
+    text-decoration: underline rgba(0, 0, 0, 0.3);
+    font-size: 2.5vw;
+}
+
+#aboutHead {
+    min-width: 180px;
+    margin-left: 5px;
+}
+
+#itemOne, #itemTwo, #itemThree, #itemFour {
+    margin-left: 5px;
+}
+
+#itemOne {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 45px 1fr;
+    grid-template-areas:
+        "headOne paraOne"
+        "imgOne paraOne" 
+}
+
+#itemTwo {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 45px 1fr;
+    grid-template-areas:
+        "headTwo paraTwo"
+        "imgTwo paraTwo" 
+}
+
+#itemThree {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 45px 1fr;
+    grid-template-areas:
+        "headThree paraThree"
+        "imgThree paraThree" 
+}
+
+#itemFour {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    grid-template-rows: 45px 1fr;
+    grid-template-areas:
+        "headFour paraFour"
+        "imgFour paraFour" 
+}
+
+img {
+    height: 15vh;
+    width: 15vw;
+    margin-top: 0px;
+}
+
+#itemOne{grid-area: placeOne;}
+#itemTwo{grid-area: placeTwo;}
+#itemThree{grid-area: placeThree;}
+#itemFour{grid-area: placeFour;}
+#aboutHead{grid-area: pagehead;}
+#aboutPara{grid-area: aboutPara;}
+#aboutDiv{grid-area: aboutArea}
+#headDiv{grid-area: headDiv;}
+#itemOne p{grid-area: paraOne;}
+#itemTwo p{grid-area: paraTwo;}
+#itemThree p{grid-area: paraThree}
+#itemFour p{grid-area: paraFour}
+#itemOne h3{grid-area: headOne;}
+#itemTwo h3{grid-area: headTwo;}
+#itemThree h3{grid-area: headThree}
+#itemFour h3{grid-area: headFour}
+#itemOne img{grid-area: imgOne;}
+#itemTwo img{grid-area: imgTwo;}
+#itemThree img{grid-area: imgThree;}
+#itemFour img{grid-area: imgFour;}
+
+.selfIntroduction {
+    background-color: bisque;
+    border: 5px dotted black;
+    border-radius: 10px;
+    height: 60%;
+    width: 90%;
+}
+
+.items {
+    overflow: hidden;
+}
+
+.selfImg {
+    position: relative;
+    top: -240px;
+    animation: slideDown 1s infinite;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slideDown {
+    0% {
+        top: -240px;
+    }
+    100% {
+        top: 0px;
+    }
+}
+
