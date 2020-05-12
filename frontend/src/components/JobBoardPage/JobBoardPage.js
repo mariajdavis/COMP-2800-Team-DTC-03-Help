@@ -41,6 +41,7 @@ class JobBoardPage extends Component {
       retrieveJobPosts() {
         JobPostDataService.getAll()
           .then(response => {
+            console.log(response.data);
             this.setState({
               jobPosts: response.data
             });

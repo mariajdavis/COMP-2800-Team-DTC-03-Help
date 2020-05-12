@@ -1,8 +1,8 @@
 module.exports = {
-  HOST: "localhost",
-  USER: "maria",
-  PASSWORD: "mariapassword",
-  DB: "help_app",
+  HOST: "sql3.freemysqlhosting.net",
+  USER: "sql3339432",
+  PASSWORD: "3T2Bx56EcR",
+  DB: "sql3339432",
   dialect: "mysql",
   pool: {
     max: 5,
@@ -11,3 +11,4 @@ module.exports = {
     idle: 10000
   }
 };
+
