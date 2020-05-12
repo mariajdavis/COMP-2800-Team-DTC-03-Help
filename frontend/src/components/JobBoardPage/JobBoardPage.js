@@ -42,10 +42,10 @@ class JobBoardPage extends Component {
 
   handleSave(e) {
     if (e.target.value === "save") {
-      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentIndex, save:true })
+      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentIndex, save: true })
     }
     else {
-      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentIndex, save:false })
+      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentIndex, save: false })
     }
   }
 
@@ -197,8 +197,10 @@ class JobBoardPage extends Component {
                                 </button>
                   </div>
                 </div>
-                <div id="job-description-wrapper" className="col-md-6">
-                  <div id='job-description'>
+                {/* <div id="job-description-wrapper" className="col-md-6">
+                  <div id='job-description'> */}
+                <div className="col-md-6">
+                  {/* <div> */}
                     {currentJobPost && (
                       <div>
                         <h4>Job Post</h4>
@@ -249,7 +251,7 @@ class JobBoardPage extends Component {
                         {currentUser && this.state.currentJobPostSaved && <Button variant="info" value="unsave" onClick={this.handleSave}> Unsave </Button>}
                       </div>
                     )}
-                  </div>
+                  {/* </div> */}
                 </div>
               </article>
             </section>

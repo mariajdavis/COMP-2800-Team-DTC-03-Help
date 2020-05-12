@@ -3,7 +3,6 @@ import JobPostDataService from "../services/jobPost.service";
 import AuthService from "../services/auth.service";
 import { Link } from "react-router-dom";
 import { Button, ToggleButton } from 'react-bootstrap';
-import {Paper, Grid, Card} from '@material-ui/core';
 
 
 export default class JobPostsList extends Component {

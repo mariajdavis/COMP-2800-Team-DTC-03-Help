@@ -14,6 +14,8 @@ import { Nav, Navbar } from 'react-bootstrap'
 import './Navbar.css'
 import AuthService from "./services/auth.service";
 import AboutUs from './components/AboutUs/aboutUs.component'
+import SavedJobPosts from './components/savedJobs.component';
+
 
 class App extends Component {
   constructor(props) {
@@ -48,7 +50,7 @@ class App extends Component {
   }
 
   render() {
-    const {currentUser, currentOrgUser}=this.state;
+    const { currentUser, currentOrgUser } = this.state;
     return (
       <Router>
         <Navbar style={{ backgroundColor: "#2743A5" }} expand="sm">
@@ -60,24 +62,26 @@ class App extends Component {
               <Nav.Link id="navLink" href="/jobPosts">Job Board</Nav.Link>
               {currentOrgUser && <Nav.Link id="navLink" href="/add">Add Job</Nav.Link>}
               {currentUser && <Nav.Link id="navLink" href="/userProfile">My Profile</Nav.Link>}
-              {!currentUser &&! currentOrgUser && <Nav.Link id="navLink" href="/logIn">Log In</Nav.Link>}
-              {currentUser && <Nav.Link  id="navLink"href="/logIn" onClick={this.logOut}>Log Out</Nav.Link>}
+              {currentUser && <Nav.Link href="/savedJobs">Saved Jobs</Nav.Link>}
+              {!currentUser && !currentOrgUser && <Nav.Link id="navLink" href="/logIn">Log In</Nav.Link>}
+              {currentUser && <Nav.Link id="navLink" href="/logIn" onClick={this.logOut}>Log Out</Nav.Link>}
               {currentOrgUser && <Nav.Link id="navLink" href="/logIn" onClick={this.orgLogOut}>Log Out</Nav.Link>}
               <Nav.Link id="navLink" href="/aboutUs">About Us</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <Bodyframe/>
-            <Switch>
-              <Route exact path="/logIn" component={LogIn} />
-              <Route exact path="/register" component={Register} />
-              <Route exact path={["/", "/jobPosts"]} component={JobPostsList} />
-              <Route exact path="/add" component={AddJobPost} />
-              <Route path="/jobPosts/:id" component={JobPost} />
-              <Route path="/userProfile" component={UserProfile}/>
-              <Route path="/aboutUs" component={AboutUs} />
-            </Switch>
-          
+        <Bodyframe />
+        <Switch>
+          <Route exact path="/savedJobs" component={SavedJobPosts} />
+          <Route exact path="/logIn" component={LogIn} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path={["/", "/jobPosts"]} component={JobPostsList} />
+          <Route exact path="/add" component={AddJobPost} />
+          <Route path="/jobPosts/:id" component={JobPost} />
+          <Route path="/userProfile" component={UserProfile} />
+          <Route path="/aboutUs" component={AboutUs} />
+        </Switch>
+
         <footer>
           <Footer />
         </footer>
