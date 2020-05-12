@@ -2,6 +2,14 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require('path');
+const mysql = require('mysql');
+
+const connection = mysql.createConnection({
+  host: "us-cdbr-east-06.cleardb.net",
+  user: "b579dcc74221d6",
+  password: "dd453f4a",
+  database: "heroku_72211f91d285493"
+})
 
 const app = express();
 
@@ -17,7 +25,7 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const db = require("./app/models");
+const db = require("./app/models/index.js");
 
 db.sequelize.sync();
 // // drop the table if it already exists
