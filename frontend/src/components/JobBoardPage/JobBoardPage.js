@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import './jobBoard.css'
 import JobPostDataService from "../../services/jobPost.service";
+import AuthService from "../../services/auth.service";
 import { Link } from "react-router-dom";
-
-import Navbar from '../Navbar/Navbar';
-import Footer from '../Footer/Footer';
+import { Button, ToggleButton } from 'react-bootstrap';
 
 
 class JobBoardPage extends Component {
@@ -16,13 +15,16 @@ class JobBoardPage extends Component {
     this.setActiveJobPost = this.setActiveJobPost.bind(this);
     this.removeAllJobPosts = this.removeAllJobPosts.bind(this);
     this.searchTitle = this.searchTitle.bind(this);
+    this.handleSave = this.handleSave.bind(this);
 
     this.state = {
       jobPosts: [],
       currentJobPost: null,
       currentIndex: -1,
       searchTitle: "",
-      toggleHandler: true
+      toggleHandler: true,
+      currentJobPostSaved: true,
+      currentUser: AuthService.getCurrentUser()
     };
   }
 
@@ -36,6 +38,15 @@ class JobBoardPage extends Component {
     this.setState({
       searchTitle: searchTitle
     });
+  }
+
+  handleSave(e) {
+    if (e.target.value === "save") {
+      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentIndex, save:true })
+    }
+    else {
+      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentIndex, save:false })
+    }
   }
 
   retrieveJobPosts() {
@@ -107,7 +118,7 @@ class JobBoardPage extends Component {
 
 
   render() {
-    const { searchTitle, jobPosts, currentJobPost, currentIndex } = this.state;
+    const { searchTitle, jobPosts, currentJobPost, currentIndex, currentUser } = this.state;
 
     return (
       <div id="contentLayoutJobs">
