@@ -1,10 +1,9 @@
 module.exports = {
-  HOST: "ec2-34-204-22-76.compute-1.amazonaws.com",
-  USER: "cxkfdbwhbmrylb",
-  PASSWORD: "b90d0d2e8ea039227dec1d8e070fd1d2a9423deba603cc78e00a4f7eb9dbd1e6",
-  DB: "dciia2r4mdeb7s",
+  HOST: "us-cdbr-east-06.cleardb.net",
+  USER: "b579dcc74221d6",
+  PASSWORD: "dd453f4a",
+  DB: "heroku_72211f91d285493",
   dialect: "mysql",
-  port: 5432,
   pool: {
     max: 5,
     min: 0,
