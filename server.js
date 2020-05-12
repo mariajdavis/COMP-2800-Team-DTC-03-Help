@@ -41,7 +41,7 @@ app.get('/*', (req, res) => {
 });
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = "us-cdbr-east-06.cleardb.net:3306"
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
