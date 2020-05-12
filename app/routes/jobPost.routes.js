@@ -24,5 +24,14 @@ module.exports = app => {
   // Create a new JobPost
   router.delete("/", jobPosts.deleteAll);
 
+  // Check if a JobPost has been saved by the user
+  router.post("/saved/find", jobPosts.checkSaved);
+
+  // Save a JobPost to User's profile
+  router.post("/saved/save", jobPosts.saveHandle);
+
+  // Retrieve all saved JobPosts from User's profile
+  router.get("/saved/:id", jobPosts.findAllSaved);
+
   app.use('/api/jobPosts', router);
 };

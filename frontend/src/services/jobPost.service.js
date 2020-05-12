@@ -28,6 +28,18 @@ class JobPostDataService {
   findByTitle(title) {
     return http.get(`/jobPosts?title=${title}`);
   }
+
+  findSaved(data) {
+    return http.post("/jobPosts/saved/find",data);
+  }
+
+  saveHandle(data) {
+    return http.post("/jobPosts/saved/save",data);
+  }
+
+  getAllSaved(id){
+    return http.get(`/jobPosts/saved/${id}`);
+  }
 }
 
 export default new JobPostDataService();

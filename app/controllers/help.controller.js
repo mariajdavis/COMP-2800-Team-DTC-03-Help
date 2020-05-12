@@ -148,3 +148,64 @@ exports.findAllJobType = (req, res) => {
       });
     });
 };
+
+// add a job post to a user's saved job list
+exports.saveHandle = (req, res) => {
+  return JobPost.findByPk(req.body.jobPostId)
+    .then((jobPost) => {
+      if (!jobPost) {
+        console.log("JobPost not found!");
+        return null;
+      }
+      return User.findByPk(req.body.userId).then((user) => {
+        if (!user) {
+          console.log("User not found!");
+          return null;
+        }
+        if (req.body.save) {
+          jobPost.addUser(user);
+        }
+        else {
+          jobPost.removeUser(user);
+        }
+        return user;
+      });
+    })
+    .catch((err) => {
+      console.log(">> Error while adding User to JobPost: ", err);
+    });
+};
+
+
+// Check if a job is saved by the user
+exports.checkSaved = (req, res) => {
+  JobPost.findOne({
+    where: { id: req.body.jobPostId },
+    include: [{
+     model: User,
+     through: 'users_jobPosts',
+     where: { id: req.body.userId },
+    }]
+   }).then(data=>{
+    if (data) {
+      res.send({found:true})
+    }
+    else {
+      res.send({found:false})
+    }
+   })
+}
+
+
+// Retrieve all saved JobPosts for a user
+exports.findAllSaved = (req, res) => {
+  JobPost.findAll({
+    include: [{
+      model: User,
+      through: 'users_jobPosts',
+      where: { id: req.params.id },
+    }]
+  }).then(data => {
+    res.send(data);
+  })
+};
