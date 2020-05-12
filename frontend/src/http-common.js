@@ -1,13 +1,9 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "sql3.freemysqlhosting.net",
+  baseURL: "us-cdbr-east-06.cleardb.net:3306",
   headers: {
-<<<<<<< HEAD
-    "Content-type": "application/json"
-=======
     "Content-type": "application/json",
-    "Access-Control-Allow-Origin": "sql3.freemysqlhosting.net"
->>>>>>> 7366fec6ebefd70d80ccc299578eab0130a529e3
+    "Access-Control-Allow-Origin": "us-cdbr-east-06.cleardb.net:3306"
   }
 });
