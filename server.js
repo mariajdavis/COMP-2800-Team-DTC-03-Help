@@ -2,14 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require('path');
-const mysql = require('mysql');
-
-const connection = mysql.createConnection({
-  host: "us-cdbr-east-06.cleardb.net",
-  user: "b579dcc74221d6",
-  password: "dd453f4a",
-  database: "heroku_72211f91d285493"
-})
 
 const app = express();
 
