@@ -9,7 +9,7 @@ var corsOptions = {
   origin: "https://helpservices.herokuapp.com"
 };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
