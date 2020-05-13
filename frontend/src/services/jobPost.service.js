@@ -40,6 +40,18 @@ class JobPostDataService {
   getAllSaved(id){
     return http.get(`/jobPosts/saved/${id}`);
   }
+
+  findByOrgId(orgId) {
+    return http.get(`/jobPosts?orgId=${orgId}`);
+  }
+
+  deleteAllOrg(orgId) {
+    return http.delete(`/jobPosts?orgId=${orgId}`);
+  }
+
+  findOrgPostByTitle(title, orgId) {
+    return http.get(`/jobPosts?title=${title}&orgId=${orgId}`);
+  }
 }
 
 export default new JobPostDataService();

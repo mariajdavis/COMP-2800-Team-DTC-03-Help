@@ -17,7 +17,7 @@ export default class AboutUs extends Component {
                 </div>
                 <div class="items" id="itemOne">
                     <h3>Maria Davis</h3>
-                    <p>I am a second term student in BCIT's CST program. I love designing apps to bring people together and make life easier. I hope help! assists our communities in overcoming the COVID-19 crisis.</p>
+                    <p class="selfIntroduction">I am a second term student in BCIT's CST program. I love designing apps to bring people together and make life easier. I hope help! assists our communities in overcoming the COVID-19 crisis.</p>
                     <img class="selfImg" src={beach}></img>
                 </div>
                 <div class="items" id="itemTwo">

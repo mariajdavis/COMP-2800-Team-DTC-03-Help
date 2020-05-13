@@ -68,6 +68,7 @@ h3 {
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 45px 1fr;
+    height: 20em;
     grid-template-areas:
         "headOne paraOne"
         "imgOne paraOne" 
@@ -86,6 +87,7 @@ h3 {
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 45px 1fr;
+    height: 20em;
     grid-template-areas:
         "headThree paraThree"
         "imgThree paraThree" 
@@ -95,6 +97,7 @@ h3 {
     display: grid;
     grid-template-columns: 1.5fr 2fr;
     grid-template-rows: 45px 1fr;
+    height: 20em;
     grid-template-areas:
         "headFour paraFour"
         "imgFour paraFour" 

@@ -1,5 +1,6 @@
 {
   "files": {
+<<<<<<< HEAD
     "main.css": "/static/css/main.2d34b54f.chunk.css",
     "main.js": "/static/js/main.33181275.chunk.js",
     "main.js.map": "/static/js/main.33181275.chunk.js.map",
@@ -14,6 +15,22 @@
     "static/css/2.66165e39.chunk.css.map": "/static/css/2.66165e39.chunk.css.map",
     "static/css/main.2d34b54f.chunk.css.map": "/static/css/main.2d34b54f.chunk.css.map",
     "static/js/2.17b1efd9.chunk.js.LICENSE.txt": "/static/js/2.17b1efd9.chunk.js.LICENSE.txt",
+=======
+    "main.css": "/static/css/main.6ffdbe08.chunk.css",
+    "main.js": "/static/js/main.1a19ff0e.chunk.js",
+    "main.js.map": "/static/js/main.1a19ff0e.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.efee8004.js",
+    "runtime-main.js.map": "/static/js/runtime-main.efee8004.js.map",
+    "static/css/2.25d2dfdd.chunk.css": "/static/css/2.25d2dfdd.chunk.css",
+    "static/js/2.1318a042.chunk.js": "/static/js/2.1318a042.chunk.js",
+    "static/js/2.1318a042.chunk.js.map": "/static/js/2.1318a042.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.fcfe64d9a65651131a830da34744aa38.js": "/precache-manifest.fcfe64d9a65651131a830da34744aa38.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.25d2dfdd.chunk.css.map": "/static/css/2.25d2dfdd.chunk.css.map",
+    "static/css/main.6ffdbe08.chunk.css.map": "/static/css/main.6ffdbe08.chunk.css.map",
+    "static/js/2.1318a042.chunk.js.LICENSE.txt": "/static/js/2.1318a042.chunk.js.LICENSE.txt",
+>>>>>>> Gonu_Kim_v3
     "static/media/background_frame.png": "/static/media/background_frame.fb7d453b.png",
     "static/media/beach.png": "/static/media/beach.20bae3d7.png",
     "static/media/catepillar.jpg": "/static/media/catepillar.e086543f.jpg",
@@ -22,10 +39,18 @@
     "static/media/jobBoard.css": "/static/media/rectangle_24.dfd26429.png"
   },
   "entrypoints": [
+<<<<<<< HEAD
     "static/js/runtime-main.cce29f99.js",
     "static/css/2.66165e39.chunk.css",
     "static/js/2.17b1efd9.chunk.js",
     "static/css/main.2d34b54f.chunk.css",
     "static/js/main.33181275.chunk.js"
+=======
+    "static/js/runtime-main.efee8004.js",
+    "static/css/2.25d2dfdd.chunk.css",
+    "static/js/2.1318a042.chunk.js",
+    "static/css/main.6ffdbe08.chunk.css",
+    "static/js/main.1a19ff0e.chunk.js"
+>>>>>>> Gonu_Kim_v3
   ]
 }
