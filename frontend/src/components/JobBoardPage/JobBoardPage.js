@@ -42,10 +42,10 @@ class JobBoardPage extends Component {
 
   handleSave(e) {
     if (e.target.value === "save") {
-      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentIndex, save: true })
+      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentJobPost.id, save: true })
     }
     else {
-      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentIndex, save: false })
+      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentJobPost.id, save: false })
     }
   }
 
@@ -79,8 +79,9 @@ class JobBoardPage extends Component {
     if (this.state.currentUser) {
       var data = {
         userId: this.state.currentUser.id,
-        jobPostId: index
+        jobPostId: jobPost.id
       };
+      console.log(data);
       JobPostDataService.findSaved(data).then(res => {
         console.log('res.data.found = ' + res.data.found);
         this.setState({

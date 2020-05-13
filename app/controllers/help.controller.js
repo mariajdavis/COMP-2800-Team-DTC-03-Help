@@ -1,5 +1,6 @@
 const db = require("../models");
 const JobPost = db.jobPosts;
+const User = db.users;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new JobPost
