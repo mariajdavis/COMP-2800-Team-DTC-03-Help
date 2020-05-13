@@ -6,10 +6,10 @@ const path = require('path');
 const app = express();
 
 var corsOptions = {
-  origin: "https://helpservices.herokuapp.com"
+  origin: "http://localhost:8081"
 };
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
