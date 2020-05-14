@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import './AboutUs.css'
 import HelpLogo from '../../img/logo.jpg'
+import chase from '../../img/chase.png'
 import Catepillar from '../../img/catepillar.jpg'
 import farmer from '../../img/farmer.JPG'
 import beach from '../../img/beach.png'
@@ -24,7 +25,7 @@ export default class AboutUs extends Component {
                     <div class="items" id="itemTwo">
                         <h3 class="names">Chase Lu</h3>
                         <p class="selfIntroduction"><span> yo</span></p>
-                        <img class="selfImg" src={HelpLogo}></img>
+                        <img class="selfImg" src={chase}></img>
                     </div>
                     <div class="items" id="itemThree">
                         <h3 class="names">Geun Uoo Kim</h3>
