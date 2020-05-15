@@ -199,7 +199,7 @@ class ViewJobPage extends Component {
                                 </button>
                                 </div>
                         </div>
-                        <div id="job-description-wrapper" className="col-md-6">
+                        <div id="job-description-wrapper">
                           <div id='job-description'>
                                 {currentJobPost && (
                                     <div>
