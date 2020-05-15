@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Bodyframe.css'
-import backgroundFrame from "../../img/background_frame.png"
+import backgroundFrame from "../../img/bg.png"
 import JobPostDataService from "../../services/jobPost.service";
 
 const imgStyle = {
