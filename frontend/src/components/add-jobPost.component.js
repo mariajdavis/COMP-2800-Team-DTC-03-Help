@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import JobPostDataService from "../services/jobPost.service";
 import AuthService from "../services/auth.service";
 import TagDataService from "../services/tag.service";
+import "./Layouts/ContentLayout.css"
 
 
 export default class AddJobPost extends Component {
@@ -147,7 +148,10 @@ export default class AddJobPost extends Component {
 
   render() {
     return (
-      <div className="submit-form">
+      <div id="contentLayout">
+        <div id="contentDiv">
+        
+      <div className="card">
         {this.state.submitted ? (
           <div>
             <h4>You submitted successfully!</h4>
@@ -156,8 +160,8 @@ export default class AddJobPost extends Component {
             </button>
           </div>
         ) : (
-            <div>
-              <div className="form">
+            <div id="addJobArea">
+              
               <div className="form-group">
                 <label htmlFor="title">Title</label>
                 <input
@@ -236,8 +240,8 @@ export default class AddJobPost extends Component {
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="jobType">Tags</label><br/>
+              <div className="form-group" id="tagSelect">
+                <label htmlFor="jobType">Tags</label><br></br>
                 <select id="tags" name="tags" onChange={this.setTags} multiple>
                   <option value="Volunteer">Volunteer</option>
                   <option value="Delivery">Delivery</option>
@@ -248,18 +252,24 @@ export default class AddJobPost extends Component {
                   <option value="Charity">Charity</option>
                   <option value="Charity">Education</option>
                 </select>
+                
               </div>
 
               <div>
               Hold down the Ctrl (Windows) or Command (Mac) button to select multiple tags.
-              </div>
-              </div>
-
+              <br></br>
               <button onClick={this.saveJobPost} className="btn btn-success">
                 Submit
             </button>
+              </div>
+              
+
+              
             </div>
           )}
+          
+          </div>
+          </div>
       </div>
     );
   }

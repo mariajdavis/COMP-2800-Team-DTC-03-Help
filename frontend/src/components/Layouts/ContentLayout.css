@@ -55,6 +55,10 @@
     max-width: 80vw;
 }
 
+/* #contentDiv .form-group{
+    max-width: 500px;
+} */
+
 #contentLayoutUserProfile {
     position: absolute;
     display: grid;
@@ -69,6 +73,23 @@
     grid-template-columns: 1fr;
     grid-template-areas:
         "contentArea"
+}
+
+#addJobArea {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    
+}
+
+#tagSelect {
+    display:flex;
+    justify-content: center;
+}
+
+
+#tagSelect select{
+    min-width: 125px;
 }
 
 #contentDiv{grid-area: contentArea}

@@ -15,7 +15,8 @@ import './Navbar.css'
 import AuthService from "./services/auth.service";
 import AboutUs from './components/AboutUs/aboutUs.component'
 import SavedJobPosts from './components/savedJobs.component';
-
+import OrgUserProfile from "./components/org-profile.component";
+import OrgJobPostsList from "./components/JobBoardPage/OrgJobBoardPage"
 
 class App extends Component {
   constructor(props) {
@@ -58,10 +59,12 @@ class App extends Component {
           <Navbar.Toggle id="collapseButton" aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              {!currentUser && <Nav.Link id="navLink" href="/register">Register</Nav.Link>}
-              <Nav.Link id="navLink" href="/jobPosts">Job Board</Nav.Link>
+              {!currentUser &&! currentOrgUser && <Nav.Link id="navLink" href="/register">Register</Nav.Link>}
+              {!currentOrgUser && <Nav.Link id="navLink" href="/jobPosts">Job Board</Nav.Link>}
+              {currentOrgUser && <Nav.Link id="navLink" href="/orgJobPosts">My Job Posts</Nav.Link>}
               {currentOrgUser && <Nav.Link id="navLink" href="/add">Add Job</Nav.Link>}
               {currentUser && <Nav.Link id="navLink" href="/userProfile">My Profile</Nav.Link>}
+              {currentOrgUser && <Nav.Link id="navLink" href="/orgUserProfile">My Profile</Nav.Link>}
               {currentUser && <Nav.Link href="/savedJobs">Saved Jobs</Nav.Link>}
               {!currentUser && !currentOrgUser && <Nav.Link id="navLink" href="/logIn">Log In</Nav.Link>}
               {currentUser && <Nav.Link id="navLink" href="/logIn" onClick={this.logOut}>Log Out</Nav.Link>}
@@ -76,9 +79,11 @@ class App extends Component {
           <Route exact path="/logIn" component={LogIn} />
           <Route exact path="/register" component={Register} />
           <Route exact path={["/", "/jobPosts"]} component={JobPostsList} />
+          <Route exact path={["/", "/orgJobPosts"]} component={OrgJobPostsList} />
           <Route exact path="/add" component={AddJobPost} />
           <Route path="/jobPosts/:id" component={JobPost} />
           <Route path="/userProfile" component={UserProfile} />
+          <Route path="/orgUserProfile" component={OrgUserProfile}/>
           <Route path="/aboutUs" component={AboutUs} />
         </Switch>
 
