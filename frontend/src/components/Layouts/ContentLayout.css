@@ -7,7 +7,6 @@
     margin-left:10vw;
     margin-right:10vw;
     top:25%;
-    overflow-x:hidden;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -47,8 +46,9 @@
     display: grid;
     font-family:Jaldi;
     width: 100%;
-    height: auto;
     padding: 20px;
+    bottom: 20px;
+    height:100%;
 }
 
 #contentLayoutJobs {
