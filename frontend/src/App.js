@@ -10,7 +10,7 @@ import Register from "./components/register.component";
 import LogIn from "./components/logIn.component";
 import Bodyframe from './components/Bodyframe/Bodyframe.js';
 import Footer from './components/Footer/Footer.js';
-import UserProfile from "./components/user-profile.component";
+import UserProfile from "./components/Profile/user-profile.component";
 import { Nav, Navbar } from 'react-bootstrap'
 import './Navbar.css'
 import AuthService from "./services/auth.service";
