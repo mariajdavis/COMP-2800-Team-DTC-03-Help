@@ -69,6 +69,7 @@ export class EasterEgg extends Component {
 
     componentDidMount() {
         //$('.animated-text').hide();
+        //$('#startBtn').html='Start?'
         window.addEventListener('keyup', this.handleKeys.bind(this, false));
         window.addEventListener('keydown', this.handleKeys.bind(this, true));
         window.addEventListener('resize', this.handleResize.bind(this, false));
@@ -247,9 +248,9 @@ export class EasterEgg extends Component {
             endgame = (
                 <div class="endgame">
                     <div><h2>{message}</h2></div>
-                    <div><button
+                    <div><button id="startBtn" 
                         onClick={this.startGame.bind(this)}>
-                        Start?
+                        Start again?
               </button></div>
                 </div>
             )
