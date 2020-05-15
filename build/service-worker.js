@@ -14,11 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-<<<<<<< HEAD
-  "/precache-manifest.5334f06b8f0cee2374d6b91ccbfcdbb1.js"
-=======
-  "/precache-manifest.fcfe64d9a65651131a830da34744aa38.js"
->>>>>>> Gonu_Kim_v3
+  "/precache-manifest.0cc09c1ccb38cb6bbf70ca9ac71478da.js"
 );
 
 self.addEventListener('message', (event) => {
