@@ -168,12 +168,11 @@ img {
 #itemFour img{grid-area: imgFour;}
 
 .selfIntroduction {
-    background-image: url(../../img/rectangle_24.png);
+    background-image: url('../../img/rectangle_24.png');
     background-size: cover;
-    overflow-y: hidden;
     border-radius: 10px;
     text-align: center;
-    height: 60%;
+    height: 75%;
     width: 90%;
     color: black;
 }
@@ -188,14 +187,14 @@ img {
     animation-fill-mode: forwards;
 }
 
-@keyframes scrollDown {
+/* @keyframes scrollDown {
     100% {
         top: -50px;
       }
-}
+} */
 
 .items {
-    overflow: scroll;
+    overflow: hidden;
 }
 
 .selfImg {

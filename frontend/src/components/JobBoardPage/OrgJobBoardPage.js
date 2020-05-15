@@ -210,6 +210,10 @@ class OrgJobBoardPage extends Component {
                 </div>
                 <div id="job-description-wrapper">
                   <div id='job-description'>
+<<<<<<< HEAD
+=======
+                
+>>>>>>> f0d6f6d8ec8b1c0aee52907f7a58a63846f661aa
                     {currentJobPost && (
                       <div>
                         <h4>Job Post</h4>
@@ -261,7 +265,13 @@ class OrgJobBoardPage extends Component {
                       </div>
                     )}
                   </div>
+<<<<<<< HEAD
                 </div>
+=======
+                  </div>
+                  
+                
+>>>>>>> f0d6f6d8ec8b1c0aee52907f7a58a63846f661aa
               </article>
             </section>
           </div>
