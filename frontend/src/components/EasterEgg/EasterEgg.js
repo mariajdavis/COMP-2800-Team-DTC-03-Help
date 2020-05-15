@@ -73,26 +73,12 @@ export class EasterEgg extends Component {
         window.addEventListener('keyup', this.handleKeys.bind(this, false));
         window.addEventListener('keydown', this.handleKeys.bind(this, true));
         window.addEventListener('resize', this.handleResize.bind(this, false));
-        this.audio = new Audio(`./help.mp3`);
-        this.audio.load();
-        this.playAudio();
+        document.getElementById("mp3").audio=0.5;
         const context = this.refs.canvas.getContext('2d');
         this.setState({ context: context });
         requestAnimationFrame(() => { this.update() });
     }
-    playAudio() {
-        const audioPromise = this.audio.play()
-        if (audioPromise !== undefined) {
-            audioPromise
-                .then(_ => {
-                    // autoplay started
-                })
-                .catch(err => {
-                    // catch dom exception
-                    console.info(err)
-                })
-        }
-    }
+
     componentWillUnmount() {
         window.removeEventListener('keyup', this.handleKeys);
         window.removeEventListener('keydown', this.handleKeys);
@@ -257,9 +243,7 @@ export class EasterEgg extends Component {
         }
         return (
             <div>
-                <audio autoPlay loop>
-                    <source src="./help.mp3"></source>
-                </audio>
+                <audio id="mp3" src={mp3_file} autoPlay loop/>
                 <div id="ee">
                     <div id="msg">
                         <div id="endgame">
