@@ -249,7 +249,7 @@ class ViewJobPage extends Component {
                                         Edit
                                     </Link>
                                     <Link
-                                        to={"/jobPosts/" + currentJobPost.id}
+                                        to={"/apply/" + currentJobPost.id}
                                         className="badge badge-success"
                                     >
                                         Apply
