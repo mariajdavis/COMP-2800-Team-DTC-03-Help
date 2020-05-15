@@ -64,5 +64,4 @@ const verifySignUp = {
     checkDuplicateUsernameOrEmail: checkDuplicateUsernameOrEmail,
     checkDuplicateUsernameOrEmailOrg: checkDuplicateUsernameOrEmailOrg
 };
-
 module.exports=verifySignUp;

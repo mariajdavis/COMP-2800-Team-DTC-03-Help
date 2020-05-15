@@ -5,6 +5,7 @@ import TagDataService from "../services/tag.service";
 import "./Layouts/ContentLayout.css"
 
 
+
 export default class AddJobPost extends Component {
   constructor(props) {
     super(props);
@@ -101,6 +102,7 @@ export default class AddJobPost extends Component {
 
     JobPostDataService.create(data)
       .then(response => {
+        console.log(response.data.id)
         this.setState({
           id: response.data.id,
           title: response.data.title,
