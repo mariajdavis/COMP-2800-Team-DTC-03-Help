@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import AddJobPost from "./components/add-jobPost.component";
 import JobPost from "./components/jobPost.component";
+import Apply from "./components/apply.component";
 import JobPostsList from "./components/JobBoardPage/JobBoardPage";
 import Register from "./components/register.component";
 import LogIn from "./components/logIn.component";
@@ -74,6 +75,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/savedJobs" component={SavedJobPosts} />
           <Route exact path="/logIn" component={LogIn} />
+          <Route exact path="/apply/:id" component={Apply} />
           <Route exact path="/register" component={Register} />
           <Route exact path={["/", "/jobPosts"]} component={JobPostsList} />
           <Route exact path="/add" component={AddJobPost} />
