@@ -4,18 +4,19 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import AddJobPost from "./components/add-jobPost.component";
 import JobPost from "./components/jobPost.component";
+import Apply from "./components/apply.component";
 import JobPostsList from "./components/JobBoardPage/JobBoardPage";
 import Register from "./components/register.component";
 import LogIn from "./components/logIn.component";
 import Bodyframe from './components/Bodyframe/Bodyframe.js';
 import Footer from './components/Footer/Footer.js';
-import UserProfile from "./components/Profile/user-profile.component";
+import UserProfile from "./components/user-profile.component";
 import { Nav, Navbar } from 'react-bootstrap'
 import './Navbar.css'
 import AuthService from "./services/auth.service";
 import AboutUs from './components/AboutUs/aboutUs.component'
 import SavedJobPosts from './components/savedJobs.component';
-import ViewApplicantPage from "./components/JobBoardPage/ViewApplicantPage";
+
 
 class App extends Component {
   constructor(props) {
@@ -74,13 +75,13 @@ class App extends Component {
         <Switch>
           <Route exact path="/savedJobs" component={SavedJobPosts} />
           <Route exact path="/logIn" component={LogIn} />
+          <Route exact path="/apply/:id" component={Apply} />
           <Route exact path="/register" component={Register} />
           <Route exact path={["/", "/jobPosts"]} component={JobPostsList} />
           <Route exact path="/add" component={AddJobPost} />
           <Route path="/jobPosts/:id" component={JobPost} />
           <Route path="/userProfile" component={UserProfile} />
           <Route path="/aboutUs" component={AboutUs} />
-          <Route path="/viewapplicant" component={ViewApplicantPage} />
         </Switch>
 
         <footer>

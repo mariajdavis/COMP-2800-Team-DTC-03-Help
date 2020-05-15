@@ -109,7 +109,7 @@ export default class logIn extends Component {
       else {
         AuthService.orgLogin(this.state.email, this.state.password).then(
           () => {
-            this.props.history.push("/");
+            this.props.history.push("/orgJobBoard");
             window.location.reload();
           },
           error => {
