@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import AuthService from "../../services/auth.service";
-import "../Layouts/ContentLayout.css";
-import black_background from "../../img/profile_bg.png";
+import AuthService from "./../services/auth.service";
+import "./Layouts/ContentLayout.css";
+import black_background from "./../img/profile_bg.png";
 import "./profile.css";
-import HelpLogo from "../../img/logo.jpg";
+import HelpLogo from "./../img/logo.jpg";
 
 
 
