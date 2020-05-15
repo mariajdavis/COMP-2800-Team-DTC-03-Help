@@ -41,6 +41,7 @@
     ]
   },
   "devDependencies": {
-    "concurrently": "^5.2.0"
+    "concurrently": "^5.2.0",
+    "react-scripts": "^3.4.0"
   }
 }
