@@ -39,7 +39,7 @@ button {
 }
 
 #aboutDiv {
-    overflow-y: scroll;
+    overflow-x: hidden;
     position: absolute;
     display: grid;
     font-family:Jaldi;
@@ -149,7 +149,7 @@ img {
 #itemOne{grid-area: placeOne;}
 #itemTwo{grid-area: placeTwo;}
 #itemThree{grid-area: placeThree;}
-#itemFour{grid-area: placeFour; overflow: scroll;}
+#itemFour{grid-area: placeFour;}
 #aboutHead{grid-area: pagehead;}
 #aboutPara{grid-area: aboutPara;}
 #aboutDiv{grid-area: aboutArea}
