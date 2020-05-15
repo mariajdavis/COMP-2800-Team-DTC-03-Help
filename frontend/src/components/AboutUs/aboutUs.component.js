@@ -18,14 +18,12 @@ export default class AboutUs extends Component {
         }
     }
     eggHandle() {
-        if (this.state.count == 7) {
+        this.setState({
+            count: this.state.count + 1
+        })
+        console.log(this.state.count);
+        if (this.state.count>=7) {
             $('#aboutUs').hide();
-        }
-        else {
-            this.setState({
-                count: this.state.count+1
-            })
-            console.log(this.state.count);
         }
     }
     render() {
