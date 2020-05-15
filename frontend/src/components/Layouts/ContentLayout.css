@@ -14,6 +14,24 @@
         "contentArea"
 }
 
+#contentLayoutAddJob {
+    position: absolute;
+    display: grid;
+    width: 80vw;
+    top:100px;
+    bottom: 100px;
+    margin-left:10vw;
+    margin-right:10vw;
+    vertical-align: center;
+    top:20%;
+    margin-bottom: 5%;
+    overflow-x:hidden;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "contentArea"
+}
+
 #contentDiv {
     position: absolute;
     display: grid;
@@ -91,5 +109,7 @@
 #tagSelect select{
     min-width: 125px;
 }
+
+
 
 #contentDiv{grid-area: contentArea}

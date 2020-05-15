@@ -148,7 +148,7 @@ export default class AddJobPost extends Component {
 
   render() {
     return (
-      <div id="contentLayout">
+      <div id="contentLayoutAddJob">
         <div id="contentDiv">
         
       <div className="card">
