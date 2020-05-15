@@ -208,10 +208,9 @@ class OrgJobBoardPage extends Component {
                                 </button>
                   </div>
                 </div>
-                {/* <div id="job-description-wrapper" className="col-md-6">
-                  <div id='job-description'> */}
-                <div className="col-md-6">
-                  {/* <div> */}
+                <div id="job-description-wrapper">
+                  <div id='job-description'>
+                
                     {currentJobPost && (
                       <div>
                         <h4>Job Post</h4>
@@ -262,8 +261,10 @@ class OrgJobBoardPage extends Component {
                         {currentUser && this.state.currentJobPostSaved && <Button variant="info" value="unsave" onClick={this.handleSave}> Unsave </Button>}
                       </div>
                     )}
-                  {/* </div> */}
-                </div>
+                  </div>
+                  </div>
+                  
+                
               </article>
             </section>
           </div>
