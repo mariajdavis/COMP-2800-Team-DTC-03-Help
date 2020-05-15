@@ -4,6 +4,7 @@ import JobPostDataService from "../../services/jobPost.service";
 import AuthService from "../../services/auth.service";
 import { Link } from "react-router-dom";
 import { Button, ToggleButton } from 'react-bootstrap';
+import {EasterEgg} from "../EasterEgg/EasterEgg";
 
 
 
@@ -107,6 +108,7 @@ class ViewJobPage extends Component {
       }
     
       searchTitle() {
+
         JobPostDataService.findByTitle(this.state.searchTitle)
           .then(response => {
             this.setState({

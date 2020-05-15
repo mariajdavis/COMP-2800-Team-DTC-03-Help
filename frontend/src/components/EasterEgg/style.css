@@ -1,0 +1,17 @@
+#msg {
+    display: grid;
+    text-align: center;
+    position: absolute;
+}
+#scores {
+    display:grid;
+    grid-template-columns: (2,1fr);
+}
+.endgame {
+    display: grid;
+    text-align: center
+}
+#ee {
+    display:flex;
+    justify-content: center;
+}

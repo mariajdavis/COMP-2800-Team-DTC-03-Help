@@ -17,7 +17,6 @@ import AboutUs from './components/AboutUs/aboutUs.component'
 import SavedJobPosts from './components/savedJobs.component';
 import ViewApplicantPage from "./components/JobBoardPage/ViewApplicantPage";
 
-
 class App extends Component {
   constructor(props) {
     super(props);
