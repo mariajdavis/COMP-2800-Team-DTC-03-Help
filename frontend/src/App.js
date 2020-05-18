@@ -14,9 +14,9 @@ import UserProfile from "./components/user-profile.component";
 import { Nav, Navbar } from 'react-bootstrap'
 import './Navbar.css'
 import AuthService from "./services/auth.service";
-import AboutUs from './components/AboutUs/aboutUs.component'
+import AboutUs from './components/AboutUs/aboutUs.component';
 import SavedJobPosts from './components/savedJobs.component';
-
+import GoogleMap from './components/GoogleMap/map.component';
 
 class App extends Component {
   constructor(props) {
@@ -73,6 +73,7 @@ class App extends Component {
         </Navbar>
         <Bodyframe />
         <Switch>
+          <Route exact path="/jobPostsMap" component={GoogleMap} />
           <Route exact path="/savedJobs" component={SavedJobPosts} />
           <Route exact path="/logIn" component={LogIn} />
           <Route exact path="/apply/:id" component={Apply} />

@@ -20,7 +20,13 @@ module.exports = (sequelize, Sequelize) => {
     },
     orgID: {
       type: Sequelize.INTEGER
-    }
+    },
+    lat: {
+      type: Sequelize.STRING
+    },
+    lng: {
+      type: Sequelize.STRING
+    },
   });
 
   return JobPost;
