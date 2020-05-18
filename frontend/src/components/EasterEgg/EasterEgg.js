@@ -166,8 +166,7 @@ export class EasterEgg extends Component {
                 newX = randomNumBetween(0, this.state.screen.width);
                 newY = randomNumBetween(50, this.state.screen.height * 0.8);
             }
-            // newX=this.inGame?randomNumBetweenExcluding(0,this.state.screen.width,beatle.position.x-60,beatle.position.x+60):randomNumBetween(0,this.state.screen.width);
-            // newY=this.ingame?randomNumBetweenExcluding(50, this.state.screen.height*0.8, beatle.position.y-60, beatle.position.y+60):randomNumBetween(50, this.state.screen.height*0.8)
+
             let virus = new Virus({
                 position: {
                     x: newX,
