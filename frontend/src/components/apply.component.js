@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AuthService from "../services/auth.service";
 import ApplyDataService from "../services/apply.service";
 import ReactS3 from 'react-s3';
+import './AboutUs/AboutUs.css'
 
 
 // AWS A3 file storage config
@@ -87,8 +88,8 @@ export default class Apply extends Component {
   render() {
 
     return (
-      <div id=''>
-        <div className="submit-form">
+      <div id='contentLayout'>
+        <div id='contentDiv'>
           {this.state.submitted ? (
             <div>
               <h4>You applied to this job successfully!</h4>
@@ -99,7 +100,7 @@ export default class Apply extends Component {
           ) : (
               <div>
 
-                <div className="form-group">
+                
                   <div>
 
                     <label htmlFor="resume">Upload your resume here:</label>
@@ -118,7 +119,7 @@ export default class Apply extends Component {
                   </div>
 
                 </div>
-              </div>
+              
             )}
         </div>
       </div>

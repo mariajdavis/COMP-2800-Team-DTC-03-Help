@@ -176,6 +176,16 @@ img {
     width: 90%;
     color: black;
 }
+
+.resumeBG {
+    background-image: url('../../img/rectangle_24.png');
+    
+    border-radius: 10px;
+    
+    
+    
+}
+
 .selfIntroduction span {
     position: relative;
     top: 0px;

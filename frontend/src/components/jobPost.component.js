@@ -150,13 +150,16 @@ export default class JobPost extends Component {
     const { currentJobPost } = this.state;
 
     return (
-      <div id="contentLayout">
+      <div id="contentLayoutAddJob">
         <div id="contentDiv">
-      <div>
+        
+      <div className="card">
         {currentJobPost ? (
-          <div className="edit-form">
-            <h4>JobPost</h4>
-            <form>
+          <div>
+          <h4>JobPost</h4>
+          <div>
+            <form id="addJobArea">
+              
               <div className="form-group">
                 <label htmlFor="title">Title</label>
                 <input
@@ -230,7 +233,7 @@ export default class JobPost extends Component {
                 />
               </div>
 
-            </form>
+            
 
             <button
               className="badge badge-danger mr-2"
@@ -246,7 +249,9 @@ export default class JobPost extends Component {
             >
               Update
             </button>
+            </form>
             <p>{this.state.message}</p>
+          </div>
           </div>
         ) : (
           <div>
