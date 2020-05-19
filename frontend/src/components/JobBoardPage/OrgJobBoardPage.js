@@ -149,8 +149,7 @@ class OrgJobBoardPage extends Component {
                 <a id='ex'>
                   <li id="ex">My Job Posts</li>
                 </a>
-                <li>Apply</li>
-                <li>More</li>
+                <a href="/viewApplicants"><li class="onHover">View Applicants</li></a>
               </ul>
               <form id='searchbar'>
                 <input

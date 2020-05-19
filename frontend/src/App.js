@@ -71,7 +71,7 @@ class App extends Component {
               {currentOrgUser && <Nav.Link id="navLink" href="/orgJobBoard">Job Board</Nav.Link>}
               {currentOrgUser && <Nav.Link id="navLink" href="/add">Add Job</Nav.Link>}
               {currentUser && <Nav.Link id="navLink" href="/userProfile">My Profile</Nav.Link>}
-              {currentUser && <Nav.Link href="/savedJobs">Saved Jobs</Nav.Link>}
+              {currentUser && <Nav.Link id="navLink" href="/savedJobs">Saved Jobs</Nav.Link>}
               {!currentUser && !currentOrgUser && <Nav.Link id="navLink" href="/logIn">Log In</Nav.Link>}
               {currentUser && <Nav.Link id="navLink" href="/logIn" onClick={this.logOut}>Log Out</Nav.Link>}
               {currentOrgUser && <Nav.Link id="navLink" href="/logIn" onClick={this.orgLogOut}>Log Out</Nav.Link>}
