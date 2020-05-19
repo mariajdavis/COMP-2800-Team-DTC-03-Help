@@ -16,6 +16,7 @@ import './Navbar.css'
 import AuthService from "./services/auth.service";
 import AboutUs from './components/AboutUs/aboutUs.component'
 import SavedJobPosts from './components/savedJobs.component';
+import OrgJobBoard from './components/JobBoardPage/OrgJobBoardPage.js'
 
 
 class App extends Component {
@@ -59,8 +60,9 @@ class App extends Component {
           <Navbar.Toggle id="collapseButton" aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              {!currentUser && <Nav.Link id="navLink" href="/register">Register</Nav.Link>}
-              <Nav.Link id="navLink" href="/jobPosts">Job Board</Nav.Link>
+              {!currentUser &&! currentOrgUser && <Nav.Link id="navLink" href="/register">Register</Nav.Link>}
+              {!currentOrgUser && <Nav.Link id="navLink" href="/jobPosts">Job Board</Nav.Link>}
+              {currentOrgUser && <Nav.Link id="navLink" href="/orgJobBoard">Job Board</Nav.Link>}
               {currentOrgUser && <Nav.Link id="navLink" href="/add">Add Job</Nav.Link>}
               {currentUser && <Nav.Link id="navLink" href="/userProfile">My Profile</Nav.Link>}
               {currentUser && <Nav.Link href="/savedJobs">Saved Jobs</Nav.Link>}
@@ -82,6 +84,7 @@ class App extends Component {
           <Route path="/jobPosts/:id" component={JobPost} />
           <Route path="/userProfile" component={UserProfile} />
           <Route path="/aboutUs" component={AboutUs} />
+          <Route path="/orgJobBoard" component={OrgJobBoard}/>
         </Switch>
 
         <footer>

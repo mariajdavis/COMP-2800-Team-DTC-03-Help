@@ -5,6 +5,7 @@ import AuthService from "../../services/auth.service";
 import { Link } from "react-router-dom";
 import { Button, ToggleButton } from 'react-bootstrap';
 import {EasterEgg} from "../EasterEgg/EasterEgg";
+import { TwitterTimelineEmbed, TwitterShareButton } from 'react-twitter-embed';
 
 
 
