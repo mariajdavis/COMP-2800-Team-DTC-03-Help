@@ -103,6 +103,7 @@
 #tagSelect {
     display:flex;
     justify-content: center;
+    height: 15vw;
 }
 
 

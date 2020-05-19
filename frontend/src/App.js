@@ -17,6 +17,8 @@ import AuthService from "./services/auth.service";
 import AboutUs from './components/AboutUs/aboutUs.component'
 import SavedJobPosts from './components/savedJobs.component';
 
+import SearchLocation from './components/mapSearch';
+
 
 class App extends Component {
   constructor(props) {
@@ -82,6 +84,7 @@ class App extends Component {
           <Route path="/jobPosts/:id" component={JobPost} />
           <Route path="/userProfile" component={UserProfile} />
           <Route path="/aboutUs" component={AboutUs} />
+          <Route path="/mapsearch" component={SearchLocation} />
         </Switch>
 
         <footer>
