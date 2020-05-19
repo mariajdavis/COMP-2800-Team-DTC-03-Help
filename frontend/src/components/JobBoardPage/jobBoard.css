@@ -6,6 +6,9 @@ body {
 }
 
 @media screen and (min-width: 1550px) {
+    #title-area {
+        padding:5px;
+    }
     .bgOpacity {
     animation: bgOpacity 2s;
     animation-iteration-count: 1;

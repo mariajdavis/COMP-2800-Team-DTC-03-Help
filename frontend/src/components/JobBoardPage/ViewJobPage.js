@@ -3,9 +3,9 @@ import './jobBoard.css'
 import JobPostDataService from "../../services/jobPost.service";
 import AuthService from "../../services/auth.service";
 import { Link } from "react-router-dom";
-import { Button, ToggleButton } from 'react-bootstrap';
+import { Button, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
+import MapContainer from "../GoogleMap/map.component";
 
-import {EasterEgg} from "../EasterEgg/EasterEgg";
 import { TwitterTimelineEmbed, TwitterShareButton } from 'react-twitter-embed';
 
 
@@ -23,6 +23,7 @@ class ViewJobPage extends Component {
     this.handleSave = this.handleSave.bind(this);
     this.logOut = this.logOut.bind(this);
     this.orgLogOut = this.orgLogOut.bind(this);
+    this.handleJobView = this.handleJobView.bind(this);
 
     this.state = {
       jobPosts: [],
@@ -32,7 +33,8 @@ class ViewJobPage extends Component {
       toggleHandler: true,
       currentJobPostSaved: true,
       currentUser: AuthService.getCurrentUser(),
-      currentOrgUser: AuthService.getCurrentOrgUser
+      currentOrgUser: AuthService.getCurrentOrgUser,
+      currentView: "1"
     };
   }
 
@@ -46,6 +48,24 @@ class ViewJobPage extends Component {
     this.setState({
       searchTitle: searchTitle
     });
+  }
+
+  handleJobView(e) {
+    console.log("target value " + e.target.value);
+    if (e.target.value === "1") {
+      this.setState({
+        currentView: e.target.value
+      })
+      console.log("list");
+      console.log(this.state.currentView)
+    }
+    else {
+      this.setState({
+        currentView: e.target.value
+      })
+      console.log("map");
+      console.log(this.state.currentView)
+    }
   }
 
   handleSave(e) {
@@ -133,8 +153,7 @@ class ViewJobPage extends Component {
   }
 
   render() {
-    const { searchTitle, jobPosts, currentJobPost, currentIndex, currentUser } = this.state;
-
+    const { searchTitle, jobPosts, currentJobPost, currentIndex, currentUser, currentView } = this.state;
     return (
       <Fragment>
 
@@ -159,50 +178,61 @@ class ViewJobPage extends Component {
         <article id='jobboard'>
           <div id='jobboardImage'>
             <div id="job-list" className="col-md-12">
-              <h4>Job Posts</h4>
-
-              <ul className="list-group">
-                {jobPosts &&
-                  jobPosts.map((jobPost, index) => (
-                    <li
-                      className={
-                        "list-group-item " +
-                        (index === currentIndex ? "active" : "")
-                      }
-                      id={jobPost.title + jobPost.id}
-                      onClick={() => {
-
-                        if (this.state.toggleHandler) { // triggers open job post animation             
-                          this.setActiveJobPost(jobPost, index);
-                          this.state.toggleHandler = false;
-                          document.getElementById('job-list').classList.remove('col-md-12');
-                          document.getElementById('job-list').classList.add('col-md-7');
-                          document.getElementById('contentArea').classList.add('bgOpacity');
-                        } else { // revert back
-                          this.setActiveJobPost("", "")
-                          this.state.toggleHandler = true;
-                          document.getElementById('job-list').classList.remove('col-md-7');
-                          document.getElementById('job-list').classList.add('col-md-12');
-                          document.getElementById('contentArea').classList.remove('bgOpacity');
+              <div id="title-area" class="d-flex flex-row">
+                <div class="mr-auto"><h4>Job Posts</h4></div>
+                <div>
+                  <ToggleButtonGroup type="radio" name="jobViewOptions" defaultValue={1}>
+                    <ToggleButton onClick={this.handleJobView} value={1}>List</ToggleButton>
+                    <ToggleButton onClick={this.handleJobView} value={2}>Map</ToggleButton>
+                  </ToggleButtonGroup>
+                </div>
+              </div>
+              <div>
+                <ul className="list-group">
+                  {currentView === "1" && jobPosts &&
+                    jobPosts.map((jobPost, index) => (
+                      <li
+                        className={
+                          "list-group-item " +
+                          (index === currentIndex ? "active" : "")
                         }
+                        id={jobPost.title + jobPost.id}
+                        onClick={() => {
 
-                      }}
-                      key={index}
-                      style={{ color: 'black' }}
-                    >
-                      {jobPost.title}
-                    </li>
-                  ))}
-              </ul>
+                          if (this.state.toggleHandler) { // triggers open job post animation             
+                            this.setActiveJobPost(jobPost, index);
+                            this.state.toggleHandler = false;
+                            document.getElementById('job-list').classList.remove('col-md-12');
+                            document.getElementById('job-list').classList.add('col-md-7');
+                            document.getElementById('contentArea').classList.add('bgOpacity');
+                          } else { // revert back
+                            this.setActiveJobPost("", "")
+                            this.state.toggleHandler = true;
+                            document.getElementById('job-list').classList.remove('col-md-7');
+                            document.getElementById('job-list').classList.add('col-md-12');
+                            document.getElementById('contentArea').classList.remove('bgOpacity');
+                          }
 
-              <button
+                        }}
+                        key={index}
+                        style={{ color: 'black' }}
+                      >
+                        {jobPost.title}
+                      </li>
+                    ))}
+                </ul>
+              </div>
+
+              {/* <button
                 className="m-3 btn btn-sm btn-danger"
                 onClick={this.removeAllJobPosts}
               >
                 Remove All
-                                </button>
+                                </button> */}
             </div>
+
           </div>
+
           <div id="job-description-wrapper">
             <div id='job-description'>
               {currentJobPost && (
@@ -264,6 +294,9 @@ class ViewJobPage extends Component {
             </div>
           </div>
         </article>
+        <div id="map" height="500px" width="100%">
+          {currentView === "2" && jobPosts && <MapContainer jobs={jobPosts} />}
+        </div>
       </Fragment>
     )
   }
