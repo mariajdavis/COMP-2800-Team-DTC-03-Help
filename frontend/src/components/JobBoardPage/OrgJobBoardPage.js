@@ -4,6 +4,9 @@ import JobPostDataService from "../../services/jobPost.service";
 import AuthService from "../../services/auth.service";
 import { Link } from "react-router-dom";
 import { Button, ToggleButton } from 'react-bootstrap';
+import { TwitterTimelineEmbed, TwitterShareButton } from 'react-twitter-embed';
+
+const lineBreak = '\n'
 
 
 class OrgJobBoardPage extends Component {
@@ -16,6 +19,7 @@ class OrgJobBoardPage extends Component {
     this.removeAllJobPosts = this.removeAllJobPosts.bind(this);
     this.searchTitle = this.searchTitle.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.createJobMessage = this.createJobMessage.bind(this);
 
     this.state = {
       jobPosts: [],
@@ -24,11 +28,10 @@ class OrgJobBoardPage extends Component {
       searchTitle: "",
       toggleHandler: true,
       currentJobPostSaved: true,
-      currentUser: AuthService.getCurrentOrgUser()
+      currentUser: AuthService.getCurrentOrgUser(),
+      currentJobMsg: ""
     };
   }
-
-  
 
   componentDidMount() {
     this.retrieveJobPosts();
@@ -126,11 +129,17 @@ class OrgJobBoardPage extends Component {
       });
   }
 
+  createJobMessage(title, description, jobType, rate, startDate, contractLength) {
+    return `New Job Listing: ` + title + `\n` + `Description: ` + description + `\n` + `Job Type: ` + jobType + `\n` + `Rate: ` + rate + `\n` + `Start Date: ` + startDate + `\n` + `Contract Length: ` + contractLength + `\n` + `\n`
+  }
+
+
+
 
 
   render() {
     const { searchTitle, jobPosts, currentJobPost, currentIndex, currentUser } = this.state;
-
+    
     return (
       <div id="contentLayoutJobs">
         <div id="contentDiv">
@@ -200,12 +209,12 @@ class OrgJobBoardPage extends Component {
                         ))}
                     </ul>
 
-                    <button
+                    {/* <button
                       className="m-3 btn btn-sm btn-danger"
                       onClick={this.removeAllJobPosts}
                     >
                       Remove All
-                                </button>
+                                </button> */}
                   </div>
                 </div>
                 <div id="job-description-wrapper">
@@ -258,6 +267,11 @@ class OrgJobBoardPage extends Component {
                                     </Link>
                         {currentUser && !this.state.currentJobPostSaved && <Button variant="info" value="save" onClick={this.handleSave}> Save </Button>}
                         {currentUser && this.state.currentJobPostSaved && <Button variant="info" value="unsave" onClick={this.handleSave}> Unsave </Button>}
+                        <TwitterShareButton
+                        
+                          url={'https://helpservices.herokuapp.com/jobPosts'}
+                          options={{text: this.createJobMessage(currentJobPost.title, currentJobPost.description, currentJobPost.jobType, currentJobPost.rate, currentJobPost.startDate, currentJobPost.contractLength)}}
+                        />
                       </div>
                     )}
                   </div>

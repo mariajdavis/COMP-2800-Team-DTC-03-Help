@@ -34,4 +34,9 @@ db.jobPosts.belongsToMany(db.users, {
   foreignKey:"jobPost_id"
 });
 
+db.applications.belongsTo(db.jobPosts, { foreignKey: "jobPostID" });
+// db.jobPosts.hasMany(db.applications, { as: "applications" });
+db.applications.belongsTo(db.users, { foreignKey: "userID" });
+// db.users.hasMany(db.applications, { as: "applications" });
+
 module.exports = db;

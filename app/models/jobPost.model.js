@@ -28,6 +28,9 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING
     },
   });
+  JobPost.associate = function(models) {
+    JobPost.hasMany(models.Application, {as: 'applications'})
+  };
 
   return JobPost;
 };

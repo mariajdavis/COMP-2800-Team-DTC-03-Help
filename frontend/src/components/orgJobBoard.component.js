@@ -206,6 +206,7 @@ class OrgJobBoardPage extends Component {
                                     >
                                         Edit
                                     </Link>
+                                    
                                     </div>
                                 ) }
                           </div>

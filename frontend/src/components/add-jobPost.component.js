@@ -4,6 +4,7 @@ import AuthService from "../services/auth.service";
 import TagDataService from "../services/tag.service";
 import "./Layouts/ContentLayout.css"
 import { Map, GoogleApiWrapper } from 'google-maps-react';
+import SearchLocation from "./mapSearch";
 
 
 export default class AddJobPost extends Component {
@@ -18,6 +19,7 @@ export default class AddJobPost extends Component {
     this.saveJobPost = this.saveJobPost.bind(this);
     this.newJobPost = this.newJobPost.bind(this);
     this.setTags = this.setTags.bind(this);
+    this.onChangeLocation = this.onChangeLocation.bind(this);
 
     var currentOrgUser = AuthService.getCurrentOrgUser();
 
@@ -31,7 +33,8 @@ export default class AddJobPost extends Component {
       startDate: "",
       orgID: currentOrgUser.id,
       submitted: false,
-      tagArray: null
+      tagArray: null,
+      location: ""
     };
   }
 
@@ -86,6 +89,12 @@ export default class AddJobPost extends Component {
     this.setState({
       startDate: e.target.value
     });
+  }
+
+  onChangeLocation(e) {
+    this.setState({
+      location: e.target.value
+    })
   }
 
   saveJobPost() {
@@ -149,6 +158,7 @@ export default class AddJobPost extends Component {
   }
 
   render() {
+
     return (
       <div id="contentLayoutAddJob">
         <div id="contentDiv">
@@ -254,7 +264,20 @@ export default class AddJobPost extends Component {
                       <option value="Charity">Charity</option>
                       <option value="Charity">Education</option>
                     </select>
+                  </div>
 
+                  <div className="form-group">
+                    <label htmlFor="jobType">Location</label>
+                    <SearchLocation></SearchLocation>
+                    {/* <input
+                      type="text"
+                      className="form-control"
+                      id="contractLength"
+                      required
+                      value={this.state.contractLength}
+                      onChange={this.onChangeContractLength}
+                      name="contractLength"
+                    /> */}
                   </div>
 
                   <div>
