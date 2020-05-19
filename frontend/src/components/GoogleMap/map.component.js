@@ -25,6 +25,7 @@ export class MapContainer extends Component {
       activePosition: null,
       currentUser: AuthService.getCurrentUser(),
       currentJobPostSaved: true,
+      styling: props.styling
     }
 
     console.log(props)
@@ -120,11 +121,7 @@ export class MapContainer extends Component {
     console.log(this.state.showingInfoWindow)
     return (
       <Map
-        style={{
-          width: '80%',
-          height: '350%',
-          margin: '5px 500px 5px 100px',
-        }}
+        style={this.state.styling}
         google={this.props.google}
         zoom={8}
         //style={mapStyles}
