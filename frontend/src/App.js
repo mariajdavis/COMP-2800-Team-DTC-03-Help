@@ -14,9 +14,15 @@ import UserProfile from "./components/user-profile.component";
 import { Nav, Navbar } from 'react-bootstrap'
 import './Navbar.css'
 import AuthService from "./services/auth.service";
-import AboutUs from './components/AboutUs/aboutUs.component'
+import AboutUs from './components/AboutUs/aboutUs.component';
 import SavedJobPosts from './components/savedJobs.component';
+
 import OrgJobBoard from './components/JobBoardPage/OrgJobBoardPage.js'
+
+import ViewApplicants from './components/JobBoardPage/ViewApplicantPage';
+import GoogleMap from './components/GoogleMap/map.component';
+import SearchLocation from './components/mapSearch';
+
 
 
 class App extends Component {
@@ -75,6 +81,7 @@ class App extends Component {
         </Navbar>
         <Bodyframe />
         <Switch>
+          <Route exact path="/jobPostsMap" component={GoogleMap} />
           <Route exact path="/savedJobs" component={SavedJobPosts} />
           <Route exact path="/logIn" component={LogIn} />
           <Route exact path="/apply/:id" component={Apply} />
@@ -84,7 +91,12 @@ class App extends Component {
           <Route path="/jobPosts/:id" component={JobPost} />
           <Route path="/userProfile" component={UserProfile} />
           <Route path="/aboutUs" component={AboutUs} />
+
           <Route path="/orgJobBoard" component={OrgJobBoard}/>
+
+          <Route exact path="/viewApplicants" component={ViewApplicants} /> 
+          <Route path="/mapsearch" component={SearchLocation} />
+
         </Switch>
 
         <footer>

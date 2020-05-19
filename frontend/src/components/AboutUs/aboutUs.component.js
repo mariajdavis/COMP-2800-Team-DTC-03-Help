@@ -18,21 +18,20 @@ export default class AboutUs extends Component {
         }
     }
     eggHandle() {
-        if (this.state.count == 7) {
+        if (this.state.count>=6) {
             $('#aboutUs').hide();
         }
-        else {
-            this.setState({
-                count: this.state.count+1
-            })
-            console.log(this.state.count);
-        }
+        this.setState({
+            count: this.state.count + 1
+        })
+        console.log(this.state.count);
+
     }
     render() {
         const { count } = this.state;
         return (
             <div>
-                {count==7 && <EasterEgg></EasterEgg>}
+                {count>=7 && <EasterEgg></EasterEgg>}
             <div id="aboutUs">
                 <div id="aboutDiv">
                     <div id="headDiv">

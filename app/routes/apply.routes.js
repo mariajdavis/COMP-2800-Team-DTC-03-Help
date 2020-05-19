@@ -6,11 +6,17 @@ module.exports = app => {
   // Create a new Application
   router.post("/", Application.create);
 
-  // Retrieve all Applications
-  router.get("/", Application.findAll);
+  // Retrieve all Applicants for a specific organization
+  router.get("/:orgID", Application.findAllOrgApplicants);
 
-  // Retrieve all Applications for a specific jobPost ID
-  router.get("/specificJobPost", Application.findAllWithJobPostID);
+  // Update status of an application
+  router.put("/:applicationID/:newStatus", Application.updateStatus);
+
+  // // Retrieve all Applications
+  // router.get("/", Application.findAll);
+
+  // // Retrieve all Applications for a specific jobPost ID
+  // router.get("/specificJobPost", Application.findAllWithJobPostID);
 
   app.use('/api/applications', router);
 };

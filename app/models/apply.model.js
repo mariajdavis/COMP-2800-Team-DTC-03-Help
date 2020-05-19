@@ -1,16 +1,13 @@
 module.exports = (sequelize, Sequelize) => {
     const Application = sequelize.define("application", {
-      jobPostID: {
-        type: Sequelize.INTEGER
+      resumePath: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
-      userID: {
-        type: Sequelize.INTEGER
-      },
-      resume: {
-        type: Sequelize.STRING
+      status: {
+        type:   Sequelize.ENUM,
+        values: ['pending', 'rejected', 'accepted']
       }
     });
-  
     return Application;
   };
-  
