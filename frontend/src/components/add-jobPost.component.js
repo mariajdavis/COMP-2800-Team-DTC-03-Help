@@ -3,7 +3,8 @@ import JobPostDataService from "../services/jobPost.service";
 import AuthService from "../services/auth.service";
 import TagDataService from "../services/tag.service";
 import "./Layouts/ContentLayout.css"
-
+import { Map, GoogleApiWrapper } from 'google-maps-react';
+import SearchLocation from "./mapSearch";
 
 
 export default class AddJobPost extends Component {
@@ -18,6 +19,7 @@ export default class AddJobPost extends Component {
     this.saveJobPost = this.saveJobPost.bind(this);
     this.newJobPost = this.newJobPost.bind(this);
     this.setTags = this.setTags.bind(this);
+    this.onChangeLocation = this.onChangeLocation.bind(this);
 
     var currentOrgUser = AuthService.getCurrentOrgUser();
 
@@ -31,7 +33,8 @@ export default class AddJobPost extends Component {
       startDate: "",
       orgID: currentOrgUser.id,
       submitted: false,
-      tagArray: null
+      tagArray: null,
+      location: ""
     };
   }
 
@@ -88,6 +91,12 @@ export default class AddJobPost extends Component {
     });
   }
 
+  onChangeLocation(e) {
+    this.setState({
+      location: e.target.value
+    })
+  }
+
   saveJobPost() {
 
     var data = {
@@ -122,19 +131,19 @@ export default class AddJobPost extends Component {
         console.log(e);
       });
 
-      function saveJobTag(tagText, id) {
-        var tagData = {
-          jobPostID: id,
-          tag: tagText
-        }
-        TagDataService.create(tagData)
-          .then(response => {
-            console.log(response);
-          })
-          .catch(e => {
-            console.log(e);
-          });
+    function saveJobTag(tagText, id) {
+      var tagData = {
+        jobPostID: id,
+        tag: tagText
       }
+      TagDataService.create(tagData)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
   }
 
   newJobPost() {
@@ -149,129 +158,143 @@ export default class AddJobPost extends Component {
   }
 
   render() {
+
     return (
       <div id="contentLayoutAddJob">
         <div id="contentDiv">
-        
-      <div className="card">
-        {this.state.submitted ? (
-          <div>
-            <h4>You submitted successfully!</h4>
-            <button className="btn btn-success" onClick={this.newJobPost}>
-              Add
-            </button>
-          </div>
-        ) : (
-            <div id="addJobArea">
-              
-              <div className="form-group">
-                <label htmlFor="title">Title</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="title"
-                  required
-                  value={this.state.title}
-                  onChange={this.onChangeTitle}
-                  name="title"
-                />
-              </div>
 
-              <div className="form-group">
-                <label htmlFor="description">Description</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="description"
-                  required
-                  value={this.state.description}
-                  onChange={this.onChangeDescription}
-                  name="description"
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="jobType">Paid or Volunteer</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="jobType"
-                  required
-                  value={this.state.jobType}
-                  onChange={this.onChangeJobType}
-                  name="jobType"
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="title">Hourly Rate</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="rate"
-                  required
-                  value={this.state.rate}
-                  onChange={this.onChangeRate}
-                  name="rate"
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="description">Start Date</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="startDate"
-                  required
-                  value={this.state.startDate}
-                  onChange={this.onChangeStartDate}
-                  name="startDate"
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="jobType">Length of Contract</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="contractLength"
-                  required
-                  value={this.state.contractLength}
-                  onChange={this.onChangeContractLength}
-                  name="contractLength"
-                />
-              </div>
-
-              <div className="form-group" id="tagSelect">
-                <label htmlFor="jobType">Tags</label><br></br>
-                <select id="tags" name="tags" onChange={this.setTags} multiple>
-                  <option value="Volunteer">Volunteer</option>
-                  <option value="Delivery">Delivery</option>
-                  <option value="Food">Food</option>
-                  <option value="Essential">Essential</option>
-                  <option value="Elderly">Elderly</option>
-                  <option value="Hospital">Hospital</option>
-                  <option value="Charity">Charity</option>
-                  <option value="Charity">Education</option>
-                </select>
-                
-              </div>
-
+          <div className="card">
+            {this.state.submitted ? (
               <div>
-              Hold down the Ctrl (Windows) or Command (Mac) button to select multiple tags.
-              <br></br>
-              <button onClick={this.saveJobPost} className="btn btn-success">
-                Submit
+                <h4>You submitted successfully!</h4>
+                <button className="btn btn-success" onClick={this.newJobPost}>
+                  Add
             </button>
               </div>
-              
+            ) : (
+                <div id="addJobArea">
 
-              
-            </div>
-          )}
-          
+                  <div className="form-group">
+                    <label htmlFor="title">Title</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="title"
+                      required
+                      value={this.state.title}
+                      onChange={this.onChangeTitle}
+                      name="title"
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="description">Description</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="description"
+                      required
+                      value={this.state.description}
+                      onChange={this.onChangeDescription}
+                      name="description"
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="jobType">Paid or Volunteer</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="jobType"
+                      required
+                      value={this.state.jobType}
+                      onChange={this.onChangeJobType}
+                      name="jobType"
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="title">Hourly Rate</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="rate"
+                      required
+                      value={this.state.rate}
+                      onChange={this.onChangeRate}
+                      name="rate"
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="description">Start Date</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="startDate"
+                      required
+                      value={this.state.startDate}
+                      onChange={this.onChangeStartDate}
+                      name="startDate"
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="jobType">Length of Contract</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="contractLength"
+                      required
+                      value={this.state.contractLength}
+                      onChange={this.onChangeContractLength}
+                      name="contractLength"
+                    />
+                  </div>
+
+                  <div className="form-group" id="tagSelect">
+                    <label htmlFor="jobType">Tags</label><br></br>
+                    <select id="tags" name="tags" onChange={this.setTags} multiple>
+                      <option value="Volunteer">Volunteer</option>
+                      <option value="Delivery">Delivery</option>
+                      <option value="Food">Food</option>
+                      <option value="Essential">Essential</option>
+                      <option value="Elderly">Elderly</option>
+                      <option value="Hospital">Hospital</option>
+                      <option value="Charity">Charity</option>
+                      <option value="Charity">Education</option>
+                    </select>
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="jobType">Location</label>
+                    <SearchLocation></SearchLocation>
+                    {/* <input
+                      type="text"
+                      className="form-control"
+                      id="contractLength"
+                      required
+                      value={this.state.contractLength}
+                      onChange={this.onChangeContractLength}
+                      name="contractLength"
+                    /> */}
+                  </div>
+
+                  <div>
+                    Hold down the Ctrl (Windows) or Command (Mac) button to select multiple tags.
+              <br></br>
+                    <button onClick={this.saveJobPost} className="btn btn-success">
+                      Submit
+            </button>
+                  </div>
+
+
+
+                </div>
+              )}
+
           </div>
-          </div>
+        </div>
       </div>
     );
   }

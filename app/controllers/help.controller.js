@@ -21,7 +21,9 @@ exports.create = (req, res) => {
     rate: req.body.rate,
     contractLength: req.body.contractLength,
     startDate: req.body.startDate,
-    orgID: req.body.orgID
+    orgID: req.body.orgID,
+    lat: req.body.lat,
+    lng: req.body.lng
   };
 
   // Save JobPost in the database
