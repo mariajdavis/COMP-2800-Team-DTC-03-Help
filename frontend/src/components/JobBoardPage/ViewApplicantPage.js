@@ -184,21 +184,33 @@ class ViewApplicantPage extends Component {
                                                 <h4>Applicant</h4>
                                                 <div>
                                                     <label>
-                                                        <strong>Position:</strong>
+                                                        <h3>Position:</h3>
                                                     </label>{" "}
-                                                    {currentApplicant.title}
+                                                    {currentApplicant.jobPost.title}
                                                 </div>
                                                 <div>
                                                     <label>
-                                                        <strong>Applicant:</strong>
+                                                        <strong><h3>Name:</h3></strong>
                                                     </label>{" "}
-                                                    {currentApplicant.user.username}
+                                                    {currentApplicant.user.fullName}
                                                 </div>
                                                 <div>
                                                     <label>
-                                                        <strong>Contact Information:</strong>
+                                                        <strong><h3>Email:</h3></strong>
                                                     </label>{" "}
                                                     {currentApplicant.user.email}
+                                                </div>
+                                                <div>
+                                                    <label>
+                                                        <h3>Phone Number:</h3>
+                                                    </label>{" "}
+                                                    {currentApplicant.user.phoneNumber}
+                                                </div>
+                                                <div>
+                                                    <label>
+                                                        <h3>Comments:</h3>
+                                                    </label>{" "}
+                                                    {currentApplicant.comments}
                                                 </div>
                                                 <a href={currentApplicant.resumePath} >View Resume</a>
                                                 <DropdownButton id="dropdown-basic-button" title="Application Status">
