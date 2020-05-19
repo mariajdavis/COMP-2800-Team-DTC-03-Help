@@ -10,7 +10,9 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       }
     });
-  
+    User.associate = function(models) {
+      User.hasMany(models.Application, {as: 'applications'})
+    };
     return User;
   };
   

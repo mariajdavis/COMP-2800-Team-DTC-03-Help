@@ -28,8 +28,6 @@ class OrgJobBoardPage extends Component {
     };
   }
 
-  
-
   componentDidMount() {
     this.retrieveJobPosts();
   }
@@ -200,12 +198,12 @@ class OrgJobBoardPage extends Component {
                         ))}
                     </ul>
 
-                    <button
+                    {/* <button
                       className="m-3 btn btn-sm btn-danger"
                       onClick={this.removeAllJobPosts}
                     >
                       Remove All
-                                </button>
+                                </button> */}
                   </div>
                 </div>
                 <div id="job-description-wrapper">

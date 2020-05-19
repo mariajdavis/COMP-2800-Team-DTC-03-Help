@@ -16,7 +16,7 @@ const config = {
 export default class Apply extends Component {
   constructor(props) {
     super(props);
-    this.onChangeResume = this.onChangeResume.bind(this);
+    this.onChangeResumePath = this.onChangeResumePath.bind(this);
     this.submitApplication = this.submitApplication.bind(this);
     this.upload = this.upload.bind(this);
     this.newApplication = this.newApplication.bind(this);
@@ -25,24 +25,38 @@ export default class Apply extends Component {
 
     this.state = {
       id: null,
-      jobPostID: this.props.match.params.id,
+      jobPostID: parseInt(this.props.match.params.id),
       userID: currentUser.id,
-      resume: ""
+      resumePath: ""
     };
   }
 
-  onChangeResume(newResume) {
+  onChangeResumePath(newResumePath) {
+    const resPath = newResumePath.toString();
     this.setState({
-      resume: newResume
+      resumePath: resPath
     });
   }
 
-  submitApplication() {
+  upload(e) {
+    ReactS3.uploadFile(e.target.files[0], config)
+      .then((data) => {
+        const path = data.location;
+        const pathString = path.toString();
+        this.setState({
+          resumePath: pathString
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
+  submitApplication() {
     var data = {
       jobPostID: this.state.jobPostID,
       userID: this.state.userID,
-      resume: this.state.resume
+      resumePath: this.state.resumePath
     };
 
     ApplyDataService.create(data)
@@ -51,7 +65,7 @@ export default class Apply extends Component {
           id: response.data.id,
           jobPostID: response.data.jobPostID,
           userID: response.data.userID,
-          resume: response.data.resume,
+          resumePath: response.data.resumePath,
           submitted: true
         });
       })
@@ -60,26 +74,12 @@ export default class Apply extends Component {
       });
   }
 
-  upload(e) {
-    console.log(e.target.files[0]);
-    ReactS3.uploadFile(e.target.files[0], config)
-      .then((data) => {
-        console.log(data.location);
-        this.setState({
-          resume: data.location
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }
-
   newApplication() {
     this.setState({
       id: null,
       jobPostID: null,
       userID: null,
-      resume: "",
+      resumePath: "",
 
       submitted: false
     });
@@ -103,14 +103,13 @@ export default class Apply extends Component {
                 
                   <div>
 
-                    <label htmlFor="resume">Upload your resume here:</label>
+                    <label htmlFor="resumePath">Upload your resume here:</label>
                     <input
                       type="file"
-                      id="resume"
+                      id="resumePath"
                       required
-                      value={this.state.description}
                       onChange={this.upload}
-                      name="resume"
+                      name="resumePath"
                     />
 
                     <button onClick={this.submitApplication} className="btn btn-success">

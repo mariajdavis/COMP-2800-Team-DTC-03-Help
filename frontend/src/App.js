@@ -16,6 +16,7 @@ import './Navbar.css'
 import AuthService from "./services/auth.service";
 import AboutUs from './components/AboutUs/aboutUs.component'
 import SavedJobPosts from './components/savedJobs.component';
+import ViewApplicants from './components/JobBoardPage/ViewApplicantPage';
 
 
 class App extends Component {
@@ -82,6 +83,7 @@ class App extends Component {
           <Route path="/jobPosts/:id" component={JobPost} />
           <Route path="/userProfile" component={UserProfile} />
           <Route path="/aboutUs" component={AboutUs} />
+          <Route exact path="/viewApplicants" component={ViewApplicants} /> 
         </Switch>
 
         <footer>
