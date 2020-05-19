@@ -5,7 +5,6 @@ import AuthService from "../../services/auth.service";
 import { Link } from "react-router-dom";
 import { Button, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import MapContainer from "../GoogleMap/map.component";
-import { Button, ToggleButton } from 'react-bootstrap';
 
 import { TwitterTimelineEmbed, TwitterShareButton } from 'react-twitter-embed';
 
