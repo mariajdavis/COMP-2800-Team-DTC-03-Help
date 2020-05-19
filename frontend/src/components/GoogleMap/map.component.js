@@ -115,7 +115,6 @@ export class MapContainer extends Component {
   sendToApplicationPage() {
     console.log(this.state.selected.id);
     window.location.assign('/apply/'+this.state.selected.id);
-    // return <Redirect to={"/apply/" + this.state.selected.id } />
   }
 
   render() {

@@ -17,6 +17,7 @@ export default class Apply extends Component {
   constructor(props) {
     super(props);
     this.onChangeResumePath = this.onChangeResumePath.bind(this);
+    this.onChangeComments = this.onChangeComments.bind(this);
     this.submitApplication = this.submitApplication.bind(this);
     this.upload = this.upload.bind(this);
     this.newApplication = this.newApplication.bind(this);
@@ -27,7 +28,8 @@ export default class Apply extends Component {
       id: null,
       jobPostID: parseInt(this.props.match.params.id),
       userID: currentUser.id,
-      resumePath: ""
+      resumePath: "",
+      comments: ""
     };
   }
 
@@ -35,6 +37,12 @@ export default class Apply extends Component {
     const resPath = newResumePath.toString();
     this.setState({
       resumePath: resPath
+    });
+  }
+
+  onChangeComments(e) {
+    this.setState({
+      comments: e.target.value
     });
   }
 
@@ -56,7 +64,8 @@ export default class Apply extends Component {
     var data = {
       jobPostID: this.state.jobPostID,
       userID: this.state.userID,
-      resumePath: this.state.resumePath
+      resumePath: this.state.resumePath,
+      comments: this.state.comments
     };
 
     ApplyDataService.create(data)
@@ -66,6 +75,7 @@ export default class Apply extends Component {
           jobPostID: response.data.jobPostID,
           userID: response.data.userID,
           resumePath: response.data.resumePath,
+          comments: response.data.comments,
           submitted: true
         });
       })
@@ -80,6 +90,7 @@ export default class Apply extends Component {
       jobPostID: null,
       userID: null,
       resumePath: "",
+      comments: "",
 
       submitted: false
     });
@@ -100,25 +111,35 @@ export default class Apply extends Component {
           ) : (
               <div>
 
-                
-                  <div>
 
-                    <label htmlFor="resumePath">Upload your resume here:</label>
-                    <input
-                      type="file"
-                      id="resumePath"
-                      required
-                      onChange={this.upload}
-                      name="resumePath"
-                    />
+                <div>
 
-                    <button onClick={this.submitApplication} className="btn btn-success">
-                      Submit
+                  <label htmlFor="resumePath">Resume:</label>
+                  <input
+                    type="file"
+                    id="resumePath"
+                    required
+                    onChange={this.upload}
+                    name="resumePath"
+                  />
+
+                  <label htmlFor="comments">Comments:</label>
+                  <input
+                    type="text"
+                    id="comments"
+                    required
+                    value={this.state.comments}
+                    onChange={this.onChangeComments}
+                    name="comments"
+                  />
+
+                  <button onClick={this.submitApplication} className="btn btn-success">
+                    Submit
                     </button>
-                  </div>
-
                 </div>
-              
+
+              </div>
+
             )}
         </div>
       </div>
