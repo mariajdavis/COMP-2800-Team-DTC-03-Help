@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import AuthService from "../services/auth.service";
-import ApplyDataService from "../services/apply.service";
+import AuthService from "../../services/auth.service";
+import ApplyDataService from "../../services/apply.service";
 import ReactS3 from 'react-s3';
-import './AboutUs/AboutUs.css'
+import '../AboutUs/AboutUs.css';
+import './apply.css';
+import happyBear from '../../img/applied.png';
 
 
 // AWS A3 file storage config
@@ -102,40 +104,44 @@ export default class Apply extends Component {
       <div id='contentLayout'>
         <div id='contentDiv'>
           {this.state.submitted ? (
-            <div>
-              <h4>You applied to this job successfully!</h4>
-              <button className="btn btn-success" onClick={this.newJobPost}>
-                Add
-            </button>
+            <div id='applied-container'>
+              <div>
+                <h1 id="applied-text">You applied to this job successfully!</h1>
+              </div>
+              <img id="applied-img" src={happyBear} />
             </div>
           ) : (
-              <div>
+              <div id='applyBackground'>
+                <div id='applyContainer'>
+                  <div id='resumeContainer'>
+                    <label id="resume-label" htmlFor="resumePath">Resume:</label>
+                    <input
+                      type="file"
+                      id="resumePath"
+                      required
+                      onChange={this.upload}
+                      name="resumePath"
+                    />
+                  </div>
 
+                  <div id='commentContainer'>
+                    <label id="comment-label" htmlFor="comments">Comments:</label>
+                    <textarea
+                      rows="5"
+                      cols="60"
+                      type="text"
+                      id="comments"
+                      required
+                      value={this.state.comments}
+                      onChange={this.onChangeComments}
+                      name="comments"
+                      placeholder="Type comments here"
+                    />
+                  </div>
 
-                <div>
-
-                  <label htmlFor="resumePath">Resume:</label>
-                  <input
-                    type="file"
-                    id="resumePath"
-                    required
-                    onChange={this.upload}
-                    name="resumePath"
-                  />
-
-                  <label htmlFor="comments">Comments:</label>
-                  <input
-                    type="text"
-                    id="comments"
-                    required
-                    value={this.state.comments}
-                    onChange={this.onChangeComments}
-                    name="comments"
-                  />
-
-                  <button onClick={this.submitApplication} className="btn btn-success">
+                  <button id='submitBtn' onClick={this.submitApplication} className="btn btn-success">
                     Submit
-                    </button>
+                  </button>
                 </div>
 
               </div>

@@ -27,6 +27,9 @@ module.exports = (sequelize, Sequelize) => {
     lng: {
       type: Sequelize.STRING
     },
+    location: {
+      type: Sequelize.STRING
+    }
   });
   JobPost.associate = function(models) {
     JobPost.hasMany(models.Application, {as: 'applications'})

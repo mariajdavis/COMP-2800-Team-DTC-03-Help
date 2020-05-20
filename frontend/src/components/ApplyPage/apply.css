@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css?family=Jaldi|Racing+Sans+One&display=swap');
+
+/* Containers */
+div#applyBackground {
+    margin-top: -10%;
+    overflow: hidden;
+    min-height: 50vw;
+    max-height: 70vw;
+    width: 80vw;
+}
+
+div#applyContainer {
+    position: relative;
+    
+    background-image: url(../../img/apply_page.png);
+    background-size: 100% 100%;
+    margin: auto;
+    display: grid;
+    grid-template-areas: 
+        "resume"
+        "comment"
+        "submit";
+}
+
+div#applyContainer {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: 
+        "resume comment"
+        "submit submit";
+}
+
+/* Resume Upload Section */
+div#resumeContainer {
+    grid-area: resume;
+    display: grid;
+    grid-template-areas: 
+        "ResumeLabel"
+        "ResumeUpload";
+    margin-left: 3%;
+    margin-top: 10vw;
+}
+
+#resume-label {
+    grid-area: ResumeLabel;
+    color: white;
+    font-family: Racing Sans One;
+    font-size: 5vw;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+#resumePath {
+    grid-area: ResumeUpload;
+}
+
+/* Comment Section */
+div#commentContainer {
+    grid-area: comment;
+    display: grid;
+    grid-template-areas: 
+        "CommentLabel"
+        "CommentBox";
+    margin-top: 10vw;
+}
+
+#comment-label {
+    grid-area: CommentLabel;
+    color: white;
+    font-family: Racing Sans One;
+    font-size: 5vw;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+#comments {
+    grid-area: CommentBox;
+    height: 5vw;
+    width: 30vw;
+}
+
+/* Submit Button */
+button#submitBtn {
+    grid-area: submit;
+    width: 80%;
+    height: 3vw;
+    margin-top: 10vw;
+    margin-left: 5%;
+}
+
+/* After Applying */
+
+div#applied-container {
+    margin: auto;
+    margin-top: 1%;
+    display: flex;
+    overflow: hidden;
+    padding: 5%;
+}
+
+#applied-text {
+    font-family: Racing Sans One;
+    margin-left: -100%;
+    animation: SlideFromLeft 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+#applied-img {
+    animation: Shake 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes SlideFromLeft {
+    50% {
+        margin-left: 0%;
+    }
+    100% {
+        margin-left: 0%;
+    }
+}
+
+@keyframes Shake {
+    20% { transform: translate(-2px, 0);}
+    30% { transform: translate(2px, 0);}
+    40% { transform: translate(-2px, 0);}
+    50% { transform: translate(2px, 0);}
+    60% { transform: translate(-2px, 0);}
+    70% { transform: translate(2px, 0);}
+    80% {transform: scale(1.2);}
+    100% { transform: translate(2px, 0);  transform: scale(1);}
+}
