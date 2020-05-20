@@ -1,48 +1,90 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import './JobBoardPage/jobBoard.css'
 import JobPostDataService from "../services/jobPost.service";
 import AuthService from "../services/auth.service";
 import { Link } from "react-router-dom";
-import { Button, ToggleButton } from 'react-bootstrap';
+import { Button, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
+import MapContainer from "./GoogleMap/map.component";
+
+import { TwitterTimelineEmbed, TwitterShareButton } from 'react-twitter-embed';
 
 
-export default class JobPostsList extends Component {
+
+
+class SavedJobs extends Component {
   constructor(props) {
     super(props);
-    this.retrieveSavedJobs = this.retrieveSavedJobs.bind(this);
+    this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
+    this.retrieveJobPosts = this.retrieveJobPosts.bind(this);
     this.refreshList = this.refreshList.bind(this);
     this.setActiveJobPost = this.setActiveJobPost.bind(this);
+    this.removeAllJobPosts = this.removeAllJobPosts.bind(this);
+    this.searchTitle = this.searchTitle.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.logOut = this.logOut.bind(this);
+    this.orgLogOut = this.orgLogOut.bind(this);
+    this.handleJobView = this.handleJobView.bind(this);
 
     this.state = {
       jobPosts: [],
       currentJobPost: null,
-      currentJobPostSaved: true,
       currentIndex: -1,
-      currentUser: AuthService.getCurrentUser()
+      searchTitle: "",
+      toggleHandler: true,
+      currentJobPostSaved: null,
+      currentUser: AuthService.getCurrentUser(),
+      currentView: "1"
     };
   }
 
   componentDidMount() {
-    this.retrieveSavedJobs();
+    this.retrieveJobPosts();
+  }
+
+  onChangeSearchTitle(e) {
+    const searchTitle = e.target.value;
+
+    this.setState({
+      searchTitle: searchTitle
+    });
+  }
+
+  handleJobView(e) {
+    console.log("target value " + e.target.value);
+    if (e.target.value === "1") {
+      this.setState({
+        currentView: e.target.value
+      })
+      console.log("list");
+      console.log(this.state.currentView)
+    }
+    else {
+      this.setState({
+        currentView: e.target.value
+      })
+      console.log("map");
+      console.log(this.state.currentView)
+    }
   }
 
   handleSave(e) {
     if (e.target.value === "save") {
-      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentJobPost.id, save: true })
+      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentJobPost.id, save: true });
+      this.setState({ currentJobPostSaved: true });
     }
     else {
-      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentJobPost.id, save: false })
+      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentJobPost.id, save: false });
+      this.setState({ currentJobPostSaved: false });
     }
   }
 
-  retrieveSavedJobs() {
-    console.log(this.state.currentUser);
+  retrieveJobPosts() {
     JobPostDataService.getAllSaved(this.state.currentUser.id)
       .then(response => {
         this.setState({
           jobPosts: response.data
         });
-        console.log(response.data);
+        console.log("getallsaved response "+response.data);
       })
       .catch(e => {
         console.log(e);
@@ -50,7 +92,7 @@ export default class JobPostsList extends Component {
   }
 
   refreshList() {
-    this.retrieveSavedJobs();
+    this.retrieveJobPosts();
     this.setState({
       currentJobPost: null,
       currentIndex: -1
@@ -73,82 +115,192 @@ export default class JobPostsList extends Component {
         this.setState({
           currentJobPostSaved: res.data.found ? true : false,
         })
-        console.log(this.state.currentJobPostSaved);
       })
+      console.log("saved? "+this.state.currentJobPostSaved);
     }
   }
 
+  removeAllJobPosts() {
+    JobPostDataService.deleteAll()
+      .then(response => {
+        console.log(response.data);
+        this.refreshList();
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
+  searchTitle() {
+
+    JobPostDataService.findByTitle(this.state.searchTitle)
+      .then(response => {
+        this.setState({
+          jobPosts: response.data
+        });
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
+  logOut() {
+    AuthService.logout();
+  }
+
+  orgLogOut() {
+    AuthService.orgLogout();
+  }
+
   render() {
-    const { jobPosts, currentJobPost, currentIndex, currentUser } = this.state;
-
+    const { searchTitle, jobPosts, currentJobPost, currentIndex, currentUser, currentView } = this.state;
     return (
-      <div className="list row">
-        <div className="col-md-6">
-          <h4>Job Posts</h4>
+      <Fragment>
 
-          <ul className="list-group">
-            {jobPosts &&
-              jobPosts.map((jobPost, index) => (
-                <li
-                  className={
-                    "list-group-item " +
-                    (index === currentIndex ? "active" : "")
-                  }
-                  onClick={() => this.setActiveJobPost(jobPost, index)}
-                  key={index}
-                >
-                  {jobPost.title}
-                </li>
-              ))}
-          </ul>
-
-          <button
-            className="m-3 btn btn-sm btn-danger"
-            onClick={this.removeAllJobPosts}
-          >
-            Remove All
-          </button>
-        </div>
-        <div className="col-md-6">
-          {currentJobPost ? (
-            <div>
-              <h4>Job Post</h4>
-              <div>
-                <label>
-                  <strong>Title:</strong>
-                </label>{" "}
-                {currentJobPost.title}
+        <form id='searchbar'>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search by title"
+            value={searchTitle}
+            onChange={this.onChangeSearchTitle}
+          />
+          <div className="input-group-append">
+            <button
+              className="btn btn-outline-secondary"
+              type="button"
+              onClick={this.searchTitle}
+            >
+              Search
+                            </button>
+          </div>
+        </form>
+        <article id='jobboard'>
+          <div id='jobboardImage'>
+            <div id="job-list" className="col-md-12">
+              <div id="title-area" class="d-flex flex-row">
+                <div class="mr-auto"><h4>Job Posts</h4></div>
+                <div>
+                  <ToggleButtonGroup type="radio" name="jobViewOptions" defaultValue={1}>
+                    <ToggleButton onClick={this.handleJobView} value={1}>List</ToggleButton>
+                    <ToggleButton onClick={this.handleJobView} value={2}>Map</ToggleButton>
+                  </ToggleButtonGroup>
+                </div>
               </div>
               <div>
-                <label>
-                  <strong>Description:</strong>
-                </label>{" "}
-                {currentJobPost.description}
-              </div>
-              <div>
-                <label>
-                  <strong>Job Type:</strong>
-                </label>{" "}
-                {currentJobPost.jobType}
+                { currentView === "1" && <ul className="list-group">
+                  {jobPosts &&
+                    jobPosts.map((jobPost, index) => (
+                      <li
+                        className={
+                          "list-group-item " +
+                          (index === currentIndex ? "active" : "")
+                        }
+                        id={jobPost.title + jobPost.id}
+                        onClick={() => {
+
+                          if (this.state.toggleHandler) { // triggers open job post animation             
+                            this.setActiveJobPost(jobPost, index);
+                            this.state.toggleHandler = false;
+                            document.getElementById('job-list').classList.remove('col-md-12');
+                            document.getElementById('job-list').classList.add('col-md-7');
+                            document.getElementById('contentArea').classList.add('bgOpacity');
+                          } else { // revert back
+                            this.setActiveJobPost("", "")
+                            this.state.toggleHandler = true;
+                            document.getElementById('job-list').classList.remove('col-md-7');
+                            document.getElementById('job-list').classList.add('col-md-12');
+                            document.getElementById('contentArea').classList.remove('bgOpacity');
+                          }
+
+                        }}
+                        key={index}
+                        style={{ color: 'black' }}
+                      >
+                        {jobPost.title}
+                      </li>
+                    ))}
+                </ul>}
               </div>
 
-              <Link
-                to={"/jobPosts/" + currentJobPost.id}
-                className="badge badge-warning"
+              {/* <button
+                className="m-3 btn btn-sm btn-danger"
+                onClick={this.removeAllJobPosts}
               >
-                Edit
-              </Link>
-              {currentUser && !this.state.currentJobPostSaved && <Button variant="info" value="save" onClick={this.handleSave}> Save </Button>}
-              {currentUser && this.state.currentJobPostSaved && <Button variant="info" value="unsave" onClick={this.handleSave}> Unsave </Button>}
+                Remove All
+                                </button> */}
             </div>
-          ) : (
-              <div>
-                <br />
-                <p>Please click on a JobPost...</p>
-              </div>
-            )}
+
+          </div>
+
+          {currentView==="1" && <div id="job-description-wrapper">
+            <div id='job-description'>
+              {currentJobPost && (
+                <div>
+                  <h4>Job Post</h4>
+                  <div>
+                    <label>
+                      <strong>Title:</strong>
+                    </label>{" "}
+                    {currentJobPost.title}
+                  </div>
+                  <div>
+                    <label>
+                      <strong>Description:</strong>
+                    </label>{" "}
+                    {currentJobPost.description}
+                  </div>
+                  <div>
+                    <label>
+                      <strong>Job Type:</strong>
+                    </label>{" "}
+                    {currentJobPost.jobType}
+                  </div>
+                  <div>
+                    <label>
+                      <strong>Hourly Rate:</strong>
+                    </label>{" "}
+                    {currentJobPost.rate}
+                  </div>
+                  <div>
+                    <label>
+                      <strong>Start Date:</strong>
+                    </label>{" "}
+                    {currentJobPost.startDate}
+                  </div>
+                  <div>
+                    <label>
+                      <strong>Contract Length:</strong>
+                    </label>{" "}
+                    {currentJobPost.contractLength}
+                  </div>
+
+                  <Link
+                    to={"/jobPosts/" + currentJobPost.id}
+                    className="badge badge-warning"
+                  >
+                    Edit
+                                    </Link>
+                  <Link
+                    to={"/apply/" + currentJobPost.id}
+                    className="badge badge-success"
+                  >
+                    Apply
+                                    </Link>
+                  {currentUser && !this.state.currentJobPostSaved && <Button variant="info" value="save" onClick={this.handleSave}> Save </Button>}
+                  {currentUser && this.state.currentJobPostSaved && <Button variant="info" value="unsave" onClick={this.handleSave}> Unsave </Button>}
+                </div>
+              )}
+            </div>
+          </div>}
+        </article>
+        <div id="map" height="500px" width="100%">
+          {currentView === "2" && jobPosts && <MapContainer jobs={jobPosts} />}
         </div>
-      </div>
-    );
+      </Fragment>
+    )
   }
 }
+
+export default SavedJobs;

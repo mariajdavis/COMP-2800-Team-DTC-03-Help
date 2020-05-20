@@ -109,7 +109,7 @@ export default class Register extends Component {
     console.log(e.target.value);
   }
 
-  componentDidMount(message, successful){
+  componentDidMount(message, successful) {
     this.setState({
       meesage: message,
       successful: successful
@@ -136,7 +136,7 @@ export default class Register extends Component {
           this.state.phoneNumber
         ).then(
           response => {
-            this.componentDidMount(response.data.message,true);
+            this.componentDidMount(response.data.message, true);
             // this.props.history.push("/");
             // window.location.reload();
           },
@@ -162,7 +162,7 @@ export default class Register extends Component {
           this.state.password
         ).then(
           response => {
-            this.componentDidMount(response.data.message,true);
+            this.componentDidMount(response.data.message, true);
             // this.props.history.push("/");
             // window.location.reload();
           },
@@ -257,47 +257,47 @@ export default class Register extends Component {
                   />
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="password">Password</label>
-                  <Input
-                    type="password"
-                    className="form-control"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.onChangePassword}
-                    validations={[required, vpassword]}
-                  />
-                </div>
+                    <div className="form-group">
+                      <label htmlFor="password">Password</label>
+                      <Input
+                        type="password"
+                        className="form-control"
+                        name="password"
+                        value={this.state.password}
+                        onChange={this.onChangePassword}
+                        validations={[required, vpassword]}
+                      />
+                    </div>
 
-                <div className="form-group">
-                  <button className="btn btn-primary btn-block" style={{margin:'0px'}}>Sign Up</button>
-                </div>
-              </div>
-            )}
+                    <div className="form-group">
+                      <button className="btn btn-primary btn-block" style={{ margin: '0px' }}>Sign Up</button>
+                    </div>
+                  </div>
+                )}
 
-            {this.state.message && (
-              <div className="">
-                <div
-                  className={
-                    this.state.successful
-                      ? "alert alert-success"
-                      : "alert alert-danger"
-                  }
-                  role="alert"
-                >
-                  {this.state.message}
-                </div>
-              </div>
-            )}
-            <CheckButton
-              style={{ display: "none" }}
-              ref={c => {
-                this.checkBtn = c;
-              }}
-            />
-            
-          </Form>
-          </div>
+                {this.state.message && (
+                  <div className="">
+                    <div
+                      className={
+                        this.state.successful
+                          ? "alert alert-success"
+                          : "alert alert-danger"
+                      }
+                      role="alert"
+                    >
+                      {this.state.message}
+                    </div>
+                  </div>
+                )}
+                <CheckButton
+                  style={{ display: "none" }}
+                  ref={c => {
+                    this.checkBtn = c;
+                  }}
+                />
+
+              </Form>
+            </div>
           </div>
         </div>
       </div>
