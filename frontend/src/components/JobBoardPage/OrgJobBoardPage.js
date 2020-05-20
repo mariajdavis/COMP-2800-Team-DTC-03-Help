@@ -5,6 +5,7 @@ import AuthService from "../../services/auth.service";
 import { Link } from "react-router-dom";
 import { Button, ToggleButton } from 'react-bootstrap';
 import { TwitterTimelineEmbed, TwitterShareButton } from 'react-twitter-embed';
+import { FacebookProvider, Share } from 'react-facebook';
 
 const lineBreak = '\n'
 
@@ -154,6 +155,7 @@ class OrgJobBoardPage extends Component {
                 <a href="/viewapplicants">
                   <li id="ex">View Applicants</li>
                 </a>
+
               </ul>
               <form id='searchbar'>
                 <input
@@ -175,117 +177,112 @@ class OrgJobBoardPage extends Component {
               </form>
               <article id='jobboard'>
                 <div id='jobboardImage'>
-                  <div id="job-list" className="col-md-12">
-                    <h4>Job Posts</h4>
-
-                    <ul className="list-group">
-                      {jobPosts &&
-                        jobPosts.map((jobPost, index) => (
-                          <li
-                            className={
-                              "list-group-item " +
-                              (index === currentIndex ? "active" : "")
-                            }
-                            id={jobPost.title + jobPost.id}
-                            onClick={() => {
-
-                              if (this.state.toggleHandler) { // triggers open job post animation             
-                                this.setActiveJobPost(jobPost, index);
-                                this.state.toggleHandler = false;
-                                document.getElementById('job-list').classList.remove('col-md-12');
-                                document.getElementById('job-list').classList.add('col-md-7');
-                                document.getElementById('contentArea').classList.add('bgOpacity');
-                              } else { // revert back
-                                this.setActiveJobPost("", "")
-                                this.state.toggleHandler = true;
-                                document.getElementById('job-list').classList.remove('col-md-7');
-                                document.getElementById('job-list').classList.add('col-md-12');
-                                document.getElementById('contentArea').classList.remove('bgOpacity');
+                  <div id="job-list" className="job-list">
+                    <h4 id="jobListHead">Job Posts</h4>
+                    <div id="jobListWrapper">
+                      <ul className="list-group">
+                        {jobPosts &&
+                          jobPosts.map((jobPost, index) => (
+                            <li
+                              className={
+                                "list-group-item " +
+                                (index === currentIndex ? "active" : "")
                               }
+                              id={jobPost.title + jobPost.id}
+                              onClick={() => {
 
-                            }}
-                            key={index}
-                            style={{ color: 'black' }}
+                                if (this.state.toggleHandler) { // triggers open job post animation             
+                                  this.setActiveJobPost(jobPost, index);
+                                  this.state.toggleHandler = false;
+                                  document.getElementById('job-list').classList.remove('job-list');
+                                  document.getElementById('job-list').classList.add('job-list-clicked');
+                                  document.getElementById('contentArea').classList.add('bgOpacity');
+                                } else { // revert back
+                                  this.setActiveJobPost("", "")
+                                  this.state.toggleHandler = true;
+                                  document.getElementById('job-list').classList.remove('job-list-clicked');
+                                  document.getElementById('job-list').classList.add('job-list');
+                                  document.getElementById('contentArea').classList.remove('bgOpacity');
+                                }
+
+                              }}
+                              key={index}
+                              style={{ color: 'black' }}
+                            >
+                              {jobPost.title}
+                            </li>
+                          ))}
+                      </ul>
+                    </div>
+                    <div id="job-description-wrapper">
+                      {currentJobPost && (
+                        <div id='job-description'>
+                          <h4>Job Post</h4>
+                          <div>
+                            <label>
+                              <strong>Title:</strong>
+                            </label>{" "}
+                            {currentJobPost.title}
+                          </div>
+                          <div>
+                            <label>
+                              <strong>Description:</strong>
+                            </label>{" "}
+                            {currentJobPost.description}
+                          </div>
+                          <div>
+                            <label>
+                              <strong>Job Type:</strong>
+                            </label>{" "}
+                            {currentJobPost.jobType}
+                          </div>
+                          <div>
+                            <label>
+                              <strong>Hourly Rate:</strong>
+                            </label>{" "}
+                            {currentJobPost.rate}
+                          </div>
+                          <div>
+                            <label>
+                              <strong>Start Date:</strong>
+                            </label>{" "}
+                            {currentJobPost.startDate}
+                          </div>
+                          <div>
+                            <label>
+                              <strong>Contract Length:</strong>
+                            </label>{" "}
+                            {currentJobPost.contractLength}
+                          </div>
+
+                          <Link
+                            to={"/jobPosts/" + currentJobPost.id}
+                            className="badge badge-warning"
                           >
-                            {jobPost.title}
-                          </li>
-                        ))}
-                    </ul>
-
-                    {/* <button
-                      className="m-3 btn btn-sm btn-danger"
-                      onClick={this.removeAllJobPosts}
-                    >
-                      Remove All
-                                </button> */}
-                  </div>
-                </div>
-                <div id="job-description-wrapper">
-                  <div id='job-description'>
-                    {currentJobPost && (
-                      <div>
-                        <h4>Job Post</h4>
-                        <div>
-                          <label>
-                            <strong>Title:</strong>
-                          </label>{" "}
-                          {currentJobPost.title}
-                        </div>
-                        <div>
-                          <label>
-                            <strong>Description:</strong>
-                          </label>{" "}
-                          {currentJobPost.description}
-                        </div>
-                        <div>
-                          <label>
-                            <strong>Job Type:</strong>
-                          </label>{" "}
-                          {currentJobPost.jobType}
-                        </div>
-                        <div>
-                          <label>
-                            <strong>Hourly Rate:</strong>
-                          </label>{" "}
-                          {currentJobPost.rate}
-                        </div>
-                        <div>
-                          <label>
-                            <strong>Start Date:</strong>
-                          </label>{" "}
-                          {currentJobPost.startDate}
-                        </div>
-                        <div>
-                          <label>
-                            <strong>Contract Length:</strong>
-                          </label>{" "}
-                          {currentJobPost.contractLength}
-                        </div>
-
-                        <div>
-                          <label>
-                            <strong>Location:</strong>
-                          </label>{" "}
-                          {currentJobPost.location}
-                        </div>
-
-                        <Link
-                          to={"/orgUpdateProfile/" + currentUser}
-                          className="badge badge-warning"
-                        >
-                          Edit
+                            Edit
                                     </Link>
-                        {currentUser && !this.state.currentJobPostSaved && <Button variant="info" value="save" onClick={this.handleSave}> Save </Button>}
-                        {currentUser && this.state.currentJobPostSaved && <Button variant="info" value="unsave" onClick={this.handleSave}> Unsave </Button>}
-                        <TwitterShareButton
 
-                          url={'https://helpservices.herokuapp.com/jobPosts'}
-                          options={{ text: this.createJobMessage(currentJobPost.title, currentJobPost.description, currentJobPost.jobType, currentJobPost.rate, currentJobPost.startDate, currentJobPost.contractLength) }}
-                        />
-                      </div>
-                    )}
+                          <TwitterShareButton
+
+                            url={'https://helpservices.herokuapp.com/jobPosts'}
+                            options={{ text: this.createJobMessage(currentJobPost.title, currentJobPost.description, currentJobPost.jobType, currentJobPost.rate, currentJobPost.startDate, currentJobPost.contractLength) }}
+                          />
+                          <FacebookProvider appId="702487117185786">
+                            <Share quote={this.createJobMessage(currentJobPost.title, currentJobPost.description, currentJobPost.jobType, currentJobPost.rate, currentJobPost.startDate, currentJobPost.contractLength)} href="https://helpservices.herokuapp.com/jobPosts">
+                              {({ handleClick, loading }) => (
+                                <button type="button" disabled={loading} onClick={handleClick}>Share on Facebook</button>
+                              )}
+                            </Share>
+                          </FacebookProvider>
+                        </div>
+                      )}
+
+
+                    </div>
+
                   </div>
                 </div>
+
               </article>
             </section>
           </div>
