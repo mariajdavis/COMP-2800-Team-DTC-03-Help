@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Jaldi|Racing+Sans+One&display=swap');
 
+/* View Profile Page */
 div#liquidHeading {
     position: relative;
     background-color: rgb(144, 167, 249);
@@ -81,3 +83,20 @@ div#resume-content {
         "contentArea"
 }
 
+/* Edit Profile Page */
+
+#profile-edit-background {
+    background-image: url(../img/rectangle_24.png);
+    background-size: 100% 100%;
+    padding: 2%;
+}
+
+#edit-profile-title {
+    font-family: Racing Sans One;
+    text-align: center;
+}
+
+#update-btn {
+    width: 15%;
+    height: 3vw;
+}
