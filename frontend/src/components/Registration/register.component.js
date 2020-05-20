@@ -111,7 +111,7 @@ export default class Register extends Component {
 
   componentDidMount(message, successful) {
     this.setState({
-      meesage: message,
+      message: message,
       successful: successful
     });
   }
