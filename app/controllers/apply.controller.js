@@ -19,7 +19,8 @@ exports.create = (req, res) => {
     jobPostID: req.body.jobPostID,
     userID: req.body.userID,
     status: "pending",
-    resumePath: req.body.resumePath
+    resumePath: req.body.resumePath,
+    comments: req.body.comments
   };
 
   console.log(application);

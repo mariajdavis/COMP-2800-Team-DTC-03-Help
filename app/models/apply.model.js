@@ -7,6 +7,9 @@ module.exports = (sequelize, Sequelize) => {
       status: {
         type:   Sequelize.ENUM,
         values: ['pending', 'rejected', 'accepted']
+      },
+      comments: {
+        type: Sequelize.TEXT('long')
       }
     });
     return Application;

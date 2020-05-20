@@ -43,7 +43,7 @@ class ViewApplicantPage extends Component {
 
         // Retrieves all data from application/user/jobPost 
         // tables where orgID = currentOrgUser id
-        ApplyDataService.findAllOrgApplicants(this.state.currentUser.id)
+        ApplyDataService.findAllPendingOrgApplicants(this.state.currentUser.id)
             .then(response => {
                 this.setState({
                     applicants: response.data
@@ -104,114 +104,115 @@ class ViewApplicantPage extends Component {
             <Fragment>
                 <div id="contentLayoutJobs">
                     <div id="contentDiv">
-                        <section id="content">
-                            <ul id="category">
-                                <a href="/jobposts">
-                                    <li class="hover">Job Posts</li>
-                                </a>
-                                <div id='currentPage'>
-                                    <a href="/viewapplicantpage">
-                                        <li id="ex">View Applicants</li>
+                        <div>
+                            <section id="content">
+                                <ul id="category">
+                                    <a href="/orgJobBoard">
+                                        <li class="hover">My Job Posts</li>
                                     </a>
-                                </div>
-                            </ul>
-                            <form id='searchbar'>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="Search by title"
-                                    value={searchTitle}
-                                    onChange={this.onChangeSearchTitle}
-                                />
-                                <div className="input-group-append">
-                                    <button
-                                        className="btn btn-outline-secondary"
-                                        type="button"
-                                        onClick={this.searchTitle}
-                                    >
-                                        Search
-                            </button>
-                                </div>
-                            </form>
-                            <article id='jobboard'>
-                                <div id='jobboardImage'>
-                                    <div id="job-list" className="col-md-12">
-                                        <h4>Applicants</h4>
-                                        <ul className="list-group">
-                                            {applicants &&
-                                                applicants.map((applicant, index) => (
-                                                    <li
-                                                        className={
-                                                            "list-group-item " +
-                                                            (index === currentIndex ? "active" : "")
-                                                        }
-                                                        id={applicant.id} 
-                                                        onClick={() => {
-                                                            
-                                                            if (this.state.toggleHandler) { // triggers open job post animation             
-                                                                this.setActiveApplicant(applicant, index);
-                                                                this.state.toggleHandler = false;
-                                                                document.getElementById('job-list').classList.remove('col-md-12');
-                                                                document.getElementById('job-list').classList.add('col-md-7');
-                                                                document.getElementById('contentArea').classList.add('bgOpacity');
-                                                            } else { // revert back
-                                                                this.setActiveApplicant("", "")
-                                                                this.state.toggleHandler = true;
-                                                                document.getElementById('job-list').classList.remove('col-md-7');
-                                                                document.getElementById('job-list').classList.add('col-md-12');
-                                                                document.getElementById('contentArea').classList.remove('bgOpacity');
+                                    <div id='currentPage'>
+                                        <a href="/viewapplicantpage">
+                                            <li id="ex">View Applicants</li>
+                                        </a>
+                                    </div>
+
+                                </ul>
+                                <form id='searchbar'>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="Search by title"
+                                        value={searchTitle}
+                                        onChange={this.onChangeSearchTitle}
+                                    />
+                                    <div className="input-group-append">
+                                        <button
+                                            className="btn btn-outline-secondary"
+                                            type="button"
+                                            onClick={this.searchTitle}
+                                        >
+                                            Search
+                                        </button>
+                                    </div>
+                                </form>
+                                <article id='jobboard'>
+                                    <div id='jobboardImage'>
+                                        <div id="job-list" className="job-list">
+                                            <h4>Applicants</h4>
+                                            <div id="jobListWrapper">
+                                            <ul className="list-group">
+                                                {applicants &&
+                                                    applicants.map((applicant, index) => (
+                                                        <li
+                                                            className={
+                                                                "list-group-item " +
+                                                                (index === currentIndex ? "active" : "")
                                                             }
-                                                        }}
-                                                        key={index}
-                                                        style={{ color: 'black' }}
-                                                    >
-                                                        {applicant.jobPost.title + "    -    " + applicant.user.username}
-                                                    </li>
-                                                ))}
-                                        </ul>
-                                        {/* <button
-                                    className="m-3 btn btn-sm btn-danger"
-                                    onClick={this.removeAllJobPosts}
-                                >
-                                    Remove All
-                                </button> */}
+                                                            id={applicant.id}
+                                                            onClick={() => {
+
+                                                                if (this.state.toggleHandler) { // triggers open job post animation             
+                                                                    this.setActiveApplicant(applicant, index);
+                                                                    this.state.toggleHandler = false;
+                                                                    document.getElementById('job-list').classList.remove('job-list');
+                                                                    document.getElementById('job-list').classList.add('job-list-clicked');
+                                                                    document.getElementById('contentArea').classList.add('bgOpacity');
+                                                                } else { // revert back
+                                                                    this.setActiveApplicant("", "")
+                                                                    this.state.toggleHandler = true;
+                                                                    document.getElementById('job-list').classList.remove('job-list-clicked');
+                                                                    document.getElementById('job-list').classList.add('job-list');
+                                                                    document.getElementById('contentArea').classList.remove('bgOpacity');
+                                                                }
+                                                            }}
+                                                            key={index}
+                                                            style={{ color: 'black' }}
+                                                        >
+                                                            {applicant.jobPost.title + "    -    " + applicant.user.username}
+                                                        </li>
+                                                    ))}
+                                            </ul>
+                                        </div>
+
+                                        <div id="job-description-wrapper">
+
+                                            {currentApplicant && (
+                                                <div id='job-description'>
+                                                    <h4>Applicant</h4>
+                                                    <div>
+                                                        <label>
+                                                            <strong>Position:</strong>
+                                                        </label>{" "}
+                                                        {currentApplicant.title}
+                                                    </div>
+                                                    <div>
+                                                        <label>
+                                                            <strong>Applicant:</strong>
+                                                        </label>{" "}
+                                                        {currentApplicant.user.username}
+                                                    </div>
+                                                    <div>
+                                                        <label>
+                                                            <strong>Contact Information:</strong>
+                                                        </label>{" "}
+                                                        {currentApplicant.user.email}
+                                                    </div>
+                                                    <a href={currentApplicant.resumePath} >View Resume</a>
+                                                    <DropdownButton id="dropdown-basic-button" title="Application Status">
+                                                        <Dropdown.Item onClick={() => ApplyDataService.updateStatus(currentApplicant.id, "pending")}> Pending </Dropdown.Item>
+                                                        <Dropdown.Item onClick={() => ApplyDataService.updateStatus(currentApplicant.id, "accepted")}> Accepted </Dropdown.Item>
+                                                        <Dropdown.Item onClick={() => ApplyDataService.updateStatus(currentApplicant.id, "rejected")}> Rejected </Dropdown.Item>
+                                                    </DropdownButton>
+                                                </div>
+                                            )}
+                                        </div>
+
                                     </div>
-                                </div>
-                                <div id="job-description-wrapper" className="col-md-6">
-                                    <div id='job-description'>
-                                        {currentApplicant && (
-                                            <div>
-                                                <h4>Applicant</h4>
-                                                <div>
-                                                    <label>
-                                                        <strong>Position:</strong>
-                                                    </label>{" "}
-                                                    {currentApplicant.title}
-                                                </div>
-                                                <div>
-                                                    <label>
-                                                        <strong>Applicant:</strong>
-                                                    </label>{" "}
-                                                    {currentApplicant.user.username}
-                                                </div>
-                                                <div>
-                                                    <label>
-                                                        <strong>Contact Information:</strong>
-                                                    </label>{" "}
-                                                    {currentApplicant.user.email}
-                                                </div>
-                                                <a href={currentApplicant.resumePath} >View Resume</a>
-                                                <DropdownButton id="dropdown-basic-button" title="Application Status">
-                                                    <Dropdown.Item  onClick={() => ApplyDataService.updateStatus(currentApplicant.id, "pending")}> Pending </Dropdown.Item>
-                                                    <Dropdown.Item  onClick={() => ApplyDataService.updateStatus(currentApplicant.id, "accepted")}> Accepted </Dropdown.Item>
-                                                    <Dropdown.Item  onClick={() => ApplyDataService.updateStatus(currentApplicant.id, "rejected")}> Rejected </Dropdown.Item>
-                                                </DropdownButton>
-                                            </div>
-                                        )}
                                     </div>
-                                </div>
-                            </article>
-                        </section>
+
+                                </article>
+                            </section>
+                        </div>
                     </div>
                 </div>
             </Fragment>

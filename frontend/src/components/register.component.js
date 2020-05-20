@@ -53,6 +53,8 @@ export default class Register extends Component {
     this.handleRegister = this.handleRegister.bind(this);
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
+    this.onChangeFullName = this.onChangeFullName.bind(this);
+    this.onChangePhoneNumber = this.onChangePhoneNumber.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.handleRegisterType = this.handleRegisterType.bind(this);
 
@@ -60,6 +62,8 @@ export default class Register extends Component {
       username: "",
       email: "",
       password: "",
+      fullName: "",
+      phoneNumber: "",
       successful: false,
       message: "",
       registerType: "user"
@@ -75,6 +79,19 @@ export default class Register extends Component {
   onChangeEmail(e) {
     this.setState({
       email: e.target.value
+    });
+  }
+
+
+  onChangeFullName(e) {
+    this.setState({
+      fullName: e.target.value
+    });
+  }
+
+  onChangePhoneNumber(e) {
+    this.setState({
+      phoneNumber: e.target.value
     });
   }
 
@@ -113,7 +130,9 @@ export default class Register extends Component {
         AuthService.register(
           this.state.username,
           this.state.email,
-          this.state.password
+          this.state.password,
+          this.state.fullName,
+          this.state.phoneNumber
         ).then(
           response => {
             this.componentDidMount(response.data.message, true);
@@ -196,17 +215,38 @@ export default class Register extends Component {
                       />
                     </div>
 
+                <div className="form-group">
+                  <label htmlFor="fullName">Full Name</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="fullName"
+                    value={this.state.fullName}
+                    onChange={this.onChangeFullName}
+                  />
+                </div>
                     <div className="form-group">
-                      <label htmlFor="email">Email</label>
-                      <Input
-                        type="text"
-                        className="form-control"
-                        name="email"
-                        value={this.state.email}
-                        onChange={this.onChangeEmail}
-                        validations={[required, email]}
-                      />
-                    </div>
+                  <label htmlFor="phoneNumber">Phone Number</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="phoneNumber"
+                    value={this.state.phoneNumber}
+                    onChange={this.onChangePhoneNumber}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.onChangeEmail}
+                    validations={[required, email]}
+                  />
+                </div>
 
                     <div className="form-group">
                       <label htmlFor="password">Password</label>

@@ -9,8 +9,6 @@ import MapContainer from "../GoogleMap/map.component";
 import { TwitterTimelineEmbed, TwitterShareButton } from 'react-twitter-embed';
 
 
-
-
 class ViewJobPage extends Component {
   constructor(props) {
     super(props);
@@ -33,7 +31,7 @@ class ViewJobPage extends Component {
       toggleHandler: true,
       currentJobPostSaved: null,
       currentUser: AuthService.getCurrentUser(),
-      currentOrgUser: AuthService.getCurrentOrgUser,
+      currentOrgUser: AuthService.getCurrentOrgUser(),
       currentView: "1"
     };
   }
@@ -117,7 +115,7 @@ class ViewJobPage extends Component {
           currentJobPostSaved: res.data.found ? true : false,
         })
       })
-      console.log("saved? "+this.state.currentJobPostSaved);
+      console.log("saved? " + this.state.currentJobPostSaved);
     }
   }
 
@@ -156,6 +154,7 @@ class ViewJobPage extends Component {
 
   render() {
     const { searchTitle, jobPosts, currentJobPost, currentIndex, currentUser, currentView } = this.state;
+
     return (
       <Fragment>
 
@@ -179,18 +178,16 @@ class ViewJobPage extends Component {
         </form>
         <article id='jobboard'>
           <div id='jobboardImage'>
-            <div id="job-list" className="col-md-12">
-              <div id="title-area" class="d-flex flex-row">
-                <div class="mr-auto"><h4>Job Posts</h4></div>
-                <div>
-                  <ToggleButtonGroup type="radio" name="jobViewOptions" defaultValue={1}>
-                    <ToggleButton onClick={this.handleJobView} value={1}>List</ToggleButton>
-                    <ToggleButton onClick={this.handleJobView} value={2}>Map</ToggleButton>
-                  </ToggleButtonGroup>
-                </div>
+            <div id="job-list" className="job-list">
+              <div id="jobListHead">
+                <h4>Job Posts</h4>
+                <ToggleButtonGroup type="radio" name="jobViewOptions" defaultValue={1}>
+                  <ToggleButton onClick={this.handleJobView} value={1}>List</ToggleButton>
+                  <ToggleButton onClick={this.handleJobView} value={2}>Map</ToggleButton>
+                </ToggleButtonGroup>
               </div>
               <div>
-                { currentView === "1" && <ul className="list-group">
+                {currentView === "1" && <ul className="list-group">
                   {jobPosts &&
                     jobPosts.map((jobPost, index) => (
                       <li
@@ -204,14 +201,14 @@ class ViewJobPage extends Component {
                           if (this.state.toggleHandler) { // triggers open job post animation             
                             this.setActiveJobPost(jobPost, index);
                             this.state.toggleHandler = false;
-                            document.getElementById('job-list').classList.remove('col-md-12');
-                            document.getElementById('job-list').classList.add('col-md-7');
+                            document.getElementById('job-list').classList.remove('job-list');
+                            document.getElementById('job-list').classList.add('job-list-clicked');
                             document.getElementById('contentArea').classList.add('bgOpacity');
                           } else { // revert back
                             this.setActiveJobPost("", "")
                             this.state.toggleHandler = true;
-                            document.getElementById('job-list').classList.remove('col-md-7');
-                            document.getElementById('job-list').classList.add('col-md-12');
+                            document.getElementById('job-list').classList.remove('job-list-clicked');
+                            document.getElementById('job-list').classList.add('job-list');
                             document.getElementById('contentArea').classList.remove('bgOpacity');
                           }
 
@@ -224,80 +221,75 @@ class ViewJobPage extends Component {
                     ))}
                 </ul>}
               </div>
+              {currentView === "1" && <div id="job-description-wrapper">
+                <div id='job-description'>
+                  {currentJobPost && (
+                    <div>
+                      <h4>Job Post</h4>
+                      <div>
+                        <label>
+                          <strong>Title:</strong>
+                        </label>{" "}
+                        {currentJobPost.title}
+                      </div>
+                      <div>
+                        <label>
+                          <strong>Description:</strong>
+                        </label>{" "}
+                        {currentJobPost.description}
+                      </div>
+                      <div>
+                        <label>
+                          <strong>Job Type:</strong>
+                        </label>{" "}
+                        {currentJobPost.jobType}
+                      </div>
+                      <div>
+                        <label>
+                          <strong>Hourly Rate:</strong>
+                        </label>{" "}
+                        {currentJobPost.rate}
+                      </div>
+                      <div>
+                        <label>
+                          <strong>Start Date:</strong>
+                        </label>{" "}
+                        {currentJobPost.startDate}
+                      </div>
+                      <div>
+                        <label>
+                          <strong>Contract Length:</strong>
+                        </label>{" "}
+                        {currentJobPost.contractLength}
+                      </div>
 
-              {/* <button
-                className="m-3 btn btn-sm btn-danger"
-                onClick={this.removeAllJobPosts}
-              >
-                Remove All
-                                </button> */}
-            </div>
-
-          </div>
-
-          {currentView==="1" && <div id="job-description-wrapper">
-            <div id='job-description'>
-              {currentJobPost && (
-                <div>
-                  <h4>Job Post</h4>
-                  <div>
-                    <label>
-                      <strong>Title:</strong>
-                    </label>{" "}
-                    {currentJobPost.title}
-                  </div>
-                  <div>
-                    <label>
-                      <strong>Description:</strong>
-                    </label>{" "}
-                    {currentJobPost.description}
-                  </div>
-                  <div>
-                    <label>
-                      <strong>Job Type:</strong>
-                    </label>{" "}
-                    {currentJobPost.jobType}
-                  </div>
-                  <div>
-                    <label>
-                      <strong>Hourly Rate:</strong>
-                    </label>{" "}
-                    {currentJobPost.rate}
-                  </div>
-                  <div>
-                    <label>
-                      <strong>Start Date:</strong>
-                    </label>{" "}
-                    {currentJobPost.startDate}
-                  </div>
-                  <div>
-                    <label>
-                      <strong>Contract Length:</strong>
-                    </label>{" "}
-                    {currentJobPost.contractLength}
-                  </div>
-
-                  <Link
-                    to={"/jobPosts/" + currentJobPost.id}
-                    className="badge badge-warning"
-                  >
-                    Edit
+                      <Link
+                        to={"/jobPosts/" + currentJobPost.id}
+                        className="badge badge-warning"
+                      >
+                        Edit
                                     </Link>
-                  <Link
-                    to={"/apply/" + currentJobPost.id}
-                    className="badge badge-success"
-                  >
-                    Apply
+                      <Link
+                        to={"/apply/" + currentJobPost.id}
+                        className="badge badge-success"
+                      >
+                        Apply
                                     </Link>
-                  {currentUser && !this.state.currentJobPostSaved && <Button variant="info" value="save" onClick={this.handleSave}> Save </Button>}
-                  {currentUser && this.state.currentJobPostSaved && <Button variant="info" value="unsave" onClick={this.handleSave}> Unsave </Button>}
+                      {currentUser && !this.state.currentJobPostSaved && <Button variant="info" value="save" onClick={this.handleSave}> Save </Button>}
+                      {currentUser && this.state.currentJobPostSaved && <Button variant="info" value="unsave" onClick={this.handleSave}> Unsave </Button>}
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>}
             </div>
-          </div>}
+          </div>
         </article>
         <div id="map" height="500px" width="100%">
-          {currentView === "2" && jobPosts && <MapContainer jobs={jobPosts} />}
+          {currentView === "2" && jobPosts && <MapContainer jobs={jobPosts} styling={{
+            width: '80%',
+            height: '350%',
+            margin: '5px 500px 5px 100px'
+          }} />}
         </div>
       </Fragment>
     )

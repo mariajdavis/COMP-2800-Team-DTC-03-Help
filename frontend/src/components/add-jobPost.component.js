@@ -5,6 +5,11 @@ import TagDataService from "../services/tag.service";
 import "./Layouts/ContentLayout.css"
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 import SearchLocation from "./mapSearch";
+import MapContainer from "./GoogleMap/map.component";
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng
+} from "react-places-autocomplete";
 
 
 export default class AddJobPost extends Component {
@@ -20,6 +25,7 @@ export default class AddJobPost extends Component {
     this.newJobPost = this.newJobPost.bind(this);
     this.setTags = this.setTags.bind(this);
     this.onChangeLocation = this.onChangeLocation.bind(this);
+    this.saveMapData = this.saveMapData.bind(this);
 
     var currentOrgUser = AuthService.getCurrentOrgUser();
 
@@ -34,7 +40,8 @@ export default class AddJobPost extends Component {
       orgID: currentOrgUser.id,
       submitted: false,
       tagArray: null,
-      location: ""
+      location: "",
+      coordinates: {lat: null, lng: null}
     };
   }
 
@@ -106,7 +113,10 @@ export default class AddJobPost extends Component {
       rate: this.state.rate,
       contractLength: this.state.contractLength,
       startDate: this.state.startDate,
-      orgID: this.state.orgID
+      orgID: this.state.orgID,
+      location: this.state.location,
+      lat: this.state.coordinates.lat,
+      lng: this.state.coordinates.lng
     };
 
     JobPostDataService.create(data)
@@ -121,6 +131,9 @@ export default class AddJobPost extends Component {
           contractLength: response.data.contractLength,
           startDate: response.data.startDate,
           orgID: response.data.orgID,
+          location: response.data.location,
+          lat: response.data.lat,
+          lng: response.data.lng,
           submitted: true
         });
         this.tagArray.forEach(tag => {
@@ -157,7 +170,18 @@ export default class AddJobPost extends Component {
     });
   }
 
+
+  saveMapData(place, latLng) {
+    this.setState({
+      location: place,
+      coordinates: latLng
+    })
+    console.log(this.state.location)
+    console.log(this.state.coordinates)
+  }
+
   render() {
+    
 
     return (
       <div id="contentLayoutAddJob">
@@ -268,7 +292,7 @@ export default class AddJobPost extends Component {
 
                   <div className="form-group">
                     <label htmlFor="jobType">Location</label>
-                    <SearchLocation></SearchLocation>
+                    <SearchLocation callData={this.saveMapData}></SearchLocation>
                     {/* <input
                       type="text"
                       className="form-control"

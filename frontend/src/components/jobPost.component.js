@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import JobPostDataService from "../services/jobPost.service";
 import "./Layouts/ContentLayout.css"
 
+
 export default class JobPost extends Component {
   constructor(props) {
     super(props);
@@ -14,6 +15,7 @@ export default class JobPost extends Component {
     this.getJobPost = this.getJobPost.bind(this);
     this.updateJobPost = this.updateJobPost.bind(this);
     this.deleteJobPost = this.deleteJobPost.bind(this);
+    this.goBack = this.goBack.bind(this);
 
     this.state = {
       currentJobPost: {
@@ -28,6 +30,10 @@ export default class JobPost extends Component {
       },
       message: ""
     };
+  }
+
+  goBack(){
+    this.props.history.goBack()
   }
 
   componentDidMount() {
@@ -245,7 +251,8 @@ export default class JobPost extends Component {
             <button
               type="submit"
               className="badge badge-success"
-              onClick={this.updateJobPost}
+              onClick={() => this.updateJobPost.then(this.props.history.goBack())}
+              
             >
               Update
             </button>

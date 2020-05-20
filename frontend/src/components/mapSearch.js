@@ -3,9 +3,11 @@ import PlacesAutocomplete, {
     geocodeByAddress,
     getLatLng
 } from "react-places-autocomplete";
+import AddJobPost from "./add-jobPost.component";
 
 
-export default function SearchLocation() {
+
+export default function SearchLocation(props) {
     const [address, setAddress] = React.useState("");
     const [coordinates, setCoordinates] = React.useState({
         lat: null,
@@ -17,7 +19,9 @@ export default function SearchLocation() {
         const latLng = await getLatLng(results[0]);
         setAddress(value);
         setCoordinates(latLng);
+        props.callData(value, latLng); // pass location and latlng info to add-jobPost page
     }
+
 
     return (
             <PlacesAutocomplete
