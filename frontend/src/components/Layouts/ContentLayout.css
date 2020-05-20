@@ -73,6 +73,17 @@
     max-width: 80vw;
 }
 
+@media screen and (max-width: 759px){
+    #contentDiv ul{
+        width: auto;
+    }
+
+    #contentDiv li {
+        width: auto;
+        word-wrap:break-word;
+    }
+}
+
 /* #contentDiv .form-group{
     max-width: 500px;
 } */

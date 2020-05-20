@@ -54,10 +54,6 @@ class JobBoardPage extends Component {
                             <li id="ex">Job Posts</li>
                           </a>
                         </div>
-                        
-                        {/* <a href="/viewapplicant">
-                          <li class="onHover">View Applicants</li>
-                        </a> */}
                     </ul>
                     <ViewJobPage />
                 </section>
