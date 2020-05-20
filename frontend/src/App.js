@@ -17,7 +17,7 @@ import AuthService from "./services/auth.service";
 import AboutUs from './components/AboutUs/aboutUs.component';
 import SavedJobPosts from './components/savedJobs.component';
 import EditUserProfile from './components/editUserProfile.component';
-
+import OrgProfile from './components/org-profile.component'
 import OrgJobBoard from './components/JobBoardPage/OrgJobBoardPage.js'
 
 import ViewApplicants from './components/JobBoardPage/ViewApplicantPage';
@@ -70,6 +70,7 @@ class App extends Component {
               {!currentUser &&! currentOrgUser && <Nav.Link id="navLink" href="/register">Register</Nav.Link>}
               {!currentOrgUser && <Nav.Link id="navLink" href="/jobPosts">Job Board</Nav.Link>}
               {currentOrgUser && <Nav.Link id="navLink" href="/orgJobBoard">Job Board</Nav.Link>}
+              {currentOrgUser && <Nav.Link id="navLink" href="/orgProfile">My Profile</Nav.Link>}
               {currentOrgUser && <Nav.Link id="navLink" href="/add">Add Job</Nav.Link>}
               {currentUser && <Nav.Link id="navLink" href="/userProfile">My Profile</Nav.Link>}
               {currentUser && <Nav.Link id="navLink" href="/savedJobs">Saved Jobs</Nav.Link>}
@@ -92,7 +93,7 @@ class App extends Component {
           <Route path="/jobPosts/:id" component={JobPost} />
           <Route path="/userProfile" component={UserProfile} />
           <Route path="/aboutUs" component={AboutUs} />
-
+          <Route path="/orgProfile" component={OrgProfile}/>
           <Route path="/orgJobBoard" component={OrgJobBoard}/>
 
           <Route exact path="/viewApplicants" component={ViewApplicants} /> 
