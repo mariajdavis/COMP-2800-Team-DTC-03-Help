@@ -88,14 +88,17 @@ export default class EditUserProfile extends Component {
             this.state.currentUser.email,
             this.state.currentUser.fullName
         ).then(response => {
-            this.returnToUserProfile();
+            // this.returnToUserProfile();
         }).catch(e => {
             console.log(e);
         });
+
+        this.props.history.push('/userProfile')
     }
 
     returnToUserProfile() {
-        window.location.assign('/userProfile');
+        // window.location.assign('/userProfile');
+        this.props.history.push('/userProfile')
     }
 
     render() {
