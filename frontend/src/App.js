@@ -62,7 +62,7 @@ class App extends Component {
     return (
       <Router>
         <Navbar style={{ backgroundColor: "#2743A5" }} expand="sm">
-          <Navbar.Brand className="navBrand" id="navBrand" style={{ fontFamily: "Racing Sans One", color: "white", fontSize: "30px" }}>test4</Navbar.Brand>
+          <Navbar.Brand className="navBrand" id="navBrand" style={{ fontFamily: "Racing Sans One", color: "white", fontSize: "30px" }}>Help!</Navbar.Brand>
           <Navbar.Toggle id="collapseButton" aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
@@ -71,7 +71,7 @@ class App extends Component {
               {currentOrgUser && <Nav.Link id="navLink" href="/orgJobBoard">Job Board</Nav.Link>}
               {currentOrgUser && <Nav.Link id="navLink" href="/add">Add Job</Nav.Link>}
               {currentUser && <Nav.Link id="navLink" href="/userProfile">My Profile</Nav.Link>}
-              {currentUser && <Nav.Link href="/savedJobs">Saved Jobs</Nav.Link>}
+              {currentUser && <Nav.Link id="navLink" href="/savedJobs">Saved Jobs</Nav.Link>}
               {!currentUser && !currentOrgUser && <Nav.Link id="navLink" href="/logIn">Log In</Nav.Link>}
               {currentUser && <Nav.Link id="navLink" href="/logIn" onClick={this.logOut}>Log Out</Nav.Link>}
               {currentOrgUser && <Nav.Link id="navLink" href="/logIn" onClick={this.orgLogOut}>Log Out</Nav.Link>}

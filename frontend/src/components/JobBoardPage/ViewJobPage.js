@@ -31,7 +31,7 @@ class ViewJobPage extends Component {
       currentIndex: -1,
       searchTitle: "",
       toggleHandler: true,
-      currentJobPostSaved: true,
+      currentJobPostSaved: null,
       currentUser: AuthService.getCurrentUser(),
       currentOrgUser: AuthService.getCurrentOrgUser,
       currentView: "1"
@@ -70,10 +70,12 @@ class ViewJobPage extends Component {
 
   handleSave(e) {
     if (e.target.value === "save") {
-      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentJobPost.id, save: true })
+      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentJobPost.id, save: true });
+      this.setState({ currentJobPostSaved: true });
     }
     else {
-      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentJobPost.id, save: false })
+      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentJobPost.id, save: false });
+      this.setState({ currentJobPostSaved: false });
     }
   }
 
@@ -115,7 +117,7 @@ class ViewJobPage extends Component {
           currentJobPostSaved: res.data.found ? true : false,
         })
       })
-      console.log(this.state.currentJobPostSaved);
+      console.log("saved? "+this.state.currentJobPostSaved);
     }
   }
 
@@ -188,8 +190,8 @@ class ViewJobPage extends Component {
                 </div>
               </div>
               <div>
-                <ul className="list-group">
-                  {currentView === "1" && jobPosts &&
+                { currentView === "1" && <ul className="list-group">
+                  {jobPosts &&
                     jobPosts.map((jobPost, index) => (
                       <li
                         className={
@@ -220,7 +222,7 @@ class ViewJobPage extends Component {
                         {jobPost.title}
                       </li>
                     ))}
-                </ul>
+                </ul>}
               </div>
 
               {/* <button
@@ -233,7 +235,7 @@ class ViewJobPage extends Component {
 
           </div>
 
-          <div id="job-description-wrapper">
+          {currentView==="1" && <div id="job-description-wrapper">
             <div id='job-description'>
               {currentJobPost && (
                 <div>
@@ -292,7 +294,7 @@ class ViewJobPage extends Component {
                 </div>
               )}
             </div>
-          </div>
+          </div>}
         </article>
         <div id="map" height="500px" width="100%">
           {currentView === "2" && jobPosts && <MapContainer jobs={jobPosts} />}

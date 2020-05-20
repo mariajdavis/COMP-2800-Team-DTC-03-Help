@@ -29,13 +29,18 @@ export class MapContainer extends Component {
 
     console.log(props)
   }
+  componentDidUpdate(prevProps, prevState, snapshot) { }
 
   handleSave(e) {
     if (e.target.value === "save") {
       JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.selected.id, save: true })
+      this.setState({ currentJobPostSaved: true });
+      console.log("set")
     }
     else {
       JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.selected.id, save: false })
+      this.setState({ currentJobPostSaved: false });
+      console.log("set2")
     }
   }
 
@@ -122,8 +127,8 @@ export class MapContainer extends Component {
       <Map
         style={{
           width: '80%',
-          height: '350%',
-          margin: '5px 500px 5px 100px',
+          height: '60%',
+          margin: '5px 100px',
         }}
         google={this.props.google}
         zoom={8}
@@ -144,10 +149,10 @@ export class MapContainer extends Component {
                 <Button variant="primary" onClick={this.test}>
                   Apply
             </Button>
-                {currentUser && !currentJobPostSaved && <Button variant="primary" value="save" onClick={this.handleSave}>
+                {currentUser && !currentJobPostSaved && <Button variant="primary" value="save" id="savebtn" onClick={this.handleSave}>
                   Save
             </Button>}
-                {currentUser && currentJobPostSaved && <Button variant="primary" value="unsave" onClick={this.handleSave}>
+                {currentUser && currentJobPostSaved && <Button variant="primary" value="unsave" id="unsavebtn" onClick={this.handleSave}>
                   Unsave
             </Button>}
               </Card.Body>

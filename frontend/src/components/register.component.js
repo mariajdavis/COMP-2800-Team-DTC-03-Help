@@ -91,7 +91,7 @@ export default class Register extends Component {
     console.log(e.target.value);
   }
 
-  componentDidMount(message, successful){
+  componentDidMount(message, successful) {
     this.setState({
       meesage: message,
       successful: successful
@@ -116,7 +116,7 @@ export default class Register extends Component {
           this.state.password
         ).then(
           response => {
-            this.componentDidMount(response.data.message,true);
+            this.componentDidMount(response.data.message, true);
             // this.props.history.push("/");
             // window.location.reload();
           },
@@ -142,7 +142,7 @@ export default class Register extends Component {
           this.state.password
         ).then(
           response => {
-            this.componentDidMount(response.data.message,true);
+            this.componentDidMount(response.data.message, true);
             // this.props.history.push("/");
             // window.location.reload();
           },
@@ -169,86 +169,86 @@ export default class Register extends Component {
       <div id="contentLayout">
         <div id="contentDiv">
           <div>
-        <div className="card">
-          <Form
-            onSubmit={this.handleRegister}
-            ref={c => {
-              this.form = c;
-            }}
-          >
-            {!this.state.successful && (
-              <div>
-                <div style={{display:'flex', justifyContent:'center'}}>
-                  <label class="btn btn-secondary">
-                    <input class="m-2" type="radio" name="options" id="user" autocomplete="off" value="user" checked={this.state.registerType==="user"} onChange={this.handleRegisterType} />Register As Individual User</label>
-                  <label class="btn btn-secondary"style={{margin:'0px !important', padding:'0px !important'}}>
-                    <input class="m-2" type="radio" name="options" id="orgUser" autocomplete="off" value="orgUser" checked={this.state.registerType==="orgUser"} onChange={this.handleRegisterType} />Register As Organization</label>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="username">Username</label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="username"
-                    value={this.state.username}
-                    onChange={this.onChangeUsername}
-                    validations={[required, vusername]}
-                  />
-                </div>
+            <div className="card">
+              <Form
+                onSubmit={this.handleRegister}
+                ref={c => {
+                  this.form = c;
+                }}
+              >
+                {!this.state.successful && (
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'center', padding: '5px' }}>
+                      <label class="btn btn-secondary">
+                        <input class="m-2" type="radio" name="options" id="user" autocomplete="off" value="user" checked={this.state.registerType === "user"} onChange={this.handleRegisterType} />Register As Individual User</label>
+                      <label class="btn btn-secondary" style={{ margin: '0px !important', padding: '0px !important' }}>
+                        <input class="m-2" type="radio" name="options" id="orgUser" autocomplete="off" value="orgUser" checked={this.state.registerType === "orgUser"} onChange={this.handleRegisterType} />Register As Organization</label>
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="username">Username</label>
+                      <Input
+                        type="text"
+                        className="form-control"
+                        name="username"
+                        value={this.state.username}
+                        onChange={this.onChangeUsername}
+                        validations={[required, vusername]}
+                      />
+                    </div>
 
-                <div className="form-group">
-                  <label htmlFor="email">Email</label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.onChangeEmail}
-                    validations={[required, email]}
-                  />
-                </div>
+                    <div className="form-group">
+                      <label htmlFor="email">Email</label>
+                      <Input
+                        type="text"
+                        className="form-control"
+                        name="email"
+                        value={this.state.email}
+                        onChange={this.onChangeEmail}
+                        validations={[required, email]}
+                      />
+                    </div>
 
-                <div className="form-group">
-                  <label htmlFor="password">Password</label>
-                  <Input
-                    type="password"
-                    className="form-control"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.onChangePassword}
-                    validations={[required, vpassword]}
-                  />
-                </div>
+                    <div className="form-group">
+                      <label htmlFor="password">Password</label>
+                      <Input
+                        type="password"
+                        className="form-control"
+                        name="password"
+                        value={this.state.password}
+                        onChange={this.onChangePassword}
+                        validations={[required, vpassword]}
+                      />
+                    </div>
 
-                <div className="form-group">
-                  <button className="btn btn-primary btn-block" style={{margin:'0px'}}>Sign Up</button>
-                </div>
-              </div>
-            )}
+                    <div className="form-group">
+                      <button className="btn btn-primary btn-block" style={{ margin: '0px' }}>Sign Up</button>
+                    </div>
+                  </div>
+                )}
 
-            {this.state.message && (
-              <div className="">
-                <div
-                  className={
-                    this.state.successful
-                      ? "alert alert-success"
-                      : "alert alert-danger"
-                  }
-                  role="alert"
-                >
-                  {this.state.message}
-                </div>
-              </div>
-            )}
-            <CheckButton
-              style={{ display: "none" }}
-              ref={c => {
-                this.checkBtn = c;
-              }}
-            />
-            
-          </Form>
-          </div>
+                {this.state.message && (
+                  <div className="">
+                    <div
+                      className={
+                        this.state.successful
+                          ? "alert alert-success"
+                          : "alert alert-danger"
+                      }
+                      role="alert"
+                    >
+                      {this.state.message}
+                    </div>
+                  </div>
+                )}
+                <CheckButton
+                  style={{ display: "none" }}
+                  ref={c => {
+                    this.checkBtn = c;
+                  }}
+                />
+
+              </Form>
+            </div>
           </div>
         </div>
       </div>
