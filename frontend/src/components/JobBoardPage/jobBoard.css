@@ -364,6 +364,9 @@ body {
         .job-list-clicked #jobListWrapper {
             margin-top: 10px;
         }
+        .job-list-clicked #indJobList {
+            margin-top: 10px;
+        }
         
         /* open job post (animation) */
         div#job-description-wrapper {
