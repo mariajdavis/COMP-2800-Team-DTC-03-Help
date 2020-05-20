@@ -16,6 +16,7 @@ import './Navbar.css'
 import AuthService from "./services/auth.service";
 import AboutUs from './components/AboutUs/aboutUs.component';
 import SavedJobPosts from './components/savedJobs.component';
+import EditUserProfile from './components/editUserProfile.component';
 
 import OrgJobBoard from './components/JobBoardPage/OrgJobBoardPage.js'
 
@@ -96,6 +97,7 @@ class App extends Component {
 
           <Route exact path="/viewApplicants" component={ViewApplicants} /> 
           <Route path="/mapsearch" component={SearchLocation} />
+          <Route path="/editUserProfile" component={EditUserProfile} />
 
         </Switch>
 

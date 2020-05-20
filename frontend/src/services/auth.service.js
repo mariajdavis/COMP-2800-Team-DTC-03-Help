@@ -1,4 +1,6 @@
 import axios from "axios";
+import http from "../http-common";
+
 const API_URL="http://localhost:8080/api/auth/";
 //const API_URL = "https://helpservices.herokuapp.com/api/auth/";
 
@@ -63,6 +65,10 @@ class AuthService {
 
     getCurrentOrgUser() {
         return JSON.parse(localStorage.getItem('orgUser'));;
+    }
+
+    findOneUser(id) {
+        return http.get(`/user/${id}`)
     }
 }
 

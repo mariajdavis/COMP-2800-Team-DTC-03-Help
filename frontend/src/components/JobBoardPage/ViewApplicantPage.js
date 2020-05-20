@@ -43,7 +43,7 @@ class ViewApplicantPage extends Component {
 
         // Retrieves all data from application/user/jobPost 
         // tables where orgID = currentOrgUser id
-        ApplyDataService.findAllOrgApplicants(this.state.currentUser.id)
+        ApplyDataService.findAllPendingOrgApplicants(this.state.currentUser.id)
             .then(response => {
                 this.setState({
                     applicants: response.data

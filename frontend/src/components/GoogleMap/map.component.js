@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
-import { Redirect } from 'react-router';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import CustomInfoWindow from './CustomInfoWindow';
 import JobPostDataService from "../../services/jobPost.service";
