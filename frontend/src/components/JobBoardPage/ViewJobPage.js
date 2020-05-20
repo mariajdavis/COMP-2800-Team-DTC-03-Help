@@ -29,7 +29,7 @@ class ViewJobPage extends Component {
       currentIndex: -1,
       searchTitle: "",
       toggleHandler: true,
-      currentJobPostSaved: true,
+      currentJobPostSaved: null,
       currentUser: AuthService.getCurrentUser(),
       currentOrgUser: AuthService.getCurrentOrgUser(),
       currentView: "1"
@@ -68,10 +68,12 @@ class ViewJobPage extends Component {
 
   handleSave(e) {
     if (e.target.value === "save") {
-      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentJobPost.id, save: true })
+      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentJobPost.id, save: true });
+      this.setState({ currentJobPostSaved: true });
     }
     else {
-      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentJobPost.id, save: false })
+      JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentJobPost.id, save: false });
+      this.setState({ currentJobPostSaved: false });
     }
   }
 
@@ -113,7 +115,7 @@ class ViewJobPage extends Component {
           currentJobPostSaved: res.data.found ? true : false,
         })
       })
-      console.log(this.state.currentJobPostSaved);
+      console.log("saved? " + this.state.currentJobPostSaved);
     }
   }
 
@@ -184,9 +186,9 @@ class ViewJobPage extends Component {
                   <ToggleButton onClick={this.handleJobView} value={2}>Map</ToggleButton>
                 </ToggleButtonGroup>
               </div>
-              <div id="jobListWrapper">
-                <ul className="list-group">
-                  {currentView === "1" && jobPosts &&
+              <div id="indJobList">
+                {currentView === "1" && <ul className="list-group">
+                  {jobPosts &&
                     jobPosts.map((jobPost, index) => (
                       <li
                         className={
@@ -217,77 +219,76 @@ class ViewJobPage extends Component {
                         {jobPost.title}
                       </li>
                     ))}
-                </ul>
+                </ul>}
               </div>
-              <div id="job-description-wrapper">
+              {currentView === "1" && <div id="job-description-wrapper">
+                  {currentJobPost && (
+                    <div id='job-description'>
+                      <h4>Job Post</h4>
+                      <div>
+                        <label>
+                          <strong>Title:</strong>
+                        </label>{" "}
+                        {currentJobPost.title}
+                      </div>
+                      <div>
+                        <label>
+                          <strong>Description:</strong>
+                        </label>{" "}
+                        {currentJobPost.description}
+                      </div>
+                      <div>
+                        <label>
+                          <strong>Job Type:</strong>
+                        </label>{" "}
+                        {currentJobPost.jobType}
+                      </div>
+                      <div>
+                        <label>
+                          <strong>Hourly Rate:</strong>
+                        </label>{" "}
+                        {currentJobPost.rate}
+                      </div>
+                      <div>
+                        <label>
+                          <strong>Start Date:</strong>
+                        </label>{" "}
+                        {currentJobPost.startDate}
+                      </div>
+                      <div>
+                        <label>
+                          <strong>Contract Length:</strong>
+                        </label>{" "}
+                        {currentJobPost.contractLength}
+                      </div>
 
-
-                {currentJobPost && (
-                  <div id='job-description'>
-                    <h4>Job Post</h4>
-                    <div>
-                      <label>
-                        <strong>Title:</strong>
-                      </label>{" "}
-                      {currentJobPost.title}
-                    </div>
-                    <div>
-                      <label>
-                        <strong>Description:</strong>
-                      </label>{" "}
-                      {currentJobPost.description}
-                    </div>
-                    <div>
-                      <label>
-                        <strong>Job Type:</strong>
-                      </label>{" "}
-                      {currentJobPost.jobType}
-                    </div>
-                    <div>
-                      <label>
-                        <strong>Hourly Rate:</strong>
-                      </label>{" "}
-                      {currentJobPost.rate}
-                    </div>
-                    <div>
-                      <label>
-                        <strong>Start Date:</strong>
-                      </label>{" "}
-                      {currentJobPost.startDate}
-                    </div>
-                    <div>
-                      <label>
-                        <strong>Contract Length:</strong>
-                      </label>{" "}
-                      {currentJobPost.contractLength}
-                    </div>
-
-                    <Link
-                      to={"/jobPosts/" + currentJobPost.id}
-                      className="badge badge-warning"
-                    >
-                      Edit
+                      <Link
+                        to={"/jobPosts/" + currentJobPost.id}
+                        className="badge badge-warning"
+                      >
+                        Edit
                                     </Link>
-                    <Link
-                      to={"/apply/" + currentJobPost.id}
-                      className="badge badge-success"
-                    >
-                      Apply
+                      <Link
+                        to={"/apply/" + currentJobPost.id}
+                        className="badge badge-success"
+                      >
+                        Apply
                                     </Link>
-                    {currentUser && !this.state.currentJobPostSaved && <Button variant="info" value="save" onClick={this.handleSave}> Save </Button>}
-                    {currentUser && this.state.currentJobPostSaved && <Button variant="info" value="unsave" onClick={this.handleSave}> Unsave </Button>}
-                  </div>
-                )}
-              </div>
+                      {currentUser && !this.state.currentJobPostSaved && <Button variant="info" value="save" onClick={this.handleSave}> Save </Button>}
+                      {currentUser && this.state.currentJobPostSaved && <Button variant="info" value="unsave" onClick={this.handleSave}> Unsave </Button>}
+                    </div>
+                  )}
+                </div>}
             </div>
           </div>
-
         </article>
         <div id="map" height="500px" width="100%">
-          {currentView === "2" && jobPosts && <MapContainer jobs={jobPosts} styling={{
-          width: '80%',
-          height: '350%',
-          margin: '5px 500px 5px 100px'}}/>}
+          {currentView === "2" && jobPosts &&
+            <MapContainer jobs={jobPosts} styling={{
+              width: '80%',
+              height: '250%',
+              margin: '5px 100px'
+            }} />}
         </div>
       </Fragment>
     )

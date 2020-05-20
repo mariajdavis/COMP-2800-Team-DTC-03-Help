@@ -31,13 +31,18 @@ export class MapContainer extends Component {
 
     console.log(props)
   }
+  componentDidUpdate(prevProps, prevState, snapshot) { }
 
   handleSave(e) {
     if (e.target.value === "save") {
       JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.selected.id, save: true })
+      this.setState({ currentJobPostSaved: true });
+      console.log("set")
     }
     else {
       JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.selected.id, save: false })
+      this.setState({ currentJobPostSaved: false });
+      console.log("set2")
     }
   }
 
@@ -118,7 +123,7 @@ export class MapContainer extends Component {
   }
 
   render() {
-    const { showingInfoWindow, activePosition, selected, currentUser, currentJobPostSaved } = this.state;
+    const { styling, showingInfoWindow, activePosition, selected, currentUser, currentJobPostSaved } = this.state;
     console.log("selected ");
     console.log(this.state.selected);
     console.log("activeposition ")
@@ -127,7 +132,7 @@ export class MapContainer extends Component {
     console.log(this.state.showingInfoWindow)
     return (
       <Map
-        style={this.state.styling}
+        style={styling}
         google={this.props.google}
         zoom={8}
         //style={mapStyles}
@@ -147,10 +152,10 @@ export class MapContainer extends Component {
                 <Button variant="primary" onClick={() => this.sendToApplicationPage()}>
                   Apply
             </Button>
-                {currentUser && !currentJobPostSaved && <Button variant="primary" value="save" onClick={this.handleSave}>
+                {currentUser && !currentJobPostSaved && <Button variant="primary" value="save" id="savebtn" onClick={this.handleSave}>
                   Save
             </Button>}
-                {currentUser && currentJobPostSaved && <Button variant="primary" value="unsave" onClick={this.handleSave}>
+                {currentUser && currentJobPostSaved && <Button variant="primary" value="unsave" id="unsavebtn" onClick={this.handleSave}>
                   Unsave
             </Button>}
               </Card.Body>

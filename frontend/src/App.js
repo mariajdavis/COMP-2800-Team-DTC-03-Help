@@ -6,8 +6,8 @@ import AddJobPost from "./components/add-jobPost.component";
 import JobPost from "./components/jobPost.component";
 import Apply from "./components/ApplyPage/apply.component";
 import JobPostsList from "./components/JobBoardPage/JobBoardPage";
-import Register from "./components/register.component";
-import LogIn from "./components/logIn.component";
+import Register from "./components/Registration/register.component";
+import LogIn from "./components/Login/logIn.component";
 import Bodyframe from './components/Bodyframe/Bodyframe.js';
 import Footer from './components/Footer/Footer.js';
 import UserProfile from "./components/user-profile.component";
@@ -63,7 +63,7 @@ class App extends Component {
     return (
       <Router>
         <Navbar style={{ backgroundColor: "#2743A5" }} expand="sm">
-          <Navbar.Brand className="navBrand" id="navBrand" style={{ fontFamily: "Racing Sans One", color: "white", fontSize: "30px" }}>test4</Navbar.Brand>
+          <Navbar.Brand className="navBrand" id="navBrand" style={{ fontFamily: "Racing Sans One", color: "white", fontSize: "30px" }}>Help!</Navbar.Brand>
           <Navbar.Toggle id="collapseButton" aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
