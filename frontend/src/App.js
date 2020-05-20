@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import AddJobPost from "./components/add-jobPost.component";
 import JobPost from "./components/jobPost.component";
-import Apply from "./components/apply.component";
+import Apply from "./components/ApplyPage/apply.component";
 import JobPostsList from "./components/JobBoardPage/JobBoardPage";
 import Register from "./components/register.component";
 import LogIn from "./components/logIn.component";

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
+import { Redirect } from 'react-router';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import CustomInfoWindow from './CustomInfoWindow';
 import JobPostDataService from "../../services/jobPost.service";
@@ -10,6 +11,7 @@ export class MapContainer extends Component {
   constructor(props) {
     super(props);
     this.handleSave = this.handleSave.bind(this);
+    this.sendToApplicationPage = this.sendToApplicationPage.bind(this);
 
     this.state = {
       // stores: [{lat: 47.49855629475769, lng: -122.14184416996333},
@@ -25,6 +27,7 @@ export class MapContainer extends Component {
       activePosition: null,
       currentUser: AuthService.getCurrentUser(),
       currentJobPostSaved: true,
+      styling: props.styling
     }
 
     console.log(props)
@@ -110,6 +113,11 @@ export class MapContainer extends Component {
     console.log("hello");
   }
 
+  sendToApplicationPage() {
+    console.log(this.state.selected.id);
+    window.location.assign('/apply/'+this.state.selected.id);
+  }
+
   render() {
     const { showingInfoWindow, activePosition, selected, currentUser, currentJobPostSaved } = this.state;
     console.log("selected ");
@@ -120,11 +128,7 @@ export class MapContainer extends Component {
     console.log(this.state.showingInfoWindow)
     return (
       <Map
-        style={{
-          width: '80%',
-          height: '350%',
-          margin: '5px 500px 5px 100px',
-        }}
+        style={this.state.styling}
         google={this.props.google}
         zoom={8}
         //style={mapStyles}
@@ -141,7 +145,7 @@ export class MapContainer extends Component {
                 <Card.Text>
                   {this.state.selected.description}
                 </Card.Text>
-                <Button variant="primary" onClick={this.test}>
+                <Button variant="primary" onClick={() => this.sendToApplicationPage()}>
                   Apply
             </Button>
                 {currentUser && !currentJobPostSaved && <Button variant="primary" value="save" onClick={this.handleSave}>

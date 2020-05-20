@@ -221,6 +221,7 @@ class ViewJobPage extends Component {
               </div>
               <div id="job-description-wrapper">
 
+
                 {currentJobPost && (
                   <div id='job-description'>
                     <h4>Job Post</h4>
@@ -283,7 +284,10 @@ class ViewJobPage extends Component {
 
         </article>
         <div id="map" height="500px" width="100%">
-          {currentView === "2" && jobPosts && <MapContainer jobs={jobPosts} />}
+          {currentView === "2" && jobPosts && <MapContainer jobs={jobPosts} styling={{
+          width: '80%',
+          height: '350%',
+          margin: '5px 500px 5px 100px'}}/>}
         </div>
       </Fragment>
     )

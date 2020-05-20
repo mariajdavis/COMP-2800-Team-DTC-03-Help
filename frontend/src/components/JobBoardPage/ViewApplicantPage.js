@@ -115,6 +115,7 @@ class ViewApplicantPage extends Component {
                                             <li id="ex">View Applicants</li>
                                         </a>
                                     </div>
+
                                 </ul>
                                 <form id='searchbar'>
                                     <input
@@ -205,6 +206,7 @@ class ViewApplicantPage extends Component {
                                                 </div>
                                             )}
                                         </div>
+
                                     </div>
                                     </div>
 

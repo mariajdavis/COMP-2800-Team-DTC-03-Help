@@ -147,10 +147,15 @@ class OrgJobBoardPage extends Component {
           <div>
             <section id="content">
               <ul id="category">
-                <a id='ex'>
-                  <li id="ex">My Job Posts</li>
+                <div id='currentPage'>
+                  <a href="/orgJobBoard">
+                    <li class="hover">My Job Posts</li>
+                  </a>
+                </div>
+                <a href="/viewapplicants">
+                  <li id="ex">View Applicants</li>
                 </a>
-                <a href="/viewApplicants"><li class="onHover">View Applicants</li></a>
+
               </ul>
               <form id='searchbar'>
                 <input
@@ -272,7 +277,9 @@ class OrgJobBoardPage extends Component {
                         </div>
                       )}
 
+
                     </div>
+
                   </div>
                 </div>
 
