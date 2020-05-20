@@ -186,7 +186,7 @@ class ViewJobPage extends Component {
                   <ToggleButton onClick={this.handleJobView} value={2}>Map</ToggleButton>
                 </ToggleButtonGroup>
               </div>
-              <div>
+              <div id="indJobList">
                 {currentView === "1" && <ul className="list-group">
                   {jobPosts &&
                     jobPosts.map((jobPost, index) => (
@@ -222,9 +222,8 @@ class ViewJobPage extends Component {
                 </ul>}
               </div>
               {currentView === "1" && <div id="job-description-wrapper">
-                <div id='job-description'>
                   {currentJobPost && (
-                    <div>
+                    <div id='job-description'>
                       <h4>Job Post</h4>
                       <div>
                         <label>
@@ -279,8 +278,7 @@ class ViewJobPage extends Component {
                       {currentUser && this.state.currentJobPostSaved && <Button variant="info" value="unsave" onClick={this.handleSave}> Unsave </Button>}
                     </div>
                   )}
-                </div>
-              </div>}
+                </div>}
             </div>
           </div>
         </article>
