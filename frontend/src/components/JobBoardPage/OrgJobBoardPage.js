@@ -147,11 +147,11 @@ class OrgJobBoardPage extends Component {
             <section id="content">
               <ul id="category">
                 <div id='currentPage'>
-                  <a href="/jobposts">
-                    <li class="hover">Job Posts</li>
+                  <a href="/orgJobBoard">
+                    <li class="hover">My Job Posts</li>
                   </a>
                 </div>
-                <a href="/viewapplicantpage">
+                <a href="/viewapplicants">
                   <li id="ex">View Applicants</li>
                 </a>
               </ul>
