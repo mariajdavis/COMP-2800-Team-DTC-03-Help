@@ -260,19 +260,12 @@ class ViewJobPage extends Component {
                         </label>{" "}
                         {currentJobPost.contractLength}
                       </div>
-
-                      <Link
-                        to={"/jobPosts/" + currentJobPost.id}
-                        className="badge badge-warning"
-                      >
-                        Edit
-                                    </Link>
-                      <Link
+                      {currentUser && <Link
                         to={"/apply/" + currentJobPost.id}
                         className="badge badge-success"
                       >
                         Apply
-                                    </Link>
+                                    </Link>}
                       {currentUser && !this.state.currentJobPostSaved && <Button variant="info" value="save" onClick={this.handleSave}> Save </Button>}
                       {currentUser && this.state.currentJobPostSaved && <Button variant="info" value="unsave" onClick={this.handleSave}> Unsave </Button>}
                     </div>
