@@ -157,7 +157,6 @@ class ViewJobPage extends Component {
 
     return (
       <Fragment>
-
         <form id='searchbar'>
           <input
             type="text"
