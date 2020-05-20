@@ -123,7 +123,7 @@ export class MapContainer extends Component {
   }
 
   render() {
-    const { showingInfoWindow, activePosition, selected, currentUser, currentJobPostSaved } = this.state;
+    const { styling, showingInfoWindow, activePosition, selected, currentUser, currentJobPostSaved } = this.state;
     console.log("selected ");
     console.log(this.state.selected);
     console.log("activeposition ")
@@ -132,11 +132,7 @@ export class MapContainer extends Component {
     console.log(this.state.showingInfoWindow)
     return (
       <Map
-        style={{
-          width: '80%',
-          height: '60%',
-          margin: '5px 100px',
-        }}
+        style={styling}
         google={this.props.google}
         zoom={8}
         //style={mapStyles}
