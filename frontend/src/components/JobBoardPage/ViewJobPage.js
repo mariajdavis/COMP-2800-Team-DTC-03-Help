@@ -274,6 +274,12 @@ class ViewJobPage extends Component {
                     </label>{" "}
                     {currentJobPost.contractLength}
                   </div>
+                  <div>
+                    <label>
+                      <strong>Location:</strong>
+                    </label>{" "}
+                    {currentJobPost.location}
+                  </div>
 
                   <Link
                     to={"/jobPosts/" + currentJobPost.id}
@@ -295,7 +301,10 @@ class ViewJobPage extends Component {
           </div>
         </article>
         <div id="map" height="500px" width="100%">
-          {currentView === "2" && jobPosts && <MapContainer jobs={jobPosts} />}
+          {currentView === "2" && jobPosts && <MapContainer jobs={jobPosts} styling={{
+          width: '80%',
+          height: '350%',
+          margin: '5px 500px 5px 100px'}}/>}
         </div>
       </Fragment>
     )

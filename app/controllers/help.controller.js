@@ -23,7 +23,8 @@ exports.create = (req, res) => {
     startDate: req.body.startDate,
     orgID: req.body.orgID,
     lat: req.body.lat,
-    lng: req.body.lng
+    lng: req.body.lng,
+    location: req.body.location
   };
 
   // Save JobPost in the database

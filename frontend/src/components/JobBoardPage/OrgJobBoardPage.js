@@ -62,14 +62,14 @@ class OrgJobBoardPage extends Component {
         let orgJobList = []
         let i = 0;
         for (i = 0; i < response.data.length; i++) {
-            if (response.data[i].orgID == this.state.currentUser.id){
-                orgJobList.push(response.data[i])
-            }
+          if (response.data[i].orgID == this.state.currentUser.id) {
+            orgJobList.push(response.data[i])
+          }
         }
         this.setState({
           jobPosts: orgJobList
         });
-         console.log(this.state.jobPosts);
+        console.log(this.state.jobPosts);
       })
       .catch(e => {
         console.log(e);
@@ -139,18 +139,21 @@ class OrgJobBoardPage extends Component {
 
   render() {
     const { searchTitle, jobPosts, currentJobPost, currentIndex, currentUser } = this.state;
-    
+
     return (
       <div id="contentLayoutJobs">
         <div id="contentDiv">
           <div>
             <section id="content">
               <ul id="category">
-                <a id='ex'>
-                  <li id="ex">My Job Posts</li>
+                <div id='currentPage'>
+                  <a href="/jobposts">
+                    <li class="hover">Job Posts</li>
+                  </a>
+                </div>
+                <a href="/viewapplicantpage">
+                  <li id="ex">View Applicants</li>
                 </a>
-                <li>Apply</li>
-                <li>More</li>
               </ul>
               <form id='searchbar'>
                 <input
@@ -259,6 +262,13 @@ class OrgJobBoardPage extends Component {
                           {currentJobPost.contractLength}
                         </div>
 
+                        <div>
+                          <label>
+                            <strong>Location:</strong>
+                          </label>{" "}
+                          {currentJobPost.location}
+                        </div>
+
                         <Link
                           to={"/orgUpdateProfile/" + currentUser}
                           className="badge badge-warning"
@@ -268,9 +278,9 @@ class OrgJobBoardPage extends Component {
                         {currentUser && !this.state.currentJobPostSaved && <Button variant="info" value="save" onClick={this.handleSave}> Save </Button>}
                         {currentUser && this.state.currentJobPostSaved && <Button variant="info" value="unsave" onClick={this.handleSave}> Unsave </Button>}
                         <TwitterShareButton
-                        
+
                           url={'https://helpservices.herokuapp.com/jobPosts'}
-                          options={{text: this.createJobMessage(currentJobPost.title, currentJobPost.description, currentJobPost.jobType, currentJobPost.rate, currentJobPost.startDate, currentJobPost.contractLength)}}
+                          options={{ text: this.createJobMessage(currentJobPost.title, currentJobPost.description, currentJobPost.jobType, currentJobPost.rate, currentJobPost.startDate, currentJobPost.contractLength) }}
                         />
                       </div>
                     )}
