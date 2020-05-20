@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import AuthService from "../services/auth.service";
+import AuthService from "../../services/auth.service";
 import { isEmail } from "validator";
 import "bootstrap/dist/js/bootstrap.js";
-import "./Layouts/ContentLayout.css"
+import "../Layouts/ContentLayout.css";
+import "./login.css";
 
 
 
@@ -135,17 +136,25 @@ export default class logIn extends Component {
   }
 
   render() {
+    const radioBtnStyle = {
+      marginLeft: '5%'
+    }
+
     return (
       <div id="contentLayout">
         <div id="contentDiv">
         <div>
-        <div className="card">
+        <div id="login-background">
+          <div style={{display: 'flex', justifyContent: 'center'}}>
             <div >
-            <label class="btn btn-secondary">
-              <input type="radio" name="options" id="user" autoComplete="off" value="user" checked={this.state.loginType==="user"} onChange={this.onChangeLoginType} />Log In As Individual User</label>
-            <label class="btn btn-secondary">
-              <input type="radio" name="options" id="orgUser" autoComplete="off" value="orgUser" checked={this.state.loginType==="orgUser"} onChange={this.onChangeLoginType} />Log In As Organization</label>
-              </div>
+              <label class="btn btn-secondary">
+              <input class="m-2" type="radio" name="options" id="user" autoComplete="off" value="user" checked={this.state.loginType==="user"} onChange={this.onChangeLoginType} />Log In As Individual User</label>
+            </div>
+            <div style={radioBtnStyle}>
+              <label class="btn btn-secondary">
+              <input class="m-2" type="radio" name="options" id="orgUser" autoComplete="off" value="orgUser" checked={this.state.loginType==="orgUser"} onChange={this.onChangeLoginType} />Log In As Organization</label>
+            </div>
+          </div>
           <Form
             onSubmit={this.handleLogin}
             ref={c => {
