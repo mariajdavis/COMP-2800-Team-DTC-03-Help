@@ -141,8 +141,8 @@ export default class logIn extends Component {
     }
 
     return (
-      <div id="contentLayout">
-        <div id="contentDiv">
+      <div id="contentLayoutRegister">
+        <div id="contentDivRegister">
         <div>
         <div id="login-background">
           <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -212,6 +212,7 @@ export default class logIn extends Component {
               }}
             />
           </Form>
+          
           </div>
           </div>
         </div>

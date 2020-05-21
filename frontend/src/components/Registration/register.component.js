@@ -190,8 +190,8 @@ export default class Register extends Component {
     }
 
     return (
-      <div id="contentLayout">
-        <div id="contentDiv">
+      <div id="contentLayoutRegister">
+        <div id="contentDivRegister">
           <div>
         <div id="registration-background">
           <Form
@@ -201,8 +201,8 @@ export default class Register extends Component {
             }}
           >
             {!this.state.successful && (
-              <div>
-                <div style={{display: 'flex', justifyContent: 'center'}}>
+              <div id="addJobAreaRegister">
+                <div id="toggleDiv" style={{display: 'flex', justifyContent: 'center'}}>
                   <div>
                     <label class="btn btn-secondary">
                       <input class="m-2" type="radio" name="options" id="user" autocomplete="off" value="user" checked={this.state.registerType==="user"} onChange={this.handleRegisterType} />Register As Individual User</label>
@@ -212,7 +212,7 @@ export default class Register extends Component {
                       <input class="m-2" type="radio" name="options" id="orgUser" autocomplete="off" value="orgUser" checked={this.state.registerType==="orgUser"} onChange={this.handleRegisterType} />Register As Organization</label>
                   </div>
                 </div>
-                <div className="form-group">
+                <div id="form1" className="form-group">
                   <label htmlFor="username">Username</label>
                   <Input
                     type="text"
@@ -224,7 +224,7 @@ export default class Register extends Component {
                   />
                 </div>
 
-                <div className="form-group">
+                <div id="form2" className="form-group">
                   <label htmlFor="fullName">Full Name</label>
                   <Input
                     type="text"
@@ -234,7 +234,7 @@ export default class Register extends Component {
                     onChange={this.onChangeFullName}
                   />
                 </div>
-                    <div className="form-group">
+                    <div id="form3" className="form-group">
                   <label htmlFor="phoneNumber">Phone Number</label>
                   <Input
                     type="text"
@@ -245,7 +245,7 @@ export default class Register extends Component {
                   />
                 </div>
 
-                <div className="form-group">
+                <div id="form4" className="form-group">
                   <label htmlFor="email">Email</label>
                   <Input
                     type="text"
@@ -257,7 +257,7 @@ export default class Register extends Component {
                   />
                 </div>
 
-                    <div className="form-group">
+                    <div id="form5" className="form-group">
                       <label htmlFor="password">Password</label>
                       <Input
                         type="password"
@@ -269,7 +269,7 @@ export default class Register extends Component {
                       />
                     </div>
 
-                    <div className="form-group">
+                    <div id="signup" className="form-group">
                       <button className="btn btn-primary btn-block" style={{ margin: '0px' }}>Sign Up</button>
                     </div>
                   </div>
