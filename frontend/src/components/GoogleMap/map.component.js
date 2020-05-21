@@ -222,7 +222,7 @@ export class MapContainer extends Component {
             <Card style={{ width: '18rem' }}>
               <Card.Body>
                 <Card.Title>{this.state.selected.title}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">some text</Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-muted">{this.state.selected.jobType}</Card.Subtitle>
                 <Card.Text>
                   {this.state.selected.description}
                 </Card.Text>

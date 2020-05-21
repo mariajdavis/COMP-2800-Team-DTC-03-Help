@@ -168,7 +168,7 @@ class ViewApplicantPage extends Component {
                                                             key={index}
                                                             style={{ color: 'black' }}
                                                         >
-                                                            {applicant.jobPost.title + "    -    " + applicant.user.username}
+                                                            {applicant.jobPost.title + "    -    " + applicant.user.fullName}
                                                         </li>
                                                     ))}
                                             </ul>
@@ -189,13 +189,25 @@ class ViewApplicantPage extends Component {
                                                         <label>
                                                             <h4>Applicant:</h4>
                                                         </label>{" "}
-                                                        {currentApplicant.user.username}
+                                                        {currentApplicant.user.fullName}
                                                     </div>
                                                     <div>
                                                         <label>
-                                                            <h4>Contact Information:</h4>
+                                                            <h4>Comments:</h4>
+                                                        </label>{" "}
+                                                        {currentApplicant.comments}
+                                                    </div>
+                                                    <div>
+                                                        <label>
+                                                            <h4>Email:</h4>
                                                         </label>{" "}
                                                         {currentApplicant.user.email}
+                                                    </div>
+                                                    <div>
+                                                        <label>
+                                                            <h4>Phone Number:</h4>
+                                                        </label>{" "}
+                                                        {currentApplicant.user.phoneNumber}
                                                     </div>
                                                     <a href={currentApplicant.resumePath} >View Resume</a>
                                                     <DropdownButton id="dropdown-basic-button" title="Application Status">
