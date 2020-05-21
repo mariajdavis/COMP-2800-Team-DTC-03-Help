@@ -17,12 +17,11 @@
     position: absolute;
     display: grid;
     width: 80vw;
-    top:100px;
     bottom: 100px;
     margin-left:10vw;
     margin-right:10vw;
     vertical-align: center;
-    top:20%;
+    top:calc(10vh + 75px);
     margin-bottom: 5%;
     overflow-x:hidden;
     grid-template-rows: 1fr;
@@ -30,6 +29,7 @@
     grid-template-areas:
         "contentArea"
 }
+
 
 #contentDiv {
     position: absolute;
@@ -52,6 +52,30 @@
 }
 
 #contentLayoutJobs {
+    position: absolute;
+    display: grid;
+    width: 100vw;
+    top:100px;
+    bottom: 100px;
+    overflow-x:hidden;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "contentArea"
+}
+
+#contentDivRegister {
+    position: absolute;
+    font-family:Jaldi;
+    width: 80%;
+    height: 100%;
+    margin-left:10%;
+    margin-right:auto;
+    top: 20px;
+    bottom: 40px;
+}
+
+#contentLayoutRegister {
     position: absolute;
     display: grid;
     width: 100vw;
@@ -110,6 +134,25 @@
     grid-gap: 10px;
     
 }
+
+#addJobAreaRegister {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    grid-template-areas:
+    "togglediv togglediv"
+    "form1 form2"
+    "form3 form4"
+    "form5 signup"
+}
+
+#toggleDiv{grid-area:togglediv}
+#form1{grid-area:form1}
+#form2{grid-area:form2}
+#form3{grid-area:form3}
+#form4{grid-area:form4}
+#form5{grid-area:form5}
+#signup{grid-area:signup}
 
 #tagSelect {
     display:flex;
