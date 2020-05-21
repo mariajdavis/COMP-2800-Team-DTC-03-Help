@@ -128,7 +128,7 @@ ul#bottom-display li {
     line-height: 50px;
 }
 .line:first-child {
-    animation: slide 12s infinite;
+    animation: slide 20s infinite;
 }
 
 @keyframes slide {
