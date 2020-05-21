@@ -258,6 +258,7 @@ img {
         display: grid;
         grid-template-columns: 1fr 2fr;
         grid-template-rows: 45px 1fr;
+        height: 20em;
         grid-template-areas:
             "headTwo headTwo"
             "imgTwo paraTwo" 
