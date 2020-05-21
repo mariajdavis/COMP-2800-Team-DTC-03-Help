@@ -109,8 +109,6 @@ ul#bottom-display li {
     }
 }
 
-
-
 /* announcement styling (animation) */
 .animated-text {
     border: 3px double rgb(0, 116, 183);
@@ -124,7 +122,7 @@ ul#bottom-display li {
 .line {
     text-transform: uppercase;
     text-align: center;
-    width: 30vw;
+    width: 90vw;
     margin: auto;
     font-size: 30px;
     line-height: 50px;
