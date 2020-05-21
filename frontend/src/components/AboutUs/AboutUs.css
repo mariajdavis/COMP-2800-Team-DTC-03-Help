@@ -21,7 +21,7 @@ button {
 
 .name-container {
     background-image: url(../../img/category.png);
-    background-size: cover;
+    background-size: 100% 100%;
     display: flex;
     justify-content: center;
 }
@@ -30,7 +30,10 @@ button {
     font-family: Racing Sans One;
     color: white;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    font-size: 2.2vw;
+    font-size: 1.5em;
+}
+#ethan {
+    font-size: 1.2em;
 }
 
 #aboutUs {
