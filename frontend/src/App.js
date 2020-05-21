@@ -6,8 +6,8 @@ import AddJobPost from "./components/add-jobPost.component";
 import JobPost from "./components/jobPost.component";
 import Apply from "./components/ApplyPage/apply.component";
 import JobPostsList from "./components/JobBoardPage/JobBoardPage";
-import Register from "./components/register.component";
-import LogIn from "./components/logIn.component";
+import Register from "./components/Registration/register.component";
+import LogIn from "./components/Login/logIn.component";
 import Bodyframe from './components/Bodyframe/Bodyframe.js';
 import Footer from './components/Footer/Footer.js';
 import UserProfile from "./components/user-profile.component";
@@ -17,7 +17,7 @@ import AuthService from "./services/auth.service";
 import AboutUs from './components/AboutUs/aboutUs.component';
 import SavedJobPosts from './components/savedJobs.component';
 import EditUserProfile from './components/editUserProfile.component';
-
+import OrgProfile from './components/org-profile.component'
 import OrgJobBoard from './components/JobBoardPage/OrgJobBoardPage.js'
 
 import ViewApplicants from './components/JobBoardPage/ViewApplicantPage';
@@ -63,13 +63,14 @@ class App extends Component {
     return (
       <Router>
         <Navbar style={{ backgroundColor: "#2743A5" }} expand="sm">
-          <Navbar.Brand className="navBrand" id="navBrand" style={{ fontFamily: "Racing Sans One", color: "white", fontSize: "30px" }}>Help!</Navbar.Brand>
+          <Navbar.Brand className="navBrand" id="navBrand" style={{ fontFamily: "Racing Sans One", color: "white", fontSize: "30px" }}>help!</Navbar.Brand>
           <Navbar.Toggle id="collapseButton" aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               {!currentUser &&! currentOrgUser && <Nav.Link id="navLink" href="/register">Register</Nav.Link>}
               {!currentOrgUser && <Nav.Link id="navLink" href="/jobPosts">Job Board</Nav.Link>}
               {currentOrgUser && <Nav.Link id="navLink" href="/orgJobBoard">Job Board</Nav.Link>}
+              {currentOrgUser && <Nav.Link id="navLink" href="/orgProfile">My Profile</Nav.Link>}
               {currentOrgUser && <Nav.Link id="navLink" href="/add">Add Job</Nav.Link>}
               {currentUser && <Nav.Link id="navLink" href="/userProfile">My Profile</Nav.Link>}
               {currentUser && <Nav.Link id="navLink" href="/savedJobs">Saved Jobs</Nav.Link>}
@@ -92,7 +93,7 @@ class App extends Component {
           <Route path="/jobPosts/:id" component={JobPost} />
           <Route path="/userProfile" component={UserProfile} />
           <Route path="/aboutUs" component={AboutUs} />
-
+          <Route path="/orgProfile" component={OrgProfile}/>
           <Route path="/orgJobBoard" component={OrgJobBoard}/>
 
           <Route exact path="/viewApplicants" component={ViewApplicants} /> 

@@ -49,8 +49,8 @@ class mainBody extends Component {
                         <div class='animated-text'>
                             <div class='line'>Announcement</div>
                             <div class='line'>Section</div>
-                            <div class='line'>Help! App</div>
-                            <div class='line'>DTC Team03</div>
+                            <div class='line'>help! App</div>
+                            <div class='line'>DTC Team 3</div>
                             <div class='line'>Covid 19</div>
                             <div class='line'>Year 2020</div>
                         </div>

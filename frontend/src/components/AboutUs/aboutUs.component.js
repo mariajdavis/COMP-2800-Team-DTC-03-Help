@@ -36,7 +36,7 @@ export default class AboutUs extends Component {
                 <div id="aboutDiv">
                     <div id="headDiv">
                         <h2 id="aboutHead">About the help! team:</h2>
-                        <p id="aboutPara">Covid-19 pandemic has brought many challenges to people's lives and we are currently living in a time that needs each other's helps more than ever. We, the <button onClick={this.eggHandle}>help!</button> app team, have recognized that issue and wanted to provide some aids to the society by connecting people who can help. In our help! app, people will be able to post and apply for works that are related to solving the problems that are caused by the pandemic.</p>
+                        <p id="aboutPara">Covid-19 pandemic has brought many challenges to people's lives and we are currently living in a time where we need each other's help more than ever. We, the <button onClick={this.eggHandle}>help!</button> app team, have recognized this issue and want to aid society by connecting people who can help each other. In our help! app, people will be able to post and apply for positions related to solving the problems that are caused by the pandemic.</p>
                     </div>
                     <div id="introductions">
                         <div class="items" id="itemOne">
@@ -46,7 +46,7 @@ export default class AboutUs extends Component {
                         </div>
                         <div class="items" id="itemTwo">
                             <h3 class="names">Chase Lu</h3>
-                            <p class="selfIntroduction"><span> yo</span></p>
+                            <p class="selfIntroduction"><span>I am second term computing student at BCIT. I love gaming and software development. </span></p>
                             <img class="selfImg" src={chase}></img>
                         </div>
                         <div class="items" id="itemThree">

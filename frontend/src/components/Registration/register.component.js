@@ -3,9 +3,10 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
-import "./Layouts/ContentLayout.css"
+import "../Layouts/ContentLayout.css"
+import "./registration.css"
 
-import AuthService from "../services/auth.service";
+import AuthService from "../../services/auth.service";
 
 const required = value => {
   if (!value) {
@@ -110,7 +111,7 @@ export default class Register extends Component {
 
   componentDidMount(message, successful) {
     this.setState({
-      meesage: message,
+      message: message,
       successful: successful
     });
   }
@@ -184,36 +185,44 @@ export default class Register extends Component {
   }
 
   render() {
+    const radioBtnStyle = {
+      marginLeft: '5%'
+    }
+
     return (
       <div id="contentLayout">
         <div id="contentDiv">
           <div>
-            <div className="card">
-              <Form
-                onSubmit={this.handleRegister}
-                ref={c => {
-                  this.form = c;
-                }}
-              >
-                {!this.state.successful && (
+        <div id="registration-background">
+          <Form
+            onSubmit={this.handleRegister}
+            ref={c => {
+              this.form = c;
+            }}
+          >
+            {!this.state.successful && (
+              <div>
+                <div style={{display: 'flex', justifyContent: 'center'}}>
                   <div>
-                    <div style={{ display: 'flex', justifyContent: 'center', padding: '5px' }}>
-                      <label class="btn btn-secondary">
-                        <input class="m-2" type="radio" name="options" id="user" autocomplete="off" value="user" checked={this.state.registerType === "user"} onChange={this.handleRegisterType} />Register As Individual User</label>
-                      <label class="btn btn-secondary" style={{ margin: '0px !important', padding: '0px !important' }}>
-                        <input class="m-2" type="radio" name="options" id="orgUser" autocomplete="off" value="orgUser" checked={this.state.registerType === "orgUser"} onChange={this.handleRegisterType} />Register As Organization</label>
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="username">Username</label>
-                      <Input
-                        type="text"
-                        className="form-control"
-                        name="username"
-                        value={this.state.username}
-                        onChange={this.onChangeUsername}
-                        validations={[required, vusername]}
-                      />
-                    </div>
+                    <label class="btn btn-secondary">
+                      <input class="m-2" type="radio" name="options" id="user" autocomplete="off" value="user" checked={this.state.registerType==="user"} onChange={this.handleRegisterType} />Register As Individual User</label>
+                  </div>
+                  <div style={radioBtnStyle}>
+                  <label class="btn btn-secondary">
+                      <input class="m-2" type="radio" name="options" id="orgUser" autocomplete="off" value="orgUser" checked={this.state.registerType==="orgUser"} onChange={this.handleRegisterType} />Register As Organization</label>
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="username">Username</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="username"
+                    value={this.state.username}
+                    onChange={this.onChangeUsername}
+                    validations={[required, vusername]}
+                  />
+                </div>
 
                 <div className="form-group">
                   <label htmlFor="fullName">Full Name</label>

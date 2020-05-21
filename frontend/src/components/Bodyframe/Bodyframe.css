@@ -90,7 +90,7 @@ ul#bottom-display {
     position: relative;
     bottom: 0px;
     overflow:hidden;
-    animation: slide-left 40s infinite;
+    animation: slide-left 35s infinite;
 }
 
 ul#bottom-display li {
@@ -105,7 +105,7 @@ ul#bottom-display li {
     }
   
     to {
-      margin-left: -100%;
+      margin-left: -200%;
     }
 }
 
