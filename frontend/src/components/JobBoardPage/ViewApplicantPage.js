@@ -178,22 +178,22 @@ class ViewApplicantPage extends Component {
 
                                             {currentApplicant && (
                                                 <div id='job-description'>
-                                                    <h4>Applicant</h4>
+                                                    <h2>Applicant</h2>
                                                     <div>
                                                         <label>
-                                                            <strong>Position:</strong>
+                                                            <h4>Position:</h4>
                                                         </label>{" "}
-                                                        {currentApplicant.title}
+                                                        {currentApplicant.jobPost.title}
                                                     </div>
                                                     <div>
                                                         <label>
-                                                            <strong>Applicant:</strong>
+                                                            <h4>Applicant:</h4>
                                                         </label>{" "}
                                                         {currentApplicant.user.username}
                                                     </div>
                                                     <div>
                                                         <label>
-                                                            <strong>Contact Information:</strong>
+                                                            <h4>Contact Information:</h4>
                                                         </label>{" "}
                                                         {currentApplicant.user.email}
                                                     </div>
