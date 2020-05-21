@@ -40,22 +40,30 @@ export default class AboutUs extends Component {
                     </div>
                     <div id="introductions">
                         <div class="items" id="itemOne">
-                            <h3 class="names">Maria Davis</h3>
+                            <div class="name-container">
+                                <p class="names">Maria Davis</p>
+                            </div>
                             <p class="selfIntroduction"><span>I am a second term student in BCIT's CST program. I love designing apps to bring people together and make life easier. I hope help! assists our communities in overcoming the COVID-19 crisis.</span></p>
                             <img class="selfImg" src={beach}></img>
                         </div>
                         <div class="items" id="itemTwo">
-                            <h3 class="names">Chase Lu</h3>
-                            <p class="selfIntroduction"><span> yo</span></p>
+                            <div class="name-container">
+                                <p class="names">Chase Lu</p>
+                            </div>
+                            <p class="selfIntroduction"><span>I am a second term student in BCIT's CST program. I love designing apps to bring people together and make life easier. I hope help! assists our communities in overcoming the COVID-19 crisis.</span></p>
                             <img class="selfImg" src={chase}></img>
                         </div>
                         <div class="items" id="itemThree">
-                            <h3 class="names">Geun Uoo Kim</h3>
+                            <div class="name-container">
+                                <p class="names">Geun Uoo Kim</p>
+                            </div>
                             <p class="selfIntroduction"><span>I started BCIT CST program in Winter 2020, and I chose this program because technology has always been my foremost interest. I also like to go hiking and chill.</span></p>
                             <img class="selfImg" src={farmer}></img>
                         </div>
                         <div class="items" id="itemFour">
-                            <h3 class="names">Ethan Sadowski</h3>
+                            <div class="name-container">
+                                <p id="ethan" class="names">Ethan Sadowski</p>
+                            </div>
                             <p class="selfIntroduction"><span>I am a first semester student in BCIT's CST Program, I chose to enroll at BCIT because I have always had an interest in computing and I wanted to gain some more applied skills.</span></p>
                             <img class="selfImg" src={Catepillar}></img>
                         </div>

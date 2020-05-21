@@ -19,9 +19,18 @@ button {
         "placeThree placeFour";
 }
 
-.names {
+.name-container {
     background-image: url(../../img/category.png);
     background-size: cover;
+    display: flex;
+    justify-content: center;
+}
+
+.names {
+    font-family: Racing Sans One;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-size: 2.2vw;
 }
 
 #aboutUs {
@@ -187,7 +196,6 @@ img {
 }
 
 .selfIntroduction span {
-    position: relative;
     top: 0px;
     transition: 3.3s;
     transform: translate(-50%, -50%);
@@ -214,10 +222,6 @@ img {
     animation-fill-mode: forwards;
 }
 
-@media {
-    
-}
-
 @keyframes slideDown {
     0% {
         top: -240px;
@@ -226,4 +230,72 @@ img {
         top: 0px;
     }
 }
+ 
+/* mobile view */
+@media screen and (max-width: 795px) {
+    #introductions {
+        width: 100vw;
+        margin: 5px;
+        display: grid;
+        grid-template-areas: 
+            "placeOne" 
+            "placeTwo"
+            "placeThree" 
+            "placeFour";
+    }
 
+    #itemOne {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: 35px 1fr;
+        height: 20em;
+        grid-template-areas:
+            "headOne headOne"
+            "imgOne paraOne" 
+    }
+    
+    #itemTwo {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: 45px 1fr;
+        grid-template-areas:
+            "headTwo headTwo"
+            "imgTwo paraTwo" 
+    }
+    
+    #itemThree {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: 45px 1fr;
+        height: 20em;
+        grid-template-areas:
+            "headThree headThree"
+            "imgThree paraThree" 
+    }
+    
+    #itemFour {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: 45px 1fr;
+        height: 20em;
+        grid-template-areas:
+            "headFour headFour"
+            "imgFour paraFour";
+    }
+
+    .selfImg {
+        width: 30vw;
+    }
+
+    .names {
+        font-size: 5vw;
+    }
+    
+    #ethan {
+        font-size: 4vw;
+    }
+
+    .selfIntroduction {
+        font-size: 100%;
+    }
+}
