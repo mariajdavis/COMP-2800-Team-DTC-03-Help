@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AuthService from "./../services/auth.service";
 import UserDataService from "./../services/user.service";
 import "./Layouts/ContentLayout.css"
+import "./profile.css";
 import { createBrowserHistory } from 'history';
 export const browserHistory = createBrowserHistory();
 
@@ -92,7 +93,7 @@ export default class EditUserProfile extends Component {
 
     updateUser() {
         UserDataService.updateUser(
-            this.state.currentUser.id, 
+            this.state.currentUser.id,
             this.state.currentUser.phoneNumber,
             this.state.currentUser.email,
             this.state.currentUser.fullName
@@ -117,12 +118,12 @@ export default class EditUserProfile extends Component {
             <div id="contentLayoutAddJob">
                 <div id="contentDiv">
 
-                    <div className="card">
+                    <div id="profile-edit-background">
                         {currentUser ? (
                             <div>
-                                <h4>Update Profile</h4>
+                                <h3 id="edit-profile-tite">Update Profile</h3>
                                 <div>
-                                    <form id="addJobArea">
+                                    <form id="edit-profile-form">
 
                                         <div className="form-group">
                                             <label htmlFor="fullName">Full Name</label>
@@ -161,6 +162,7 @@ export default class EditUserProfile extends Component {
 
                                         <button
                                             type="submit"
+                                            id="update-btn"
                                             className="badge badge-success"
                                             onClick={this.updateUser()}
                                         >
