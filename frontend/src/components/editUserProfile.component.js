@@ -3,6 +3,8 @@ import AuthService from "./../services/auth.service";
 import UserDataService from "./../services/user.service";
 import "./Layouts/ContentLayout.css"
 import "./profile.css";
+import { createBrowserHistory } from 'history';
+export const browserHistory = createBrowserHistory();
 
 export default class EditUserProfile extends Component {
     constructor(props) {
@@ -24,7 +26,8 @@ export default class EditUserProfile extends Component {
                 password: "",
                 createdAt: "",
                 updatedAt: ""
-            },
+              },
+              mounted: false
         };
     }
 
@@ -32,6 +35,13 @@ export default class EditUserProfile extends Component {
         const user = AuthService.getCurrentUser();
         this.retrieveUserInfo(user.id);
     }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if ( this.state.mounted ) {
+          return false;
+        }
+        return true;
+      }
 
     retrieveUserInfo(id) {
 
@@ -82,24 +92,23 @@ export default class EditUserProfile extends Component {
     }
 
     updateUser() {
-
         UserDataService.updateUser(
             this.state.currentUser.id,
             this.state.currentUser.phoneNumber,
             this.state.currentUser.email,
             this.state.currentUser.fullName
         ).then(response => {
-            // this.returnToUserProfile();
+            console.log(response ? "success" : "fail");
+            browserHistory.push('/userProfile');
         }).catch(e => {
             console.log(e);
         });
 
-        this.props.history.push('/userProfile')
+       //this.props.history.push('/userProfile');
     }
 
     returnToUserProfile() {
-        // window.location.assign('/userProfile');
-        this.props.history.push('/userProfile')
+        // this.props.history.push('/userProfile');
     }
 
     render() {
@@ -155,7 +164,7 @@ export default class EditUserProfile extends Component {
                                             type="submit"
                                             id="update-btn"
                                             className="badge badge-success"
-                                            onClick={this.updateUser}
+                                            onClick={this.updateUser()}
                                         >
                                             Update
                                         </button>

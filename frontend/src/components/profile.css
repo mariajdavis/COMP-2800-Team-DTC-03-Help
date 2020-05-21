@@ -1,7 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Jaldi|Racing+Sans+One&display=swap');
 
 /* View Profile Page */
+div#profile-container {
+    display: grid;
+    grid-template-areas: 
+        "heading"
+        "ProfileContent";
+}
+
 div#liquidHeading {
+    grid-area: heading;
     position: relative;
     background-color: rgb(144, 167, 249);
     background-image: url(./../img/liquid.gif);
@@ -19,8 +27,11 @@ div#liquidHeading {
     border-radius: 10vw;
 }
 
-h3#myProfile {
-    margin: auto;
+p#myProfile {
+    font-family: Racing Sans One;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-size: 2vw;
 }
 
 img#profileImg {
@@ -88,7 +99,6 @@ div#resume-content {
 #userProfileBackground {
     background-image: url('./../img/profile_bg.png');
     background-size: 100% 100%;
-    position: absolute;
     top: 0px;
     display: grid;
     font-family:Jaldi;
@@ -102,7 +112,7 @@ div#resume-content {
 }
 
 #contentProfile {
-    position: absolute;
+    grid-area: ProfileContent;
     display: grid;
     width: 96vw;
     top: 13vw;

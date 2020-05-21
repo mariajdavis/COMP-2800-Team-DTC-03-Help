@@ -214,6 +214,10 @@ img {
     animation-fill-mode: forwards;
 }
 
+@media {
+    
+}
+
 @keyframes slideDown {
     0% {
         top: -240px;

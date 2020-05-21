@@ -18,10 +18,10 @@ exports.signup = (req, res) => {
         phoneNumber: req.body.phoneNumber
     })
     if (!user) {
-            return res.status(404).send({message: "Error in creating User."});
+            return res.status(404).send({message: "Registration failed. Please try again!"});
         }
     return res.status(200).send({
-        message: "Accoung Registration Successful."
+        message: "Account registration successful! Please log in."
     })
     
     
@@ -35,10 +35,10 @@ exports.orgsignup = (req, res) => {
         password: bcrypt.hashSync(req.body.password, 8)
     })
     if (!orguser) {
-        return res.status(404).send({message: "Error in creating User."});
+        return res.status(404).send({message: "Registration failed. Please try again!"});
     }
     return res.status(200).send({
-        message: "Accoung Registration Successful."
+        message: "Account registration successful! Please log in."
     })
 };
 

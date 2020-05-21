@@ -43,9 +43,9 @@ export default class Profile extends Component {
     const { currentUser} = this.state;
 
     return (
-      <div>
+      <div id="profile-container">
         <div id="liquidHeading">
-          <h3 id="myProfile">My Profile</h3>
+          <p id="myProfile">My Profile</p>
         </div>
         <div id="contentProfile">
           <div id="userProfileBackground">
