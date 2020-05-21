@@ -63,7 +63,7 @@ class App extends Component {
     return (
       <Router>
         <Navbar style={{ backgroundColor: "#2743A5" }} expand="sm">
-          <Navbar.Brand className="navBrand" id="navBrand" style={{ fontFamily: "Racing Sans One", color: "white", fontSize: "30px" }}>Help!</Navbar.Brand>
+          <Navbar.Brand className="navBrand" id="navBrand" style={{ fontFamily: "Racing Sans One", color: "white", fontSize: "30px" }}>help!</Navbar.Brand>
           <Navbar.Toggle id="collapseButton" aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
