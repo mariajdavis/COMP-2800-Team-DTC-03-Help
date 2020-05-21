@@ -115,7 +115,7 @@ export default class EditUserProfile extends Component {
         const { currentUser } = this.state;
 
         return (
-            <div id="contentLayoutAddJob">
+            <div id="contentLayoutAddJobFix">
                 <div id="contentDiv">
 
                     <div id="profile-edit-background">

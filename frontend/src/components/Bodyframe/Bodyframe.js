@@ -63,7 +63,7 @@ class mainBody extends Component {
                             {jobPosts &&
                                 jobPosts.map((jobPost, index) => (
                                     <li
-                                        id={jobPost.title + jobPost.id}
+                                        id={jobPost.id}
                                         key={index}
                                         style={{ color: 'black' }}
                                     >

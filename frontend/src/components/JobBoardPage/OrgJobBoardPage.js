@@ -262,6 +262,7 @@ class OrgJobBoardPage extends Component {
                             Edit
                                     </Link>
 
+
                           <FacebookProvider appId="702487117185786">
                             <Share quote={this.createJobMessage(currentJobPost.title, currentJobPost.description, currentJobPost.jobType, currentJobPost.rate, currentJobPost.startDate, currentJobPost.contractLength)} href="https://helpservices.herokuapp.com/jobPosts">
                               {({ handleClick, loading }) => (
