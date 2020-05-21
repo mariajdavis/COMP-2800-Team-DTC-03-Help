@@ -38,6 +38,39 @@ div#main-info {
     grid-area: MainInfo;
     background-color: rgba(255, 255, 255, 0.738);
     border-radius: 1vw;
+    display: grid;
+    grid-template-areas: 
+        "info1"
+        "info2"
+        "info3"
+        "button";
+}
+
+div#main-inf:nth-child(1) {
+    grid-area: info1;
+}
+div#main-inf:nth-child(2) {
+    grid-area: info2;
+}
+div#main-inf:nth-child(3) {
+    grid-area: info3;
+}
+
+#edit-btn {
+    grid-area: button;
+    height: 10%;
+    width: 40%;
+    display: flex;
+    justify-self: right;
+    margin: 5%;
+}
+
+div#main-info {
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: 
+        "info1 button"
+        "info2 button"
+        "info3 button";
 }
 
 div#my-resume {

@@ -63,6 +63,7 @@ export default class Profile extends Component {
               <Link
                           to={"/editUserProfile/"}
                           className="badge badge-warning"
+                          id='edit-btn'
                         >
                           Edit
                                     </Link>
