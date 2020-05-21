@@ -287,7 +287,15 @@ class SavedJobs extends Component {
                   </div>
                 </article>
                 <div id="map" height="500px" width="100%">
-                  {currentView === "2" && jobPosts && <MapContainer jobs={jobPosts} />}
+                  {currentView === "2" && jobPosts &&
+                    <MapContainer
+                      jobs={jobPosts}
+                      styling={{
+                        width: '80%',
+                        height: '300%',
+                        margin: '5px 100px'
+                      }}
+                    />}
                 </div>
               </section>
             </div>
