@@ -13,7 +13,27 @@
         "contentArea"
 }
 
+#addJobWrapper {
+    overflow-x:hidden;
+}
+
 #contentLayoutAddJob {
+    position: absolute;
+    display: grid;
+    width: 100vw;
+    bottom: 100px;
+    margin-left:10vw;
+    margin-right:10vw;
+    vertical-align: center;
+    top:calc(10vh + 75px);
+    margin-bottom: 5%;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "contentArea"
+}
+
+#contentLayoutAddJobFix {
     position: absolute;
     display: grid;
     width: 80vw;
