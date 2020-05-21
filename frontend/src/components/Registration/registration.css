@@ -9,5 +9,5 @@ input#user, input#orgUser {
 }
 
 #contentLayout {
-    overflow: scroll;
+    overflow-x: hidden;
 }
