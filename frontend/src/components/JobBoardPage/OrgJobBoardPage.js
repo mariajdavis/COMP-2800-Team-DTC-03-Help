@@ -262,11 +262,7 @@ class OrgJobBoardPage extends Component {
                             Edit
                                     </Link>
 
-                          <TwitterShareButton
-                            style={{width: '20vw'}}
-                            url={'https://helpservices.herokuapp.com/jobPosts'}
-                            options={{ text: this.createJobMessage(currentJobPost.title, currentJobPost.description, currentJobPost.jobType, currentJobPost.rate, currentJobPost.startDate, currentJobPost.contractLength) }}
-                          />
+
                           <FacebookProvider appId="702487117185786">
                             <Share quote={this.createJobMessage(currentJobPost.title, currentJobPost.description, currentJobPost.jobType, currentJobPost.rate, currentJobPost.startDate, currentJobPost.contractLength)} href="https://helpservices.herokuapp.com/jobPosts">
                               {({ handleClick, loading }) => (
@@ -274,6 +270,11 @@ class OrgJobBoardPage extends Component {
                               )}
                             </Share>
                           </FacebookProvider>
+                          <TwitterShareButton 
+                            
+                            url={'https://helpservices.herokuapp.com/jobPosts'}
+                            options={{ text: this.createJobMessage(currentJobPost.title, currentJobPost.description, currentJobPost.jobType, currentJobPost.rate, currentJobPost.startDate, currentJobPost.contractLength) }}
+                          />
                         </div>
                       )}
 
