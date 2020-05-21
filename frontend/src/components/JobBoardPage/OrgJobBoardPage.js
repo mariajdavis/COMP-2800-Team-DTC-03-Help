@@ -263,7 +263,7 @@ class OrgJobBoardPage extends Component {
                                     </Link>
 
                           <TwitterShareButton
-
+                            style={{width: '20vw'}}
                             url={'https://helpservices.herokuapp.com/jobPosts'}
                             options={{ text: this.createJobMessage(currentJobPost.title, currentJobPost.description, currentJobPost.jobType, currentJobPost.rate, currentJobPost.startDate, currentJobPost.contractLength) }}
                           />
