@@ -11,7 +11,7 @@ export class MapContainer extends Component {
     super(props);
     this.handleSave = this.handleSave.bind(this);
     this.sendToApplicationPage = this.sendToApplicationPage.bind(this);
-
+    this.onOptionsClick = this.onOptionsClick.bind(this);
     this.state = {
       // stores: [{lat: 47.49855629475769, lng: -122.14184416996333},
       //         {latitude: 47.359423, longitude: -122.021071},
@@ -26,34 +26,82 @@ export class MapContainer extends Component {
       activePosition: null,
       currentUser: AuthService.getCurrentUser(),
       currentJobPostSaved: true,
-      styling: props.styling
+      styling: props.styling,
+      markerCoords: null,
+      showingOptionsWindow: false,
+      selectedMultiple: {},
     }
-
-    console.log(props)
   }
-  componentDidUpdate(prevProps, prevState, snapshot) { }
+  componentDidMount() {
+    let coords = {};
+    for (let i = 0; i < this.state.jobs.length; i++) {
+      let found = false;
+      let j = 0;
+      if (coords[this.concatCoords(this.state.jobs[i])]) {
+        coords[this.concatCoords(this.state.jobs[i])]++
+      }
+      else {
+        coords[this.concatCoords(this.state.jobs[i])] = 1;
+      }
+    }
+    this.setState({
+      markerCoords: coords
+    })
+    console.log("coords");
+    console.log(coords);
+    console.log(this.state.markerCoords);
+  }
+
+  concatCoords(jobPost) {
+    return jobPost.lat.toString().concat("+", jobPost.lng.toString());
+  }
 
   handleSave(e) {
     if (e.target.value === "save") {
       JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.selected.id, save: true })
       this.setState({ currentJobPostSaved: true });
-      console.log("set")
     }
     else {
       JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.selected.id, save: false })
       this.setState({ currentJobPostSaved: false });
-      console.log("set2")
     }
   }
 
   onMarkerClick = (jobPost) => {
+    if (this.state.markerCoords[this.concatCoords(jobPost.position)] > 1) {
+      let sameCoordsJobs = [];
+      for (let i = 0; i < this.state.jobs.length; i++) {
+        if (this.state.jobs[i].lat == jobPost.position.lat && this.state.jobs[i].lng == jobPost.position.lng) {
+          sameCoordsJobs.push(this.state.jobs[i]);
+        }
+      }
+      this.setState({
+        activePosition: {
+          lat: jobPost.position.lat,
+          lng: jobPost.position.lng
+        },
+        showingOptionsWindow: true,
+        selectedMultiple: sameCoordsJobs
+      })
+      console.log("test5");
+      console.log(jobPost)
+    }
+    else {
+      this.handleDisplayWindow(jobPost);
+    }
+  }
+
+  handleDisplayWindow = (jobPost) => {
+    console.log("testb")
+    console.log(this.state.jobs[jobPost.id]);
     this.setState({
       selected: this.state.jobs[jobPost.id],
       activePosition: {
         lat: jobPost.position.lat,
         lng: jobPost.position.lng
       },
-      showingInfoWindow: true
+      showingInfoWindow: true,
+      showingOptionsWindow: false
     });
     if (this.state.currentUser) {
       var data = {
@@ -83,8 +131,6 @@ export class MapContainer extends Component {
 
   displayMarkers = () => {
     return this.state.jobs.map((jobPost, index) => {
-      var contentString = "<div><bold>Title: " + jobPost.title + "</bold></div><div><bold>Description: " + jobPost.description + "</bold></div>";
-      console.log(jobPost);
       return (
         <Marker
           key={index}
@@ -99,18 +145,49 @@ export class MapContainer extends Component {
     })
   }
 
-  displayInfoWindow() {
-    var contentString = "<div><bold>Title: " + this.state.selected.title + "</bold></div><div><bold>Description: " + this.state.selected.description + "</bold></div>";
-    return <InfoWindow position={this.state.activePosition} visible={this.state.showingInfowindow} onClose={this.onClose}>
+  onOptionsClick(e) {
+    this.onCloseOptions();
+    console.log("test3");
+    console.log(e.target.value);
+    console.log("testa");
+    let index = 0;
+    let count = 0;
+    while (this.state.jobs[index].id != e.target.value && count < this.state.jobs.length) {
+      index++;
+    }
+    let data = {
+      id: index,
+      position: { lat: this.state.jobs[index].lat, lng: this.state.jobs[index].lng }
+    }
+    console.log(data);
+    this.handleDisplayWindow(data);
+  }
+  displayOptions = () => {
+    return this.state.selectedMultiple.map((jobPost, index) => {
+      return (
+        < div key={jobPost.id + index}>
+          <Button variant="outline-info" value={jobPost.id} onClick={this.onOptionsClick}>{jobPost.title}</Button>
+        </div >
+      )
+    })
+  }
+
+  onCloseOptions = () => {
+    this.setState({
+      showingOptionsWindow: false,
+      selectedMultiple: {},
+    })
+  }
+
+  displayOptionsWindow() {
+    return <CustomInfoWindow position={this.state.activePosition} visible={this.state.showingOptionsWindow} onClose={this.onCloseOptions}>
       <div>
-        <bold>Title: </bold>
-        {this.state.selected.title}
+        <div><h5>Multiple positions are available at this location:</h5></div>
+        <div style={{display:"grid", gridRowGap:"5px"}}>
+          {this.displayOptions()};
+        </div>
       </div>
-      <div>
-        <bold>Description: </bold>
-        {this.state.selected.description}
-      </div>
-    </InfoWindow>
+    </CustomInfoWindow>
   }
 
   test() {
@@ -119,17 +196,17 @@ export class MapContainer extends Component {
 
   sendToApplicationPage() {
     console.log(this.state.selected.id);
-    window.location.assign('/apply/'+this.state.selected.id);
+    window.location.assign('/apply/' + this.state.selected.id);
   }
 
   render() {
-    const { styling, showingInfoWindow, activePosition, selected, currentUser, currentJobPostSaved } = this.state;
-    console.log("selected ");
-    console.log(this.state.selected);
-    console.log("activeposition ")
-    console.log(this.state.activePosition);
-    console.log("showinginfowindow");
-    console.log(this.state.showingInfoWindow)
+    const { showingOptionsWindow, styling, showingInfoWindow, activePosition, selected, currentUser, currentJobPostSaved } = this.state;
+    // console.log("selected ");
+    // console.log(this.state.selected);
+    // console.log("activeposition ")
+    // console.log(this.state.activePosition);
+    // console.log("showinginfowindow");
+    // console.log(this.state.showingInfoWindow)
     return (
       <Map
         style={styling}
@@ -139,7 +216,7 @@ export class MapContainer extends Component {
         initialCenter={{ lat: 49, lng: -123 }}
       >
         {this.displayMarkers()}
-
+        {!showingInfoWindow && showingOptionsWindow && this.displayOptionsWindow()}
         {showingInfoWindow && <CustomInfoWindow position={this.state.activePosition} visible={this.state.showingInfoWindow} onClose={this.onClose}>
           <div>
             <Card style={{ width: '18rem' }}>
