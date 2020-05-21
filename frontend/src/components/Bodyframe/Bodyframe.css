@@ -68,36 +68,33 @@ ul#category {
 }
 
 section#bottomtext {
-    overflow: hidden;
-    width: 100%;
-}
-section#bottomtext div {
     position: absolute;
+    display: inline-block;
     bottom: 50px;
     width: 100%;
     height: 50px;
     border: 3px double rgb(0, 116, 183);
     overflow: hidden;
 }
+section#bottomtext div {
+    width: 200%;
+}
 ul#bottom-display {
-    padding: 0 40px;
-    height: 50px;
+    /* padding: 0 40px; */
     display: flex;
     list-style: none;
 }
 
 ul#bottom-display {
-    position: relative;
-    bottom: 0px;
-    overflow:hidden;
-    animation: slide-left 35s infinite;
+    width: 200%;
+    animation: slide-left 45s infinite;
 }
 
 ul#bottom-display li {
-    font-size: 2.5vw;
+    font-size: 30px;
     margin-left: 5vw;
-    line-height: 50px;
 }
+
   
 @keyframes slide-left {
     from {
