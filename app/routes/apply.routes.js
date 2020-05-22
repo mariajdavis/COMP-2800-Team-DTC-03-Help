@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-=======
 /**
  * Routes for application related tasks.
  */
->>>>>>> dev
 module.exports = app => {
   const Application = require("../controllers/apply.controller.js");
 
@@ -12,13 +9,6 @@ module.exports = app => {
   // Create a new Application
   router.post("/", Application.create);
 
-<<<<<<< HEAD
-  // Retrieve all Applications
-  router.get("/", Application.findAll);
-
-  // Retrieve all Applications for a specific jobPost ID
-  router.get("/specificJobPost", Application.findAllWithJobPostID);
-=======
   // Retrieve all Applicants for a specific organization
   router.get("/:orgID", Application.findAllOrgApplicants);
 
@@ -30,7 +20,6 @@ module.exports = app => {
 
   // // Retrieve all Applications for a specific jobPost ID
   // router.get("/specificJobPost", Application.findAllWithJobPostID);
->>>>>>> dev
 
   app.use('/api/applications', router);
 };

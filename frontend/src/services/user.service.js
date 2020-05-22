@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-import axios from 'axios';
-import authHeader from './auth-header';
-
-const API_URL = 'https://helpservices.herokuapp.com/api/test/';
-
-class UserService {
-  getPublicContent() {
-    return axios.get(API_URL + 'all');
-  }
-
-  getUserBoard() {
-    return axios.get(API_URL + 'user', { headers: authHeader() });
-  }
-}
-
-=======
 import axios from 'axios';
 import http from "../http-common";
 import authHeader from './auth-header';
@@ -40,5 +23,4 @@ class UserService {
   }
 }
 
->>>>>>> dev
 export default new UserService();

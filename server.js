@@ -4,14 +4,14 @@ const cors = require("cors");
 const path = require('path');
 
 const app = express();
-// const origin_url="https://helpservices.herokuapp.com/";
-const origin_url="http://localhost:8081";
+const origin_url="https://helpservices.herokuapp.com/";
+// const origin_url="http://localhost:8081";
 var corsOptions = {
-<<<<<<< HEAD
-  origin: "https://helpservices.herokuapp.com/"
+  origin: origin_url
 };
 
 app.use(cors(corsOptions));
+
 function requireHTTPS(req, res, next) {
   // The 'x-forwarded-proto' check is for Heroku
   if (!req.secure && req.get('x-forwarded-proto') !== 'https' && process.env.NODE_ENV !== "development") {
@@ -20,22 +20,7 @@ function requireHTTPS(req, res, next) {
   next();
 }
 app.use(requireHTTPS);
-=======
-  origin: origin_url
-};
 
-app.use(cors(corsOptions));
-
-// function requireHTTPS(req, res, next) {
-//   // The 'x-forwarded-proto' check is for Heroku
-//   if (!req.secure && req.get('x-forwarded-proto') !== 'https' && process.env.NODE_ENV !== "development") {
-//     return res.redirect('https://' + req.get('host') + req.url);
-//   }
-//   next();
-// }
-// app.use(requireHTTPS);
-
->>>>>>> dev
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
@@ -54,11 +39,7 @@ require("./app/routes/jobPost.routes")(app);
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 require('./app/routes/tag.routes')(app);
-<<<<<<< HEAD
-require('./app/routes/jobPost.routes')(app);
-=======
 require('./app/routes/apply.routes')(app);
->>>>>>> dev
 
 // The following code lets the server know to serve all 
 // static React files from the build directory
