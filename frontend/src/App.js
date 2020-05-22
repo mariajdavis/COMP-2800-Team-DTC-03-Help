@@ -38,15 +38,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const user = AuthService.getCurrentUser;
-    const orgUser = AuthService.getCurrentOrgUser;
-
-    if (user) {
       this.setState({
         currentUser: AuthService.getCurrentUser(),
         currentOrgUser: AuthService.getCurrentOrgUser()
       });
-    }
   }
 
   logOut() {
