@@ -1,6 +1,7 @@
 /**
  * A watered down version of the classic Asteroid game. Used https://github.com/chriz001/Reacteroids as a tutorial for using context and also for its random number generator functions and collision function. Remade game logic and virus(asteroid) logic. 
  *  
+ * This Class generates a Virus object that's a circular shape with randomized velocity, randomized and decreasing radius, life span and a score based on its initial radius and velocity.
  */
 
 import {randomNumBetween} from './helpers';

@@ -1,6 +1,7 @@
 /**
  * A watered down version of the classic Asteroid game. Used https://github.com/chriz001/Reacteroids as a tutorial for using context and also for its random number generator functions and collision function. Remade game logic and virus(asteroid) logic. 
  *  
+ * The Driver class for the easter egg asteroid game. Generates a Beatle, a population of Viruses, adds keyboard listerners to enable player control of the Beatle, simulates collision physics and keeps the scores.
  */
 
 import React, { Component } from 'react';

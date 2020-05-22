@@ -1,3 +1,7 @@
+/**
+ * Middleware for sign up verification.
+ */
+
 const db=require("../models");
 const User=db.users;
 const OrgUser=db.orgUsers;

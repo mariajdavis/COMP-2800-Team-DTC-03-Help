@@ -1,3 +1,6 @@
+/**
+ * DB configurations.
+ */
 module.exports = {
   HOST: "sql3.freemysqlhosting.net",
   USER: "sql3341694",

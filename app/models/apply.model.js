@@ -1,3 +1,6 @@
+/**
+ * DB model for application.
+ */
 module.exports = (sequelize, Sequelize) => {
     const Application = sequelize.define("application", {
       resumePath: {
