@@ -34,7 +34,7 @@ class OrgJobBoardPage extends Component {
     };
   }
 
-  //When this component loads, the list of job posts is retrieved from the database.
+  /** When this component loads, the list of job posts is retrieved from the database. */
   componentDidMount() {
     this.retrieveJobPosts();
   }
@@ -58,25 +58,25 @@ class OrgJobBoardPage extends Component {
     }
   }
 
-  //Retrieves a list of the current organization's job posts from the database.
+  /** Retrieves a list of the current organization's job posts from the database. */
   retrieveJobPosts() {
     console.log(this.state.currentUser.id)
 
-    //Gets all of the job posts from the database.
+    /** Gets all of the job posts from the database. */
     JobPostDataService.getAll()
       .then(response => {
         console.log(response.data);
         let orgJobList = []
         let i = 0;
 
-        //Creates a list of job posts that have the same orgID property as the currently logged in user.
+        /** Creates a list of job posts that have the same orgID property as the currently logged in user. */
         for (i = 0; i < response.data.length; i++) {
           if (response.data[i].orgID == this.state.currentUser.id) {
             orgJobList.push(response.data[i])
           }
         }
 
-        //Sets the current state of jobPosts to the orgJobList
+        /** Sets the current state of jobPosts to the orgJobList */
         this.setState({
           jobPosts: orgJobList
         });
@@ -87,7 +87,7 @@ class OrgJobBoardPage extends Component {
       });
   }
 
-  //Refreshes the list of job posts being displayed
+  /** Refreshes the list of job posts being displayed */
   refreshList() {
     this.retrieveJobPosts();
     this.setState({
@@ -96,10 +96,10 @@ class OrgJobBoardPage extends Component {
     });
   }
 
-  //Performs the logic allowing a user to select a job post from the job board.
+  /** Performs the logic allowing a user to select a job post from the job board. */
   setActiveJobPost(jobPost, index) {
 
-    //Sets the currently selected job post to the job selected by the user
+    /** Sets the currently selected job post to the job selected by the user */
     this.setState({
       currentJobPost: jobPost,
       currentIndex: index
@@ -120,7 +120,7 @@ class OrgJobBoardPage extends Component {
     }
   }
 
-  //Deletes all job posts from the database
+  /** Deletes all job posts from the database */
   removeAllJobPosts() {
     JobPostDataService.deleteAll()
       .then(response => {
@@ -132,7 +132,7 @@ class OrgJobBoardPage extends Component {
       });
   }
 
-  //Searches for a job post with a title matching the search parameter
+  /** Searches for a job post with a title matching the search parameter */
   searchTitle() {
     JobPostDataService.findByTitle(this.state.searchTitle)
       .then(response => {
@@ -146,7 +146,7 @@ class OrgJobBoardPage extends Component {
       });
   }
 
-  //Returns a formatted message about the currently selected job post to share on social media
+  /** Returns a formatted message about the currently selected job post to share on social media */
   createJobMessage(title, description, jobType, rate, startDate, contractLength) {
     return `New Job Listing: ` + title + `\n` + `Description: ` + description + `\n` + `Job Type: ` + jobType + `\n` + `Rate: ` + rate + `\n` + `Start Date: ` + startDate + `\n` + `Contract Length: ` + contractLength + `\n` + `\n`
   }
