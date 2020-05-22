@@ -148,7 +148,7 @@ class ViewApplicantPage extends Component {
                                                                     (index === currentIndex ? "active" : "")
                                                                 }
 
-                                                            }}
+                                                            
                                                             key={index}
                                                             style={{ color: 'black' }}
                                                         >
@@ -201,7 +201,7 @@ class ViewApplicantPage extends Component {
                                                     </DropdownButton>
                                                 </div>
                                             )}
-
+                                            </div>
                                         </div>
                                     </div>
                                 </article>
