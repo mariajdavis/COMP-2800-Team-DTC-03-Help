@@ -3,10 +3,9 @@
 /* Containers */
 div#applyBackground {
     margin-top: 0%;
-    overflow: hidden;
-    min-height: 50vw;
-    max-height: 70vw;
-    width: 80vw;
+    overflow-x: hidden;
+    
+    width: inherit;
 }
 
 div#applyContainer {
