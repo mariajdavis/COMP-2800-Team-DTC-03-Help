@@ -1,3 +1,6 @@
+/**
+ * DB model for jobPost.
+ */
 module.exports = (sequelize, Sequelize) => {
   const JobPost = sequelize.define("jobPost", {
     title: {
@@ -20,8 +23,20 @@ module.exports = (sequelize, Sequelize) => {
     },
     orgID: {
       type: Sequelize.INTEGER
+    },
+    lat: {
+      type: Sequelize.STRING
+    },
+    lng: {
+      type: Sequelize.STRING
+    },
+    location: {
+      type: Sequelize.STRING
     }
   });
+  JobPost.associate = function(models) {
+    JobPost.hasMany(models.Application, {as: 'applications'})
+  };
 
   return JobPost;
 };

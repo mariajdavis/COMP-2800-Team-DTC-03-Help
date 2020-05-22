@@ -1,5 +1,6 @@
 const db = require("../models");
 const JobPost = db.jobPosts;
+const User = db.users;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new JobPost
@@ -20,7 +21,10 @@ exports.create = (req, res) => {
     rate: req.body.rate,
     contractLength: req.body.contractLength,
     startDate: req.body.startDate,
-    orgID: req.body.orgID
+    orgID: req.body.orgID,
+    lat: req.body.lat,
+    lng: req.body.lng,
+    location: req.body.location
   };
 
   // Save JobPost in the database
@@ -71,7 +75,6 @@ exports.findOne = (req, res) => {
 // Update a JobPost by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
-
   JobPost.update(req.body, {
     where: { id: id }
   })

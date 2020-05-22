@@ -1,0 +1,13 @@
+input#user, input#orgUser {
+    margin-left: 5%;
+}
+
+#registration-background {
+    background-image: url(../../img/rectangle_24.png);
+    background-size: 100% 100%;
+    padding: 2%;
+}
+
+#contentLayout {
+    overflow-x: hidden;
+}

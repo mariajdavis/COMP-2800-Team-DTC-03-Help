@@ -1,16 +1,19 @@
+/**
+ * DB model for application.
+ */
 module.exports = (sequelize, Sequelize) => {
     const Application = sequelize.define("application", {
-      jobPostID: {
-        type: Sequelize.INTEGER
+      resumePath: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
-      userID: {
-        type: Sequelize.INTEGER
+      status: {
+        type:   Sequelize.ENUM,
+        values: ['pending', 'rejected', 'accepted']
       },
-      resume: {
-        type: Sequelize.STRING
+      comments: {
+        type: Sequelize.TEXT('long')
       }
     });
-  
     return Application;
   };
-  

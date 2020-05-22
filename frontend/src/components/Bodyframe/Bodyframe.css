@@ -12,8 +12,8 @@ main#contentArea {
     display: grid;
     grid-template-areas: 
         "ancement"
-        "content"
-        "bottom";
+        "backgroundContent"
+        "bottomtext";
     /* grid-template-rows: 1fr 10fr 1fr; */
 }
 
@@ -51,17 +51,15 @@ section#bgImg {
     grid-template-rows: 1fr;
     grid-template-areas:
         "bgImg"
+        "bottomtext";
 }
 
 #backgroundImg {
     height: 100%;
     width: 100%;
 }
-
 #backgroundImg{grid-area: bgImg;}
-section#bottom {
-    grid-area: bottom;
-}
+
 
 ul#category {
     display: flex;
@@ -69,14 +67,50 @@ ul#category {
     list-style: none;
 }
 
+section#bottomtext {
+    position: absolute;
+    display: inline-block;
+    bottom: 50px;
+    width: 100%;
+    height: 50px;
+    border: 3px double rgb(0, 116, 183);
+    overflow: hidden;
+}
+section#bottomtext div {
+    width: 200%;
+}
+ul#bottom-display {
+    display: flex;
+    list-style: none;
+}
 
+ul#bottom-display {
+    width: 200%;
+    animation: slide-left 70s infinite;
+}
 
+ul#bottom-display li {
+    font-size: 30px;
+    margin-left: 5vw;
+}
+
+  
+@keyframes slide-left {
+    from {
+      margin-left: 100%;
+    }
+  
+    to {
+      margin-left: -200%;
+    }
+}
 
 /* announcement styling (animation) */
 .animated-text {
-    background-color: rgb(63, 89, 135);
-    color: white;
-    transform: translate(-505, -50%);
+    border: 3px double rgb(0, 116, 183);
+    color: black;
+    font-family: Racing Sans One;
+    transform: translate(-50, -50%);
     padding: 0 40px;
     height: 50px;
     overflow: hidden;
@@ -84,11 +118,13 @@ ul#category {
 .line {
     text-transform: uppercase;
     text-align: center;
+    width: 90vw;
+    margin: auto;
     font-size: 30px;
     line-height: 50px;
 }
 .line:first-child {
-    animation: slide 12s infinite;
+    animation: slide 20s infinite;
 }
 
 @keyframes slide {
@@ -134,8 +170,7 @@ main#contentArea {
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: 
       "ancement ancement ancement"
-      "content content content"
-      "bottom bottom bottom";
+      "background background background";
 }
   
   @media only screen and (min-width: 1025px) {

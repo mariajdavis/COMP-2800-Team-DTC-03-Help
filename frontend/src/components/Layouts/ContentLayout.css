@@ -7,12 +7,78 @@
     margin-left:10vw;
     margin-right:10vw;
     top:25%;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "contentArea"
+}
+
+#addJobWrapper {
+    overflow-x:hidden;
+}
+
+#contentLayoutAddJob {
+    position: absolute;
+    display: grid;
+    width: 100vw;
+    bottom: 100px;
+    margin-left:10vw;
+    margin-right:10vw;
+    vertical-align: center;
+    top:calc(10vh + 75px);
+    margin-bottom: 5%;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "contentArea"
+}
+
+#contentLayoutJobPost {
+    position: absolute;
+    display: grid;
+    width: 80vw;
+    bottom: 100px;
+    margin-left:10vw;
+    margin-right:10vw;
+    vertical-align: center;
+    top:calc(10vh + 75px);
+    margin-bottom: 5%;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    
+    grid-template-areas:
+        "contentArea"
+}
+
+#registration-background {
+    background-image: url(../../img/rectangle_24.png);
+    background-size: 100% 100%;
+    padding: 2%;
+}
+
+#jobPostFormatting{
+    margin-left:10vw;
+    margin-right:10vw;
+    width: 100vw;
+}
+
+#contentLayoutAddJobFix {
+    position: absolute;
+    display: grid;
+    width: 80vw;
+    bottom: 100px;
+    margin-left:10vw;
+    margin-right:10vw;
+    vertical-align: center;
+    top:calc(10vh + 75px);
+    margin-bottom: 5%;
     overflow-x:hidden;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr;
     grid-template-areas:
         "contentArea"
 }
+
 
 #contentDiv {
     position: absolute;
@@ -29,11 +95,36 @@
     display: grid;
     font-family:Jaldi;
     width: 100%;
-    height: auto;
     padding: 20px;
+    bottom: 20px;
+    height:100%;
 }
 
 #contentLayoutJobs {
+    position: absolute;
+    display: grid;
+    width: 100vw;
+    top:100px;
+    bottom: 100px;
+    overflow-x:hidden;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "contentArea"
+}
+
+#contentDivRegister {
+    position: absolute;
+    font-family:Jaldi;
+    width: 80%;
+    height: 100%;
+    margin-left:10%;
+    margin-right:auto;
+    top: 20px;
+    
+}
+
+#contentLayoutRegister {
     position: absolute;
     display: grid;
     width: 100vw;
@@ -55,6 +146,21 @@
     max-width: 80vw;
 }
 
+@media screen and (max-width: 759px){
+    #contentDiv ul{
+        width: auto;
+    }
+
+    #contentDiv li {
+        width: auto;
+        word-wrap:break-word;
+    }
+}
+
+/* #contentDiv .form-group{
+    max-width: 500px;
+} */
+
 #contentLayoutUserProfile {
     position: absolute;
     display: grid;
@@ -70,5 +176,44 @@
     grid-template-areas:
         "contentArea"
 }
+
+#addJobArea {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    
+}
+
+#addJobAreaRegister {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    grid-template-areas:
+    "togglediv togglediv"
+    "form1 form2"
+    "form3 form4"
+    "form5 signup"
+}
+
+#toggleDiv{grid-area:togglediv}
+#form1{grid-area:form1}
+#form2{grid-area:form2}
+#form3{grid-area:form3}
+#form4{grid-area:form4}
+#form5{grid-area:form5}
+#signup{grid-area:signup}
+
+#tagSelect {
+    display:flex;
+    justify-content: center;
+    height: 15vw;
+}
+
+
+#tagSelect select{
+    min-width: 125px;
+}
+
+
 
 #contentDiv{grid-area: contentArea}

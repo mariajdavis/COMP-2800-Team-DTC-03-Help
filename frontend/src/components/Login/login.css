@@ -1,0 +1,10 @@
+input#user, input#orgUser {
+    margin-left: 5%;
+    background-color: brown;
+}
+
+#login-background {
+    background-image: url(../../img/rectangle_24.png);
+    background-size: 100% 100%;
+    padding: 2%;
+}

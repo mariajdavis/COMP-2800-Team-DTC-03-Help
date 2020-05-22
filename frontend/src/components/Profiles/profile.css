@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css?family=Jaldi|Racing+Sans+One&display=swap');
+
+/* View Profile Page */
+div#profile-container {
+    display: grid;
+    grid-template-areas: 
+        "heading"
+        "ProfileContent";
+}
+
+div#liquidHeading {
+    grid-area: heading;
+    position: relative;
+    background-color: rgb(144, 167, 249);
+    background-image: url(../../img/liquid.gif);
+    /* background-size: 250% 250%; */
+    background-position: 20% 23%;
+    top: 1.5vw;
+    left: 5vw;
+    letter-spacing: 0.05em;
+    text-align: center;
+    text-decoration: none;
+    width: 14vw;
+    height: 3vw;
+    display: flex;
+    justify-content: center;
+    border-radius: 10vw;
+}
+
+p#myProfile {
+    font-family: Racing Sans One;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-size: 2vw;
+}
+
+img#profileImg {
+    border-radius: 50%;
+    height: 15vw;
+    margin: 2vw;
+    grid-area: ProfileImage;
+}
+
+div#sub-info {
+    grid-area: SubInfo;
+}
+
+div#main-info {
+    grid-area: MainInfo;
+    background-color: rgba(255, 255, 255, 0.738);
+    border-radius: 1vw;
+    display: grid;
+    grid-template-areas: 
+        "info1"
+        "info2"
+        "info3"
+        "button";
+}
+
+div#main-inf:nth-child(1) {
+    grid-area: info1;
+}
+div#main-inf:nth-child(2) {
+    grid-area: info2;
+}
+div#main-inf:nth-child(3) {
+    grid-area: info3;
+}
+
+#edit-btn {
+    grid-area: button;
+    height: 10%;
+    width: 40%;
+    display: flex;
+    justify-self: right;
+    margin: 5%;
+}
+
+div#main-info {
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: 
+        "info1 button"
+        "info2 button"
+        "info3 button";
+}
+
+div#my-resume {
+    grid-area: MyResume;
+}
+
+div#resume-content {
+    background-color: rgba(255, 255, 255, 0.738);
+    border-radius: 1vw;
+    overflow: scroll;
+}
+
+
+
+#userProfileBackground {
+    background-image: url('../../img/profile_bg.png');
+    background-size: 100% 100%;
+    top: 0px;
+    display: grid;
+    font-family:Jaldi;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    grid-template-columns: 1fr 2fr 3fr;
+    grid-template-areas: 
+        "ProfileImage SubInfo MainInfo"
+        "MyResume MyResume MyResume";
+}
+
+#contentProfile {
+    grid-area: ProfileContent;
+    display: grid;
+    width: 96vw;
+    top: 13vw;
+    bottom: 100px;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    overflow-x:hidden;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "contentArea"
+}
+
+/* Edit Profile Page */
+
+#profile-edit-background {
+    background-image: url(../../img/rectangle_24.png);
+    background-size: 100% 100%;
+    padding: 2%;
+}
+
+#edit-profile-title {
+    font-family: Racing Sans One;
+    text-align: center;
+}
+
+#update-btn {
+    width: 15%;
+    height: 3vw;
+}
+
+

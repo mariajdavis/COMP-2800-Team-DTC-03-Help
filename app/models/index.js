@@ -1,3 +1,6 @@
+/**
+ * Connects to and configures the database.
+ */
 const dbConfig = require("../config/db.config.js");
 
 const Sequelize = require("sequelize");
@@ -33,5 +36,8 @@ db.jobPosts.belongsToMany(db.users, {
   through: "users_jobPosts",
   foreignKey:"jobPost_id"
 });
+
+db.applications.belongsTo(db.jobPosts, { foreignKey: "jobPostID" });
+db.applications.belongsTo(db.users, { foreignKey: "userID" });
 
 module.exports = db;

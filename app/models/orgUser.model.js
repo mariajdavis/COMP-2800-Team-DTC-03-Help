@@ -1,3 +1,6 @@
+/**
+ * DB model for orgUser.
+ */
 module.exports = (sequelize, Sequelize) => {
     const orgUser = sequelize.define("orgUser", {
       username: {

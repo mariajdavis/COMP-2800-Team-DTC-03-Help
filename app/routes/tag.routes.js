@@ -1,3 +1,6 @@
+/**
+ * Routes for tag related tasks.
+ */
 module.exports = app => {
   const tags = require("../controllers/tag.controller.js");
 
