@@ -1,3 +1,7 @@
+/**
+ * Routes for user related tasks.
+ */
+
 const { authJwt } = require("../middleware");
 
 module.exports = function(app) {

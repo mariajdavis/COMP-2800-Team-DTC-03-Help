@@ -3,14 +3,10 @@ import './Bodyframe.css'
 import backgroundFrame from "../../img/bg.png"
 import JobPostDataService from "../../services/jobPost.service";
 
-const imgStyle = {
-    zIndex: '-1',
-    paddingTop: '50px',
-    paddingBottom: '50px',
-    width: '100%',
-    height: 'auto',
-}
 
+/**
+ * Creates main body component
+ */
 class mainBody extends Component {
     constructor() {
         super()
@@ -22,12 +18,16 @@ class mainBody extends Component {
         };
     }
 
-    /** Prompts the database for a list of jobs when the page loads */
+    /**
+     * Prompts the database for a list of jobs when the page loads
+     */
     componentDidMount() {
         this.retrieveJobPosts();
     }
 
-    /** Retrieves a list of all job posts */
+    /**
+     * Retrieves a list of all job posts
+     */
     retrieveJobPosts() {
         JobPostDataService.getAll()
             .then(response => {
@@ -41,6 +41,9 @@ class mainBody extends Component {
             });
     }
 
+    /**
+     * Renders main body component
+     */
     render() {
         const { jobPosts, currentIndex } = this.state;
 

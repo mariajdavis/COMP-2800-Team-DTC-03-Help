@@ -1,3 +1,6 @@
+/**
+ * Routes for jobPost related tasks.
+ */
 module.exports = app => {
   const jobPosts = require("../controllers/help.controller.js");
 

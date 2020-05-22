@@ -1,11 +1,16 @@
 /**
  * A watered down version of the classic Asteroid game. Used https://github.com/chriz001/Reacteroids as a tutorial for using context and also for its random number generator functions and collision function. Remade game logic and virus(asteroid) logic. 
- *  
+ * 
+ * This class generates a Beatle which will be controlled by the player in the Driver class. The Beatle has a set movement speed and a set radius.
  */
 
-import { randomNumBetween } from './helpers';
 
 export default class Beatle {
+    /**
+     * Constructs a Beatle object.
+     * 
+     * @param {*} args 
+     */
     constructor(args) {
         this.position = args.position;
         this.radius = 10;
@@ -15,6 +20,9 @@ export default class Beatle {
         this.shape.src = "./pm.png";
         this.delete=false;
     }
+    /**
+     * Destroys the object.
+     */
     destroy() {
         this.delete = true;
         this.onDie();
@@ -39,14 +47,6 @@ export default class Beatle {
         else if(this.position.y < 50) this.position.y = state.screen.height*0.8;
 
         const context = state.context;
-
-        // const image=new Image();
-        // image.onload=function(){
-        //     context.drawImage(image, this.position.x, this.poxition.y);
-        // };
-        // //image.onerror=function(){alert("image load failed")};
-        // image.src=require("./pm.png");
-
         context.save();
         context.translate(this.position.x, this.position.y);
         context.rotate(this.rotation * Math.PI / 180);
