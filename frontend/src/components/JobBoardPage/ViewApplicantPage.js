@@ -146,16 +146,30 @@ class ViewApplicantPage extends Component {
                                                     {applicants &&
                                                         applicants.map((applicant, index) => (
                                                             <li
-                                                                className={
-                                                                    "list-group-item " +
-                                                                    (index === currentIndex ? "active" : "")
+                                                            className={
+                                                                "list-group-item " +
+                                                                (index === currentIndex ? "active" : "")
+                                                            }
+                                                            id={applicant.id}
+                                                            onClick={() => {
+                                                                if (this.state.toggleHandler) { // triggers open job post animation             
+                                                                    this.setActiveApplicant(applicant, index);
+                                                                    this.state.toggleHandler = false;
+                                                                    document.getElementById('job-list').classList.remove('job-list');
+                                                                    document.getElementById('job-list').classList.add('job-list-clicked');
+                                                                    document.getElementById('contentArea').classList.add('bgOpacity');
+                                                                } else { // revert back
+                                                                    this.setActiveApplicant("", "")
+                                                                    this.state.toggleHandler = true;
+                                                                    document.getElementById('job-list').classList.remove('job-list-clicked');
+                                                                    document.getElementById('job-list').classList.add('job-list');
+                                                                    document.getElementById('contentArea').classList.remove('bgOpacity');
                                                                 }
-
-                                                            
+                                                            }}
                                                             key={index}
                                                             style={{ color: 'black' }}
                                                         >
-                                                            {applicant.jobPost.title + "    -    " + applicant.user.fullName}
+                                                            {applicant.jobPost.title + "    -    " + applicant.user.username}
                                                         </li>
                                                     ))}
                                             </ul>
