@@ -37,6 +37,7 @@ class App extends Component {
     };
   }
 
+  /** Get user data to the component's state */
   componentDidMount() {
       this.setState({
         currentUser: AuthService.getCurrentUser(),
@@ -44,10 +45,12 @@ class App extends Component {
       });
   }
 
+  /** Log out individual user */
   logOut() {
     AuthService.logout();
   }
 
+  /** Log out organization user */
   orgLogOut() {
     AuthService.orgLogout();
   }

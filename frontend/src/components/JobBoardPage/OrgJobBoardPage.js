@@ -1,15 +1,15 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import './jobBoard.css'
 import JobPostDataService from "../../services/jobPost.service";
 import AuthService from "../../services/auth.service";
 import { Link } from "react-router-dom";
-import { Button, ToggleButton } from 'react-bootstrap';
-import { TwitterTimelineEmbed, TwitterShareButton } from 'react-twitter-embed';
 import { FacebookProvider, Share } from 'react-facebook';
+import { TwitterShareButton } from 'react-twitter-embed';
 
-const lineBreak = '\n'
 
-
+/**
+ * Creates organzation's job board page component
+ */
 class OrgJobBoardPage extends Component {
   constructor(props) {
     super(props);
@@ -34,12 +34,18 @@ class OrgJobBoardPage extends Component {
     };
   }
 
-  //When this component loads, the list of job posts is retrieved from the database.
+  /**
+   * Calls function to retrieve organization's job posts, immediately
+   */
   componentDidMount() {
     this.retrieveJobPosts();
   }
 
-
+  /**
+   * Updates text to search by title
+   * 
+   * @param {*} e 
+   */
   onChangeSearchTitle(e) {
     const searchTitle = e.target.value;
 
@@ -48,7 +54,11 @@ class OrgJobBoardPage extends Component {
     });
   }
 
-
+  /**
+   * Handles save of job post
+   * 
+   * @param {*} e 
+   */
   handleSave(e) {
     if (e.target.value === "save") {
       JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentJobPost.id, save: true })
@@ -58,25 +68,27 @@ class OrgJobBoardPage extends Component {
     }
   }
 
-  //Retrieves a list of the current organization's job posts from the database.
+  /**
+   * Retrieves a list of the current organization's job posts from the database
+   */
   retrieveJobPosts() {
     console.log(this.state.currentUser.id)
 
-    //Gets all of the job posts from the database.
+    // Gets all of the job posts from the database.
     JobPostDataService.getAll()
       .then(response => {
         console.log(response.data);
         let orgJobList = []
         let i = 0;
 
-        //Creates a list of job posts that have the same orgID property as the currently logged in user.
+        // Creates a list of job posts that have the same orgID property as the currently logged in user.
         for (i = 0; i < response.data.length; i++) {
           if (response.data[i].orgID == this.state.currentUser.id) {
             orgJobList.push(response.data[i])
           }
         }
 
-        //Sets the current state of jobPosts to the orgJobList
+        // Sets the current state of jobPosts to the orgJobList
         this.setState({
           jobPosts: orgJobList
         });
@@ -87,7 +99,9 @@ class OrgJobBoardPage extends Component {
       });
   }
 
-  //Refreshes the list of job posts being displayed
+  /**
+   * Refreshes the list of job posts being displayed
+   */
   refreshList() {
     this.retrieveJobPosts();
     this.setState({
@@ -96,10 +110,15 @@ class OrgJobBoardPage extends Component {
     });
   }
 
-  //Performs the logic allowing a user to select a job post from the job board.
+  /**
+   * Performs the logic allowing a user to select a job post from the job board.
+   * 
+   * @param {*} jobPost 
+   * @param {*} index 
+   */
   setActiveJobPost(jobPost, index) {
 
-    //Sets the currently selected job post to the job selected by the user
+    /** Sets the currently selected job post to the job selected by the user */
     this.setState({
       currentJobPost: jobPost,
       currentIndex: index
@@ -120,7 +139,9 @@ class OrgJobBoardPage extends Component {
     }
   }
 
-  //Deletes all job posts from the database
+  /**
+   * Deletes all job posts from the database
+   */
   removeAllJobPosts() {
     JobPostDataService.deleteAll()
       .then(response => {
@@ -132,7 +153,9 @@ class OrgJobBoardPage extends Component {
       });
   }
 
-  //Searches for a job post with a title matching the search parameter
+  /**
+   * Searches for a job post with a title matching the search parameter
+   */
   searchTitle() {
     JobPostDataService.findByTitle(this.state.searchTitle)
       .then(response => {
@@ -146,15 +169,23 @@ class OrgJobBoardPage extends Component {
       });
   }
 
-  //Returns a formatted message about the currently selected job post to share on social media
+  /**
+   * Returns a formatted message about the currently selected job post to share on social media
+   * 
+   * @param {*} title 
+   * @param {*} description 
+   * @param {*} jobType 
+   * @param {*} rate 
+   * @param {*} startDate 
+   * @param {*} contractLength 
+   */
   createJobMessage(title, description, jobType, rate, startDate, contractLength) {
     return `New Job Listing: ` + title + `\n` + `Description: ` + description + `\n` + `Job Type: ` + jobType + `\n` + `Rate: ` + rate + `\n` + `Start Date: ` + startDate + `\n` + `Contract Length: ` + contractLength + `\n` + `\n`
   }
 
-
-
-
-
+  /**
+   * Renders organization job board page component
+   */
   render() {
     const { searchTitle, jobPosts, currentJobPost, currentIndex, currentUser } = this.state;
 

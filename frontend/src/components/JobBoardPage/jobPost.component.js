@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import JobPostDataService from "../../services/jobPost.service";
 import "./../Layouts/ContentLayout.css"
 
-
+/**
+ * Creates jobPost component for editing a job post
+ */
 export default class JobPost extends Component {
   constructor(props) {
     super(props);
@@ -32,14 +34,25 @@ export default class JobPost extends Component {
     };
   }
 
+  /**
+   * Returns to previous page
+   */
   goBack(){
     this.props.history.goBack()
   }
 
+  /**
+   * Calls function to set current jobPost using params id field
+   */
   componentDidMount() {
     this.getJobPost(this.props.match.params.id);
   }
 
+  /**
+   * Updates current job post title field
+   * 
+   * @param {*} e 
+   */
   onChangeTitle(e) {
     const title = e.target.value;
 
@@ -53,6 +66,11 @@ export default class JobPost extends Component {
     });
   }
 
+   /**
+   * Updates current job post description field
+   * 
+   * @param {*} e 
+   */
   onChangeDescription(e) {
     const description = e.target.value;
     
@@ -64,6 +82,11 @@ export default class JobPost extends Component {
     }));
   }
 
+  /**
+   * Updates current job post jobType field
+   * 
+   * @param {*} e 
+   */
   onChangeJobType(e) {
     const jobType = e.target.value;
     
@@ -75,7 +98,11 @@ export default class JobPost extends Component {
     }));
   }
 
-
+   /**
+   * Updates current job post startDate field
+   * 
+   * @param {*} e 
+   */
   onChangeStartDate(e) {
     const startDate = e.target.value;
 
@@ -89,6 +116,11 @@ export default class JobPost extends Component {
     });
   }
 
+  /**
+   * Updates current job post rate field
+   * 
+   * @param {*} e 
+   */
   onChangeRate(e) {
     const rate = e.target.value;
     
@@ -100,6 +132,11 @@ export default class JobPost extends Component {
     }));
   }
 
+  /**
+   * Updates current job post contractLength field
+   * 
+   * @param {*} e 
+   */
   onChangeContractLength(e) {
     const contractLength = e.target.value;
     
@@ -111,7 +148,11 @@ export default class JobPost extends Component {
     }));
   }
 
-
+  /**
+   * Retrieves job post from database using jobPost id
+   * 
+   * @param {*} id 
+   */
   getJobPost(id) {
     JobPostDataService.get(id)
       .then(response => {
@@ -125,6 +166,9 @@ export default class JobPost extends Component {
       });
   }
 
+  /**
+   * Updates job post in database
+   */
   updateJobPost() {
     JobPostDataService.update(
       this.state.currentJobPost.id,
@@ -141,6 +185,9 @@ export default class JobPost extends Component {
       });
   }
 
+  /**
+   * Deletes job post from database
+   */
   deleteJobPost() {    
     JobPostDataService.delete(this.state.currentJobPost.id)
       .then(response => {
@@ -152,6 +199,9 @@ export default class JobPost extends Component {
       });
   }
 
+  /**
+   * Renders edit job page component
+   */
   render() {
     const { currentJobPost } = this.state;
 

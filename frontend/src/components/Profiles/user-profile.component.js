@@ -18,6 +18,7 @@ export default class Profile extends Component {
     };
   }
 
+  /** Call retrieveUserInfo method */
   componentDidMount() {
     this.retrieveUserInfo();
   }
@@ -26,7 +27,7 @@ export default class Profile extends Component {
 
     console.log(this.state.currentUser.id);
 
-    // Retrieves all current user data
+    /** Retrieves all current user data */
     UserDataService.findOneUser(this.state.currentUser.id)
         .then(response => {
             this.setState({
