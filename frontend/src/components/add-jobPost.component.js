@@ -12,6 +12,15 @@ import PlacesAutocomplete, {
 } from "react-places-autocomplete";
 import "./Registration/registration.css"
 
+const required = value => {
+  if (!value) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        *Required field
+      </div>
+    );
+  }
+};
 
 export default class AddJobPost extends Component {
   constructor(props) {
@@ -205,7 +214,7 @@ export default class AddJobPost extends Component {
                         type="text"
                         className="form-control"
                         id="title"
-                        required
+                        validations={[required]}
                         value={this.state.title}
                         onChange={this.onChangeTitle}
                         name="title"
@@ -218,7 +227,7 @@ export default class AddJobPost extends Component {
                         type="text"
                         className="form-control"
                         id="description"
-                        required
+                        validations={[required]}
                         value={this.state.description}
                         onChange={this.onChangeDescription}
                         name="description"
@@ -231,7 +240,7 @@ export default class AddJobPost extends Component {
                         type="text"
                         className="form-control"
                         id="jobType"
-                        required
+                        
                         value={this.state.jobType}
                         onChange={this.onChangeJobType}
                         name="jobType"
@@ -244,7 +253,7 @@ export default class AddJobPost extends Component {
                         type="text"
                         className="form-control"
                         id="rate"
-                        required
+                        
                         value={this.state.rate}
                         onChange={this.onChangeRate}
                         name="rate"
@@ -257,7 +266,7 @@ export default class AddJobPost extends Component {
                         type="text"
                         className="form-control"
                         id="startDate"
-                        required
+                        
                         value={this.state.startDate}
                         onChange={this.onChangeStartDate}
                         name="startDate"
@@ -270,7 +279,7 @@ export default class AddJobPost extends Component {
                         type="text"
                         className="form-control"
                         id="contractLength"
-                        required
+                        
                         value={this.state.contractLength}
                         onChange={this.onChangeContractLength}
                         name="contractLength"

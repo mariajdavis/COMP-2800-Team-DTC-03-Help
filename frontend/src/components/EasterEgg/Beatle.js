@@ -1,9 +1,14 @@
+/**
+ * A watered down version of the classic Asteroid game. Used https://github.com/chriz001/Reacteroids as a tutorial for using context and also for its random number generator functions and collision function. Remade game logic and virus(asteroid) logic. 
+ *  
+ */
+
 import { randomNumBetween } from './helpers';
 
 export default class Beatle {
     constructor(args) {
         this.position = args.position;
-        this.radius = 20;
+        this.radius = 10;
         this.create = args.create;
         this.onDie = args.onDie;
         this.shape = new Image();
@@ -45,15 +50,14 @@ export default class Beatle {
         context.save();
         context.translate(this.position.x, this.position.y);
         context.rotate(this.rotation * Math.PI / 180);
-        context.strokeStyle = '#ffffff';
-        context.fillStyle = '#000000';
+        context.strokeStyle = '#000000';
+        context.fillStyle = '#2743A5';
         context.lineWidth = 2;
         context.beginPath();
-        context.moveTo(0, -15);
-        context.lineTo(10, 10);
-        context.lineTo(5, 7);
-        context.lineTo(-5, 7);
-        context.lineTo(-10, 10);
+        context.moveTo(0,15);
+        context.lineTo(10,10);
+        context.lineTo(0,-15);
+        context.lineTo(-10,10);
         context.closePath();
         context.fill();
         context.stroke();

@@ -48,6 +48,9 @@ const vpassword = value => {
   }
 };
 
+/**
+ * Component for registration.
+ */
 export default class Register extends Component {
   constructor(props) {
     super(props);
@@ -82,7 +85,6 @@ export default class Register extends Component {
       email: e.target.value
     });
   }
-
 
   onChangeFullName(e) {
     this.setState({

@@ -2,6 +2,11 @@ import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import { InfoWindow } from "google-maps-react";
 
+/**
+ * Source: https://stackoverflow.com/questions/53615413/how-to-add-a-button-in-infowindow-with-google-maps-react
+ * 
+ * Used the top answer in this thread. This custom infowindows allows onclick events on infowindows.
+ */
 export default class CustomInfoWindows extends Component {
     constructor(props) {
       super(props);

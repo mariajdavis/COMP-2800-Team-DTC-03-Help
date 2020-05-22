@@ -1,3 +1,8 @@
+/**
+ * A watered down version of the classic Asteroid game. Used https://github.com/chriz001/Reacteroids as a tutorial for using context and also for its random number generator functions and collision function. Remade game logic and virus(asteroid) logic. 
+ *  
+ */
+
 import {randomNumBetween} from './helpers';
 
 export default class Virus {

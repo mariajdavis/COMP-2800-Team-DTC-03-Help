@@ -1,8 +1,12 @@
+/**
+ * A watered down version of the classic Asteroid game. Used https://github.com/chriz001/Reacteroids as a tutorial for using context and also for its random number generator functions and collision function. Remade game logic and virus(asteroid) logic. 
+ *  
+ */
+
 import React, { Component } from 'react';
 import Beatle from './Beatle';
 import Virus from './Virus';
 import { randomNumBetweenExcluding, randomNumBetween } from './helpers';
-import $ from "jquery";
 import "./style.css";
 import mp3_file from './help.mp3';
 
@@ -68,8 +72,6 @@ export class EasterEgg extends Component {
     }
 
     componentDidMount() {
-        //$('.animated-text').hide();
-        //$('#startBtn').html='Start?'
         window.addEventListener('keyup', this.handleKeys.bind(this, false));
         window.addEventListener('keydown', this.handleKeys.bind(this, true));
         window.addEventListener('resize', this.handleResize.bind(this, false));
@@ -254,7 +256,7 @@ export class EasterEgg extends Component {
                         </div>
                         <div>
                             <span className="controls" >
-                                Use [A][S][W][D] or [←][↑][↓][→] to MOVE<br />
+                                Move with [A][S][W][D] or [←][↑][↓][→]<br />
                             </span>
                         </div>
                     </div>
