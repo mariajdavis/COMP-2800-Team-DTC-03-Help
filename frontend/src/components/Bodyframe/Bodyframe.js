@@ -22,10 +22,12 @@ class mainBody extends Component {
         };
     }
 
+    //Prompts the database for a list of jobs when the page loads
     componentDidMount() {
         this.retrieveJobPosts();
     }
 
+    //Retrieves a list of all job posts
     retrieveJobPosts() {
         JobPostDataService.getAll()
             .then(response => {
@@ -62,11 +64,7 @@ class mainBody extends Component {
                         <ul id="bottom-display">
                             {jobPosts &&
                                 jobPosts.map((jobPost, index) => (
-                                    <li
-                                        id={jobPost.id}
-                                        key={index}
-                                        style={{ color: 'black' }}
-                                    >
+                                    <li id={jobPost.id} key={index} style={{ color: 'black' }}>
                                         {jobPost.title}
                                     </li>
                                 ))}
@@ -74,7 +72,6 @@ class mainBody extends Component {
                     </div>
                 </section>
             </main>
-
         )
     }
 }
