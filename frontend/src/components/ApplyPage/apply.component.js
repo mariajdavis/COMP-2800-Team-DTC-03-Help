@@ -6,8 +6,9 @@ import '../AboutUs/AboutUs.css';
 import './apply.css';
 import happyBear from '../../img/applied.png';
 
-
-// AWS A3 file storage config
+/**
+ * AWS S3 file storage config
+ */
 const config = {
   bucketName: 'helpresumes',
   region: 'us-west-2',
@@ -15,6 +16,9 @@ const config = {
   secretAccessKey: '2D+8Sk3quGTHAvzMPL4RWBnFCQJHfF3txf+62nrS'
 }
 
+/**
+ * Creates application component
+ */
 export default class Apply extends Component {
   constructor(props) {
     super(props);
@@ -35,6 +39,9 @@ export default class Apply extends Component {
     };
   }
 
+  /**
+  * Updates resumePath field for current application
+  */
   onChangeResumePath(newResumePath) {
     const resPath = newResumePath.toString();
     this.setState({
@@ -42,12 +49,24 @@ export default class Apply extends Component {
     });
   }
 
+  /**
+   * Updates comments field for current applications
+   * 
+   * @param {*} e 
+   */
   onChangeComments(e) {
     this.setState({
       comments: e.target.value
     });
   }
 
+  /**
+   * Uploads file to AWS file storage, sets resumePath field 
+   * of current application to returned data.location value
+   * if successful
+   * 
+   * @param {*} e 
+   */
   upload(e) {
     ReactS3.uploadFile(e.target.files[0], config)
       .then((data) => {
@@ -62,6 +81,10 @@ export default class Apply extends Component {
       })
   }
 
+  /**
+   * Adds application object to database, updating current application
+   * object values if successful
+   */
   submitApplication() {
     var data = {
       jobPostID: this.state.jobPostID,
@@ -86,6 +109,10 @@ export default class Apply extends Component {
       });
   }
 
+  /**
+   * Resets current application to null values and sets submitted
+   * back to false
+   */
   newApplication() {
     this.setState({
       id: null,
@@ -93,11 +120,13 @@ export default class Apply extends Component {
       userID: null,
       resumePath: "",
       comments: "",
-
       submitted: false
     });
   }
 
+  /**
+   * Renders application componetn
+   */
   render() {
 
     return (

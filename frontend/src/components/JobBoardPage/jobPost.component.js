@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import JobPostDataService from "../services/jobPost.service";
-import "./Layouts/ContentLayout.css"
+import JobPostDataService from "../../services/jobPost.service";
+import "./../Layouts/ContentLayout.css"
 
 
 export default class JobPost extends Component {
