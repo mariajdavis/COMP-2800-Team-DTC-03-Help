@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import AuthService from "./../services/auth.service";
-import UserDataService from "./../services/user.service";
-import "./Layouts/ContentLayout.css";
-import black_background from "./../img/profile_bg.png";
+import AuthService from "../../services/auth.service";
+import UserDataService from "../../services/user.service";
+import "../Layouts/ContentLayout.css";
+import black_background from "../../img/profile_bg.png";
 import "./profile.css";
-import HelpLogo from "./../img/logo.jpg";
+import HelpLogo from "../../img/logo.jpg";
 
 
 export default class Profile extends Component {
@@ -18,6 +18,7 @@ export default class Profile extends Component {
     };
   }
 
+  /** Call retrieveUserInfo method */
   componentDidMount() {
     this.retrieveUserInfo();
   }
@@ -26,7 +27,7 @@ export default class Profile extends Component {
 
     console.log(this.state.currentUser.id);
 
-    // Retrieves all current user data
+    /** Retrieves all current user data */
     UserDataService.findOneUser(this.state.currentUser.id)
         .then(response => {
             this.setState({

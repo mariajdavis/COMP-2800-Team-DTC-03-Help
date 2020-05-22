@@ -3,9 +3,10 @@ import { DropdownButton, Dropdown } from "react-bootstrap";
 import './jobBoard.css'
 import ApplyDataService from "../../services/apply.service";
 import AuthService from "../../services/auth.service";
-import { Link } from "react-router-dom";
 
-
+/**
+ * Creates view applicant page component
+ */
 class ViewApplicantPage extends Component {
     constructor(props) {
         super(props);
@@ -25,12 +26,18 @@ class ViewApplicantPage extends Component {
         };
     }
 
-    //When this component loads, a list of applicants is retrieved for the organization's job posts 
+    /**
+     * When this component loads, a list of applicants is retrieved for the organization's job posts 
+     */
     componentDidMount() {
         this.retrieveApplicants();
     }
 
-    //An event listener for when a user types in the search bar
+    /**
+     * An event listener for when a user types in the search bar
+     * 
+     * @param {*} e 
+     */
     onChangeSearchTitle(e) {
         const searchTitle = e.target.value;
         this.setState({
@@ -38,11 +45,15 @@ class ViewApplicantPage extends Component {
         });
     }
 
+    /**
+     * Retrieves all data from application/user/jobPost tables 
+     * where orgID = currentOrgUser id
+     * 
+     * @param {*} e 
+     */
     retrieveApplicants() {
         console.log(this.state.currentUser.id);
 
-        // Retrieves all data from application/user/jobPost 
-        // tables where orgID = currentOrgUser id
         ApplyDataService.findAllOrgApplicants(this.state.currentUser.id)
             .then(response => {
                 this.setState({
@@ -55,6 +66,9 @@ class ViewApplicantPage extends Component {
             });
     }
 
+    /**
+     * Refreshes list of applicants
+     */
     refreshList() {
         this.retrieveApplicants();
         this.setState({
@@ -63,6 +77,12 @@ class ViewApplicantPage extends Component {
         });
     }
 
+    /**
+     * Sets active applicant to view details
+     * 
+     * @param {*} application 
+     * @param {*} index 
+     */
     setActiveApplicant(application, index) {
         this.setState({
             currentApplicant: application,
@@ -70,33 +90,16 @@ class ViewApplicantPage extends Component {
         });
     }
 
+    /**
+     * Will allow orgUsers to search for specific applicants
+     */
     searchTitle() {
-        //     ApplyDataService.findAll({
-        //       include: [{
-        //           model: JobPostDataService,
-        //           as: "jobPost",
-        //           where: { orgID: currentOrgUser.id, title: { [Op.like]: 
-        //           '%' + this.state.searchTitle + '%'}}
-        //         }, {
-        //           model: UserDataService,
-        //           as: "applicant"
-        //         }
-        //       ],
-        //       where: {
-        //         id : id
-        //       }
-        //       .then(response => {
-        //         this.setState({
-        //           jobPosts: response.data
-        //         });
-        //         console.log(response.data);
-        //       })
-        //       .catch(e => {
-        //         console.log(e);
-        //       })
-        //   })
+        // Search bar logic to go here
     };
 
+    /**
+     * Renders view applicant page component
+     */
     render() {
         const { searchTitle, applicants, currentApplicant, currentIndex, currentUser } = this.state;
 

@@ -1,3 +1,6 @@
+/**
+ * Routes for application related tasks.
+ */
 module.exports = app => {
   const Application = require("../controllers/apply.controller.js");
 

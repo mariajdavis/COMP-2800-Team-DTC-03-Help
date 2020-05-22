@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import AuthService from "./../services/auth.service";
-import UserDataService from "./../services/user.service";
-import "./Layouts/ContentLayout.css"
+import AuthService from "../../services/auth.service";
+import UserDataService from "../../services/user.service";
+import "../Layouts/ContentLayout.css"
 import "./profile.css";
 import { createBrowserHistory } from 'history';
 export const browserHistory = createBrowserHistory();
@@ -31,10 +31,12 @@ export default class EditUserProfile extends Component {
         };
     }
 
+    /** Get the user information */
     componentDidMount() {
         const user = AuthService.getCurrentUser();
         this.retrieveUserInfo(user.id);
     }
+
 
     shouldComponentUpdate(nextProps, nextState) {
         if ( this.state.mounted ) {
@@ -43,9 +45,8 @@ export default class EditUserProfile extends Component {
         return true;
       }
 
+    /** Retrieves all current user data */
     retrieveUserInfo(id) {
-
-        // Retrieves all current user data
         UserDataService.findOneUser(id)
             .then(response => {
                 this.setState({
@@ -58,6 +59,7 @@ export default class EditUserProfile extends Component {
             });
     }
 
+    /** Update new user's full name to the state */
     onChangeFullName(e) {
         const fullName = e.target.value;
 
@@ -69,6 +71,7 @@ export default class EditUserProfile extends Component {
         }));
     }
 
+    /** Update new user email to the state */
     onChangeEmail(e) {
         const email = e.target.value;
 
@@ -80,6 +83,7 @@ export default class EditUserProfile extends Component {
         }));
     }
 
+    /** Update new user phone number to the state */
     onChangePhoneNumber(e) {
         const phoneNumber = e.target.value;
 
@@ -91,6 +95,7 @@ export default class EditUserProfile extends Component {
         }));
     }
 
+    /** Update new user information to the database */
     updateUser() {
         UserDataService.updateUser(
             this.state.currentUser.id,

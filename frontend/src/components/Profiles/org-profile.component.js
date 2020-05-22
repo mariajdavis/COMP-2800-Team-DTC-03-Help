@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import AuthService from "../services/auth.service";
-import "./Layouts/ContentLayout.css"
-import JobPostDataService from "../services/jobPost.service";
+import AuthService from "../../services/auth.service";
+import "../Layouts/ContentLayout.css"
+import JobPostDataService from "../../services/jobPost.service";
 
 
 
@@ -15,10 +15,12 @@ export default class OrgProfile extends Component {
     };
   }
 
+  /** Call retrieveJobPost method */
   componentDidMount() {
     this.retrieveJobPosts();
   }
 
+  /** Get all job posts that the org user has posted */
   retrieveJobPosts() {
     console.log(this.state.currentUser.id)
     JobPostDataService.getAll()
@@ -31,6 +33,8 @@ export default class OrgProfile extends Component {
             orgJobList.push(response.data[i].title)
           }
         }
+
+        /** Push the job posts in the database to the component's state */
         this.setState({
           jobPosts: orgJobList
         });

@@ -8,6 +8,10 @@ import beach from '../../img/beach.png'
 import $ from 'jquery';
 import { EasterEgg } from "../EasterEgg/EasterEgg";
 
+
+/**
+ * About Us page component
+ */
 export default class AboutUs extends Component {
     constructor(props) {
         super(props);
@@ -17,6 +21,8 @@ export default class AboutUs extends Component {
             count: 0
         }
     }
+
+    /** Removes the main content of about us page */
     eggHandle() {
         if (this.state.count >= 6) {
             $('#aboutUs').hide();

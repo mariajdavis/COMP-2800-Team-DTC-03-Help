@@ -8,6 +8,10 @@ import "./registration.css"
 
 import AuthService from "../../services/auth.service";
 
+/**
+ * 
+ * @param {*} value form value
+ */
 const required = value => {
   if (!value) {
     return (
@@ -17,7 +21,10 @@ const required = value => {
     );
   }
 };
-
+/**
+ * 
+ * @param {*} value form value
+ */
 const email = value => {
   if (!isEmail(value)) {
     return (
@@ -27,7 +34,10 @@ const email = value => {
     );
   }
 };
-
+/**
+ * 
+ * @param {*} value form value
+ */
 const vusername = value => {
   if (value.length < 3 || value.length > 20) {
     return (
@@ -37,7 +47,10 @@ const vusername = value => {
     );
   }
 };
-
+/**
+ * 
+ * @param {*} value form value
+ */
 const vpassword = value => {
   if (value.length < 6 || value.length > 40) {
     return (
@@ -73,51 +86,84 @@ export default class Register extends Component {
       registerType: "user"
     };
   }
-
+  /**
+   * Handles form change event.
+   * 
+   * @param {*} e event
+   */
   onChangeUsername(e) {
     this.setState({
       username: e.target.value
     });
   }
-
+  /**
+   * Handles form change event.
+   * 
+   * @param {*} e event
+   */
   onChangeEmail(e) {
     this.setState({
       email: e.target.value
     });
   }
-
+  /**
+   * Handles form change event.
+   * 
+   * @param {*} e event
+   */
   onChangeFullName(e) {
     this.setState({
       fullName: e.target.value
     });
   }
-
+  /**
+   * Handles form change event.
+   * 
+   * @param {*} e event
+   */
   onChangePhoneNumber(e) {
     this.setState({
       phoneNumber: e.target.value
     });
   }
-
+  /**
+   * Handles form change event.
+   * 
+   * @param {*} e event
+   */
   onChangePassword(e) {
     this.setState({
       password: e.target.value
     });
   }
-
+  /**
+   * Handles form change event.
+   * 
+   * @param {*} e event
+   */
   handleRegisterType(e) {
     this.setState({
       registerType: e.target.value
     });
     console.log(e.target.value);
   }
-
+  /**
+   * Initializes states on component mount.
+   * 
+   * @param {*} message message
+   * @param {*} successful success state
+   */
   componentDidMount(message, successful) {
     this.setState({
       message: message,
       successful: successful
     });
   }
-
+  /**
+   * Handles registration process.
+   * 
+   * @param {*} e event
+   */
   handleRegister(e) {
     e.preventDefault();
 
@@ -139,8 +185,6 @@ export default class Register extends Component {
         ).then(
           response => {
             this.componentDidMount(response.data.message, true);
-            // this.props.history.push("/");
-            // window.location.reload();
           },
           error => {
             const resMessage =
@@ -165,8 +209,6 @@ export default class Register extends Component {
         ).then(
           response => {
             this.componentDidMount(response.data.message, true);
-            // this.props.history.push("/");
-            // window.location.reload();
           },
           error => {
             const resMessage =
@@ -195,69 +237,69 @@ export default class Register extends Component {
       <div id="contentLayoutRegister">
         <div id="contentDivRegister">
           <div>
-        <div id="registration-background">
-          <Form
-            onSubmit={this.handleRegister}
-            ref={c => {
-              this.form = c;
-            }}
-          >
-            {!this.state.successful && (
-              <div id="addJobAreaRegister">
-                <div id="toggleDiv" style={{display: 'flex', justifyContent: 'center'}}>
-                  <div>
-                    <label class="btn btn-secondary">
-                      <input class="m-2" type="radio" name="options" id="user" autocomplete="off" value="user" checked={this.state.registerType==="user"} onChange={this.handleRegisterType} />Register As Individual User</label>
-                  </div>
-                  <div style={radioBtnStyle}>
-                  <label class="btn btn-secondary">
-                      <input class="m-2" type="radio" name="options" id="orgUser" autocomplete="off" value="orgUser" checked={this.state.registerType==="orgUser"} onChange={this.handleRegisterType} />Register As Organization</label>
-                  </div>
-                </div>
-                <div id="form1" className="form-group">
-                  <label htmlFor="username">Username</label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="username"
-                    value={this.state.username}
-                    onChange={this.onChangeUsername}
-                    validations={[required, vusername]}
-                  />
-                </div>
+            <div id="registration-background">
+              <Form
+                onSubmit={this.handleRegister}
+                ref={c => {
+                  this.form = c;
+                }}
+              >
+                {!this.state.successful && (
+                  <div id="addJobAreaRegister">
+                    <div id="toggleDiv" style={{ display: 'flex', justifyContent: 'center' }}>
+                      <div>
+                        <label class="btn btn-secondary">
+                          <input class="m-2" type="radio" name="options" id="user" autocomplete="off" value="user" checked={this.state.registerType === "user"} onChange={this.handleRegisterType} />Register As Individual User</label>
+                      </div>
+                      <div style={radioBtnStyle}>
+                        <label class="btn btn-secondary">
+                          <input class="m-2" type="radio" name="options" id="orgUser" autocomplete="off" value="orgUser" checked={this.state.registerType === "orgUser"} onChange={this.handleRegisterType} />Register As Organization</label>
+                      </div>
+                    </div>
+                    <div id="form1" className="form-group">
+                      <label htmlFor="username">Username</label>
+                      <Input
+                        type="text"
+                        className="form-control"
+                        name="username"
+                        value={this.state.username}
+                        onChange={this.onChangeUsername}
+                        validations={[required, vusername]}
+                      />
+                    </div>
 
-                <div id="form2" className="form-group">
-                  <label htmlFor="fullName">Full Name</label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="fullName"
-                    value={this.state.fullName}
-                    onChange={this.onChangeFullName}
-                  />
-                </div>
+                    <div id="form2" className="form-group">
+                      <label htmlFor="fullName">Full Name</label>
+                      <Input
+                        type="text"
+                        className="form-control"
+                        name="fullName"
+                        value={this.state.fullName}
+                        onChange={this.onChangeFullName}
+                      />
+                    </div>
                     <div id="form3" className="form-group">
-                  <label htmlFor="phoneNumber">Phone Number</label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="phoneNumber"
-                    value={this.state.phoneNumber}
-                    onChange={this.onChangePhoneNumber}
-                  />
-                </div>
+                      <label htmlFor="phoneNumber">Phone Number</label>
+                      <Input
+                        type="text"
+                        className="form-control"
+                        name="phoneNumber"
+                        value={this.state.phoneNumber}
+                        onChange={this.onChangePhoneNumber}
+                      />
+                    </div>
 
-                <div id="form4" className="form-group">
-                  <label htmlFor="email">Email</label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.onChangeEmail}
-                    validations={[required, email]}
-                  />
-                </div>
+                    <div id="form4" className="form-group">
+                      <label htmlFor="email">Email</label>
+                      <Input
+                        type="text"
+                        className="form-control"
+                        name="email"
+                        value={this.state.email}
+                        onChange={this.onChangeEmail}
+                        validations={[required, email]}
+                      />
+                    </div>
 
                     <div id="form5" className="form-group">
                       <label htmlFor="password">Password</label>

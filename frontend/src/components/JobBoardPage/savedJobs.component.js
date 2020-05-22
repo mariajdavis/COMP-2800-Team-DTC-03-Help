@@ -1,16 +1,14 @@
 import React, { Component, Fragment } from "react";
-import './JobBoardPage/jobBoard.css'
-import JobPostDataService from "../services/jobPost.service";
-import AuthService from "../services/auth.service";
+import '../JobBoardPage/jobBoard.css'
+import JobPostDataService from "../../services/jobPost.service";
+import AuthService from "../../services/auth.service";
 import { Link } from "react-router-dom";
 import { Button, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
-import MapContainer from "./GoogleMap/map.component";
+import MapContainer from "../GoogleMap/map.component";
 
-import { TwitterTimelineEmbed, TwitterShareButton } from 'react-twitter-embed';
-
-
-
-
+/**
+ * Creates saved job page component
+ */
 class SavedJobs extends Component {
   constructor(props) {
     super(props);
@@ -37,10 +35,18 @@ class SavedJobs extends Component {
     };
   }
 
+  /**
+   * Calls function to retrieve saved job posts, immediately
+   */
   componentDidMount() {
     this.retrieveJobPosts();
   }
 
+  /**
+   * Updates current text to search by title
+   * 
+   * @param {*} e 
+   */
   onChangeSearchTitle(e) {
     const searchTitle = e.target.value;
 
@@ -49,6 +55,11 @@ class SavedJobs extends Component {
     });
   }
 
+  /**
+   * Handles view job feature
+   * 
+   * @param {*} e 
+   */
   handleJobView(e) {
     console.log("target value " + e.target.value);
     if (e.target.value === "1") {
@@ -67,6 +78,11 @@ class SavedJobs extends Component {
     }
   }
 
+  /**
+   * Handles save job feature
+   * 
+   * @param {*} e 
+   */
   handleSave(e) {
     if (e.target.value === "save") {
       JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentJobPost.id, save: true });
@@ -78,6 +94,9 @@ class SavedJobs extends Component {
     }
   }
 
+  /**
+   * Retrieves saved job posts from database specific to a user
+   */
   retrieveJobPosts() {
     JobPostDataService.getAllSaved(this.state.currentUser.id)
       .then(response => {
@@ -91,6 +110,9 @@ class SavedJobs extends Component {
       });
   }
 
+  /**
+   * Refreshes saved jobs list
+   */
   refreshList() {
     this.retrieveJobPosts();
     this.setState({
@@ -99,6 +121,13 @@ class SavedJobs extends Component {
     });
   }
 
+  /**
+   * Sets active job post to selected saved job post
+   * to view details
+   * 
+   * @param {*} jobPost 
+   * @param {*} index 
+   */
   setActiveJobPost(jobPost, index) {
     this.setState({
       currentJobPost: jobPost,
@@ -120,6 +149,9 @@ class SavedJobs extends Component {
     }
   }
 
+  /**
+   * Removes all job posts
+   */
   removeAllJobPosts() {
     JobPostDataService.deleteAll()
       .then(response => {
@@ -131,6 +163,9 @@ class SavedJobs extends Component {
       });
   }
 
+  /**
+   * Retrieve job posts from database with searched text in title
+   */
   searchTitle() {
 
     JobPostDataService.findByTitle(this.state.searchTitle)
@@ -145,14 +180,23 @@ class SavedJobs extends Component {
       });
   }
 
+  /**
+   * Log out (job-seeker) user
+   */
   logOut() {
     AuthService.logout();
   }
 
+  /**
+   * Log out business user
+   */
   orgLogOut() {
     AuthService.orgLogout();
   }
 
+  /**
+   * Render saved jobs page component
+   */
   render() {
     const { searchTitle, jobPosts, currentJobPost, currentIndex, currentUser, currentView } = this.state;
     return (

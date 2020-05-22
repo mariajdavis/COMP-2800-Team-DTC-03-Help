@@ -1,16 +1,10 @@
 import React, { Component } from "react";
-import JobPostDataService from "../services/jobPost.service";
-import AuthService from "../services/auth.service";
-import TagDataService from "../services/tag.service";
-import "./Layouts/ContentLayout.css"
-import { Map, GoogleApiWrapper } from 'google-maps-react';
-import SearchLocation from "./mapSearch";
-import MapContainer from "./GoogleMap/map.component";
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng
-} from "react-places-autocomplete";
-import "./Registration/registration.css"
+import JobPostDataService from "../../services/jobPost.service";
+import AuthService from "../../services/auth.service";
+import TagDataService from "../../services/tag.service";
+import "../Layouts/ContentLayout.css"
+import SearchLocation from "../GoogleMap/mapSearch";
+import "../Registration/registration.css"
 
 const required = value => {
   if (!value) {
@@ -22,6 +16,9 @@ const required = value => {
   }
 };
 
+/**
+ * Creates add job post component
+ */
 export default class AddJobPost extends Component {
   constructor(props) {
     super(props);
@@ -55,6 +52,11 @@ export default class AddJobPost extends Component {
     };
   }
 
+  /**
+   * Sets tagArray of current jobPost object to values from form
+   * 
+   * @param {*} e 
+   */
   setTags(e) {
     var options = e.target.options;
     var tags = [];
@@ -72,48 +74,86 @@ export default class AddJobPost extends Component {
     console.log(this.tagArray);
   }
 
+  /**
+   * Updates value of current job post title field
+   * 
+   * @param {*} e 
+   */
   onChangeTitle(e) {
     this.setState({
       title: e.target.value
     });
   }
 
+  /**
+   * Updates value of current job post description field
+   * 
+   * @param {*} e 
+   */
   onChangeDescription(e) {
     this.setState({
       description: e.target.value
     });
   }
 
+  /**
+   * Updates value of current job post jobType field
+   * 
+   * @param {*} e 
+   */
   onChangeJobType(e) {
     this.setState({
       jobType: e.target.value
     });
   }
 
+  /**
+   * Updates value of current job post rate field
+   * 
+   * @param {*} e 
+   */
   onChangeRate(e) {
     this.setState({
       rate: e.target.value
     });
   }
 
+  /**
+   * Updates value of current job post contractLength field
+   * 
+   * @param {*} e 
+   */
   onChangeContractLength(e) {
     this.setState({
       contractLength: e.target.value
     });
   }
 
+  /**
+   * Updates value of current job post startDate field
+   * 
+   * @param {*} e 
+   */
   onChangeStartDate(e) {
     this.setState({
       startDate: e.target.value
     });
   }
 
+  /**
+   * Updates value of current job post location field
+   * 
+   * @param {*} e 
+   */
   onChangeLocation(e) {
     this.setState({
       location: e.target.value
     })
   }
 
+  /**
+   * Adds job post record to database
+   */
   saveJobPost() {
 
     var data = {
@@ -169,6 +209,10 @@ export default class AddJobPost extends Component {
     }
   }
 
+  /**
+   * Resets current job post to null values, resetting
+   * submitted field to false
+   */
   newJobPost() {
     this.setState({
       id: null,
@@ -181,6 +225,12 @@ export default class AddJobPost extends Component {
   }
 
 
+  /**
+   * Saves jobPost map location (lat and long)
+   * 
+   * @param {*} place 
+   * @param {*} latLng 
+   */
   saveMapData(place, latLng) {
     this.setState({
       location: place,
@@ -190,8 +240,10 @@ export default class AddJobPost extends Component {
     console.log(this.state.coordinates)
   }
 
+  /**
+   * Renders add job post component
+   */
   render() {
-    
 
     return (
       <div id="contentLayoutRegister">

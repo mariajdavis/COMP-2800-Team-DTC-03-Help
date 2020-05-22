@@ -1,3 +1,6 @@
+/**
+ * DB model for jobPost.
+ */
 module.exports = (sequelize, Sequelize) => {
   const JobPost = sequelize.define("jobPost", {
     title: {
