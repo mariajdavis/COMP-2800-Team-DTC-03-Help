@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import AuthService from "./../services/auth.service";
-import UserDataService from "./../services/user.service";
-import "./Layouts/ContentLayout.css"
+import AuthService from "../../services/auth.service";
+import UserDataService from "../../services/user.service";
+import "../Layouts/ContentLayout.css"
 import "./profile.css";
 import { createBrowserHistory } from 'history';
 export const browserHistory = createBrowserHistory();

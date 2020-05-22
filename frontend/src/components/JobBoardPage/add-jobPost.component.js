@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-import JobPostDataService from "../services/jobPost.service";
-import AuthService from "../services/auth.service";
-import TagDataService from "../services/tag.service";
-import "./Layouts/ContentLayout.css"
+import JobPostDataService from "../../services/jobPost.service";
+import AuthService from "../../services/auth.service";
+import TagDataService from "../../services/tag.service";
+import "../Layouts/ContentLayout.css"
 import { Map, GoogleApiWrapper } from 'google-maps-react';
-import SearchLocation from "./mapSearch";
-import MapContainer from "./GoogleMap/map.component";
+import SearchLocation from "../GoogleMap/mapSearch";
+import MapContainer from "../GoogleMap/map.component";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from "react-places-autocomplete";
-import "./Registration/registration.css"
+import "../Registration/registration.css"
 
 
 export default class AddJobPost extends Component {

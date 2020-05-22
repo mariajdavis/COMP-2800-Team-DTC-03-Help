@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import AuthService from "../services/auth.service";
-import "./Layouts/ContentLayout.css"
-import JobPostDataService from "../services/jobPost.service";
+import AuthService from "../../services/auth.service";
+import "../Layouts/ContentLayout.css"
+import JobPostDataService from "../../services/jobPost.service";
 
 
 

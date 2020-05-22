@@ -12,7 +12,7 @@ div#liquidHeading {
     grid-area: heading;
     position: relative;
     background-color: rgb(144, 167, 249);
-    background-image: url(./../img/liquid.gif);
+    background-image: url(../../img/liquid.gif);
     /* background-size: 250% 250%; */
     background-position: 20% 23%;
     top: 1.5vw;
@@ -97,7 +97,7 @@ div#resume-content {
 
 
 #userProfileBackground {
-    background-image: url('./../img/profile_bg.png');
+    background-image: url('../../img/profile_bg.png');
     background-size: 100% 100%;
     top: 0px;
     display: grid;
@@ -129,7 +129,7 @@ div#resume-content {
 /* Edit Profile Page */
 
 #profile-edit-background {
-    background-image: url(../img/rectangle_24.png);
+    background-image: url(../../img/rectangle_24.png);
     background-size: 100% 100%;
     padding: 2%;
 }

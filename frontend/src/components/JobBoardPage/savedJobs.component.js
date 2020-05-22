@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from "react";
-import './JobBoardPage/jobBoard.css'
-import JobPostDataService from "../services/jobPost.service";
-import AuthService from "../services/auth.service";
+import '../JobBoardPage/jobBoard.css'
+import JobPostDataService from "../../services/jobPost.service";
+import AuthService from "../../services/auth.service";
 import { Link } from "react-router-dom";
 import { Button, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
-import MapContainer from "./GoogleMap/map.component";
+import MapContainer from "../GoogleMap/map.component";
 
 import { TwitterTimelineEmbed, TwitterShareButton } from 'react-twitter-embed';
 

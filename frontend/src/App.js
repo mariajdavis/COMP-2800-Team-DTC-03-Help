@@ -2,27 +2,26 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import AddJobPost from "./components/add-jobPost.component";
-import JobPost from "./components/jobPost.component";
+import AddJobPost from "./components/JobBoardPage/add-jobPost.component";
+import JobPost from "./components/JobBoardPage/jobPost.component";
 import Apply from "./components/ApplyPage/apply.component";
 import JobPostsList from "./components/JobBoardPage/JobBoardPage";
 import Register from "./components/Registration/register.component";
 import LogIn from "./components/Login/logIn.component";
 import Bodyframe from './components/Bodyframe/Bodyframe.js';
 import Footer from './components/Footer/Footer.js';
-import UserProfile from "./components/user-profile.component";
+import UserProfile from "./components/Profiles/user-profile.component";
 import { Nav, Navbar } from 'react-bootstrap'
 import './Navbar.css'
 import AuthService from "./services/auth.service";
 import AboutUs from './components/AboutUs/aboutUs.component';
-import SavedJobPosts from './components/savedJobs.component';
-import EditUserProfile from './components/editUserProfile.component';
-import OrgProfile from './components/org-profile.component'
+import SavedJobPosts from './components/JobBoardPage/savedJobs.component';
+import EditUserProfile from './components/Profiles/editUserProfile.component';
+import OrgProfile from './components/Profiles/org-profile.component'
 import OrgJobBoard from './components/JobBoardPage/OrgJobBoardPage.js'
-
 import ViewApplicants from './components/JobBoardPage/ViewApplicantPage';
 import GoogleMap from './components/GoogleMap/map.component';
-import SearchLocation from './components/mapSearch';
+import SearchLocation from './components/GoogleMap/mapSearch';
 
 
 

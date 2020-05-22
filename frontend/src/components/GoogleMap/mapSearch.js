@@ -3,7 +3,7 @@ import PlacesAutocomplete, {
     geocodeByAddress,
     getLatLng
 } from "react-places-autocomplete";
-import AddJobPost from "./add-jobPost.component";
+import AddJobPost from "../JobBoardPage/add-jobPost.component";
 
 
 
