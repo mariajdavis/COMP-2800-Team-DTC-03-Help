@@ -33,6 +33,35 @@
         "contentArea"
 }
 
+#contentLayoutJobPost {
+    position: absolute;
+    display: grid;
+    width: 80vw;
+    bottom: 100px;
+    margin-left:10vw;
+    margin-right:10vw;
+    vertical-align: center;
+    top:calc(10vh + 75px);
+    margin-bottom: 5%;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    
+    grid-template-areas:
+        "contentArea"
+}
+
+#registration-background {
+    background-image: url(../../img/rectangle_24.png);
+    background-size: 100% 100%;
+    padding: 2%;
+}
+
+#jobPostFormatting{
+    margin-left:10vw;
+    margin-right:10vw;
+    width: 100vw;
+}
+
 #contentLayoutAddJobFix {
     position: absolute;
     display: grid;
@@ -92,7 +121,7 @@
     margin-left:10%;
     margin-right:auto;
     top: 20px;
-    bottom: 40px;
+    
 }
 
 #contentLayoutRegister {
