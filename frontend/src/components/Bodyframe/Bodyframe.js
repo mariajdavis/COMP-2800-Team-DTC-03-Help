@@ -49,7 +49,7 @@ class mainBody extends Component {
                 <section id='ancement'>
                     <div class='animated-text'>
                         <div class='line'>Help your community in a paid or volunteer position</div>
-                        <div class='line'>Vancouver General Hospital looking to fill dozens of temporary positions</div>
+                        <div class='line'>VGH looking to fill dozens of temporary positions</div>
                         <div class='line'>Drivers needed for community grocery delivery services</div>
                         <div class='line'>BC currently has 2,446 confirmed COVID-19 cases</div>
                         <div class='line'>Museums, retail, salons, and other services reopen</div>

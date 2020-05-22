@@ -147,62 +147,61 @@ class ViewApplicantPage extends Component {
                                                                     "list-group-item " +
                                                                     (index === currentIndex ? "active" : "")
                                                                 }
-                                                                id={applicant.id}
-                                                                onClick={() => {
 
-                                                                    if (this.state.toggleHandler) { // triggers open job post animation             
-                                                                        this.setActiveApplicant(applicant, index);
-                                                                        this.state.toggleHandler = false;
-                                                                        document.getElementById('job-list').classList.remove('job-list');
-                                                                        document.getElementById('job-list').classList.add('job-list-clicked');
-                                                                        document.getElementById('contentArea').classList.add('bgOpacity');
-                                                                    } else { // revert back
-                                                                        this.setActiveApplicant("", "")
-                                                                        this.state.toggleHandler = true;
-                                                                        document.getElementById('job-list').classList.remove('job-list-clicked');
-                                                                        document.getElementById('job-list').classList.add('job-list');
-                                                                        document.getElementById('contentArea').classList.remove('bgOpacity');
-                                                                    }
-                                                                }}
-                                                                key={index}
-                                                                style={{ color: 'black' }}
-                                                            >
-                                                                {applicant.jobPost.title + "    -    " + applicant.user.username}
-                                                            </li>
-                                                        ))}
-                                                </ul>
-                                            </div>
-                                            <div id="job-description-wrapper">
-                                                {currentApplicant && (
-                                                    <div id='job-description'>
-                                                        <h2>Applicant</h2>
-                                                        <div>
-                                                            <label>
-                                                                <h4>Position:</h4>
-                                                            </label>{" "}
-                                                            {currentApplicant.jobPost.title}
-                                                        </div>
-                                                        <div>
-                                                            <label>
-                                                                <h4>Applicant:</h4>
-                                                            </label>{" "}
-                                                            {currentApplicant.user.username}
-                                                        </div>
-                                                        <div>
-                                                            <label>
-                                                                <h4>Contact Information:</h4>
-                                                            </label>{" "}
-                                                            {currentApplicant.user.email}
-                                                        </div>
-                                                        <a href={currentApplicant.resumePath} >View Resume</a>
-                                                        <DropdownButton id="dropdown-basic-button" title="Application Status">
-                                                            <Dropdown.Item onClick={() => ApplyDataService.updateStatus(currentApplicant.id, "pending")}> Pending </Dropdown.Item>
-                                                            <Dropdown.Item onClick={() => ApplyDataService.updateStatus(currentApplicant.id, "accepted")}> Accepted </Dropdown.Item>
-                                                            <Dropdown.Item onClick={() => ApplyDataService.updateStatus(currentApplicant.id, "rejected")}> Rejected </Dropdown.Item>
-                                                        </DropdownButton>
+                                                            }}
+                                                            key={index}
+                                                            style={{ color: 'black' }}
+                                                        >
+                                                            {applicant.jobPost.title + "    -    " + applicant.user.fullName}
+                                                        </li>
+                                                    ))}
+                                            </ul>
+                                        </div>
+
+                                        <div id="job-description-wrapper">
+
+                                            {currentApplicant && (
+                                                <div id='job-description'>
+                                                    <h2>Applicant</h2>
+                                                    <div>
+                                                        <label>
+                                                            <h4>Position:</h4>
+                                                        </label>{" "}
+                                                        {currentApplicant.jobPost.title}
                                                     </div>
-                                                )}
-                                            </div>
+                                                    <div>
+                                                        <label>
+                                                            <h4>Applicant:</h4>
+                                                        </label>{" "}
+                                                        {currentApplicant.user.fullName}
+                                                    </div>
+                                                    <div>
+                                                        <label>
+                                                            <h4>Comments:</h4>
+                                                        </label>{" "}
+                                                        {currentApplicant.comments}
+                                                    </div>
+                                                    <div>
+                                                        <label>
+                                                            <h4>Email:</h4>
+                                                        </label>{" "}
+                                                        {currentApplicant.user.email}
+                                                    </div>
+                                                    <div>
+                                                        <label>
+                                                            <h4>Phone Number:</h4>
+                                                        </label>{" "}
+                                                        {currentApplicant.user.phoneNumber}
+                                                    </div>
+                                                    <a href={currentApplicant.resumePath} >View Resume</a>
+                                                    <DropdownButton id="dropdown-basic-button" title="Application Status">
+                                                        <Dropdown.Item onClick={() => ApplyDataService.updateStatus(currentApplicant.id, "pending")}> Pending </Dropdown.Item>
+                                                        <Dropdown.Item onClick={() => ApplyDataService.updateStatus(currentApplicant.id, "accepted")}> Accepted </Dropdown.Item>
+                                                        <Dropdown.Item onClick={() => ApplyDataService.updateStatus(currentApplicant.id, "rejected")}> Rejected </Dropdown.Item>
+                                                    </DropdownButton>
+                                                </div>
+                                            )}
+
                                         </div>
                                     </div>
                                 </article>
