@@ -1,3 +1,6 @@
+/**
+ * DB model for tag.
+ */
 module.exports = (sequelize, Sequelize) => {
     const Tag = sequelize.define("tag", {
       jobPostID: {

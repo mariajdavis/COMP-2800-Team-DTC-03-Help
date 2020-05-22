@@ -37,22 +37,20 @@ class App extends Component {
     };
   }
 
+  /** Get user data to the component's state */
   componentDidMount() {
-    const user = AuthService.getCurrentUser;
-    const orgUser = AuthService.getCurrentOrgUser;
-
-    if (user) {
       this.setState({
         currentUser: AuthService.getCurrentUser(),
         currentOrgUser: AuthService.getCurrentOrgUser()
       });
-    }
   }
 
+  /** Log out individual user */
   logOut() {
     AuthService.logout();
   }
 
+  /** Log out organization user */
   orgLogOut() {
     AuthService.orgLogout();
   }

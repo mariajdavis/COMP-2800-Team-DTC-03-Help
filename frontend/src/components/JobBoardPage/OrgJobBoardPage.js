@@ -118,7 +118,7 @@ class OrgJobBoardPage extends Component {
    */
   setActiveJobPost(jobPost, index) {
 
-    //Sets the currently selected job post to the job selected by the user
+    /** Sets the currently selected job post to the job selected by the user */
     this.setState({
       currentJobPost: jobPost,
       currentIndex: index

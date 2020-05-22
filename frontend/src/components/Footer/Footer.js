@@ -20,7 +20,7 @@ const fontStyle = {
     bottom:'12.5px'
 }
 
-
+/** Footer page component */
 function Footer () {
     return (
         <Fragment>
