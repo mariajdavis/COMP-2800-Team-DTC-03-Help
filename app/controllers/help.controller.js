@@ -75,7 +75,7 @@ exports.findOne = (req, res) => {
 // Update a JobPost by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
-
+  console.log("testaa")
   JobPost.update(req.body, {
     where: { id: id }
   })

@@ -208,8 +208,8 @@ export default class JobPost extends Component {
                   type="text"
                   className="form-control"
                   id="rate"
-                  value={currentJobPost.jobType}
-                  onChange={this.onChangeJobType}
+                  value={currentJobPost.rate}
+                  onChange={this.onChangeRate}
                 />
               </div>
 
@@ -221,8 +221,8 @@ export default class JobPost extends Component {
                   type="text"
                   className="form-control"
                   id="startDate"
-                  value={currentJobPost.jobType}
-                  onChange={this.onChangeJobType}
+                  value={currentJobPost.startDate}
+                  onChange={this.onChangeStartDate}
                 />
               </div>
 
@@ -234,8 +234,8 @@ export default class JobPost extends Component {
                   type="text"
                   className="form-control"
                   id="contractLength"
-                  value={currentJobPost.jobType}
-                  onChange={this.onChangeJobType}
+                  value={currentJobPost.contractLength}
+                  onChange={this.onChangeContractLength}
                 />
               </div>
 
@@ -251,7 +251,7 @@ export default class JobPost extends Component {
             <button
               type="submit"
               className="badge badge-success"
-              onClick={() => this.updateJobPost.then(this.props.history.goBack())}
+              onClick={this.updateJobPost}
               
             >
               Update
