@@ -80,7 +80,6 @@ section#bottomtext div {
     width: 200%;
 }
 ul#bottom-display {
-    /* padding: 0 40px; */
     display: flex;
     list-style: none;
 }

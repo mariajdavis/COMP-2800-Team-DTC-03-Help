@@ -67,6 +67,7 @@ exports.updateStatus = (req, res) => {
   })
 };
 
+
 // // find all applications specific to a job post 
 // exports.findAllWithJobPostID = (req, res) => {
 //   Application.findAll({ where: { jobPostID: req.params.jobPostID } })

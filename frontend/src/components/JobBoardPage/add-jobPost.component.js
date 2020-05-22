@@ -12,6 +12,15 @@ import PlacesAutocomplete, {
 } from "react-places-autocomplete";
 import "../Registration/registration.css"
 
+const required = value => {
+  if (!value) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        *Required field
+      </div>
+    );
+  }
+};
 
 export default class AddJobPost extends Component {
   constructor(props) {
@@ -195,106 +204,106 @@ export default class AddJobPost extends Component {
                 <button className="btn btn-success" onClick={this.newJobPost}>
                   Add
             </button>
-              </div>
-            ) : (
-                <div id="addJobArea">
+                </div>
+              ) : (
+                  <div id="addJobArea">
+                      
+                    <div className="form-group">
+                      <label htmlFor="title">Title</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="title"
+                        validations={[required]}
+                        value={this.state.title}
+                        onChange={this.onChangeTitle}
+                        name="title"
+                      />
+                    </div>
 
-                  <div className="form-group">
-                    <label htmlFor="title">Title</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="title"
-                      required
-                      value={this.state.title}
-                      onChange={this.onChangeTitle}
-                      name="title"
-                    />
-                  </div>
+                    <div className="form-group">
+                      <label htmlFor="description">Description</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="description"
+                        validations={[required]}
+                        value={this.state.description}
+                        onChange={this.onChangeDescription}
+                        name="description"
+                      />
+                    </div>
 
-                  <div className="form-group">
-                    <label htmlFor="description">Description</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="description"
-                      required
-                      value={this.state.description}
-                      onChange={this.onChangeDescription}
-                      name="description"
-                    />
-                  </div>
+                    <div className="form-group">
+                      <label htmlFor="jobType">Paid or Volunteer</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="jobType"
+                        
+                        value={this.state.jobType}
+                        onChange={this.onChangeJobType}
+                        name="jobType"
+                      />
+                    </div>
 
-                  <div className="form-group">
-                    <label htmlFor="jobType">Paid or Volunteer</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="jobType"
-                      required
-                      value={this.state.jobType}
-                      onChange={this.onChangeJobType}
-                      name="jobType"
-                    />
-                  </div>
+                    <div className="form-group">
+                      <label htmlFor="title">Hourly Rate</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="rate"
+                        
+                        value={this.state.rate}
+                        onChange={this.onChangeRate}
+                        name="rate"
+                      />
+                    </div>
 
-                  <div className="form-group">
-                    <label htmlFor="title">Hourly Rate</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="rate"
-                      required
-                      value={this.state.rate}
-                      onChange={this.onChangeRate}
-                      name="rate"
-                    />
-                  </div>
+                    <div className="form-group">
+                      <label htmlFor="description">Start Date</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="startDate"
+                        
+                        value={this.state.startDate}
+                        onChange={this.onChangeStartDate}
+                        name="startDate"
+                      />
+                    </div>
 
-                  <div className="form-group">
-                    <label htmlFor="description">Start Date</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="startDate"
-                      required
-                      value={this.state.startDate}
-                      onChange={this.onChangeStartDate}
-                      name="startDate"
-                    />
-                  </div>
+                    <div className="form-group">
+                      <label htmlFor="jobType">Length of Contract</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="contractLength"
+                        
+                        value={this.state.contractLength}
+                        onChange={this.onChangeContractLength}
+                        name="contractLength"
+                      />
+                    </div>
 
-                  <div className="form-group">
-                    <label htmlFor="jobType">Length of Contract</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="contractLength"
-                      required
-                      value={this.state.contractLength}
-                      onChange={this.onChangeContractLength}
-                      name="contractLength"
-                    />
-                  </div>
+                    <div className="form-group" id="tagSelect">
+                      <label htmlFor="jobType">Tags</label><br></br>
+                      <select id="tags" name="tags" onChange={this.setTags} multiple>
+                        <option value="Volunteer">Volunteer</option>
+                        <option value="Delivery">Delivery</option>
+                        <option value="Food">Food</option>
+                        <option value="Essential">Essential</option>
+                        <option value="Elderly">Elderly</option>
+                        <option value="Hospital">Hospital</option>
+                        <option value="Charity">Charity</option>
+                        <option value="Charity">Education</option>
+                      </select>
+                    </div>
 
-                  <div className="form-group" id="tagSelect">
-                    <label htmlFor="jobType">Tags</label><br></br>
-                    <select id="tags" name="tags" onChange={this.setTags} multiple>
-                      <option value="Volunteer">Volunteer</option>
-                      <option value="Delivery">Delivery</option>
-                      <option value="Food">Food</option>
-                      <option value="Essential">Essential</option>
-                      <option value="Elderly">Elderly</option>
-                      <option value="Hospital">Hospital</option>
-                      <option value="Charity">Charity</option>
-                      <option value="Charity">Education</option>
-                    </select>
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="jobType">Location</label>
-                    <SearchLocation callData={this.saveMapData}></SearchLocation>
-                    {/* <input
+                    <div className="form-group">
+                      <label htmlFor="jobType">Location</label>
+                      <SearchLocation callData={this.saveMapData}></SearchLocation>
+                      {/* <input
                       type="text"
                       className="form-control"
                       id="contractLength"

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import GoogleMapReact from 'google-map-react';
-import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import CustomInfoWindow from './CustomInfoWindow';
 import JobPostDataService from "../../services/jobPost.service";
 import AuthService from "../../services/auth.service";
 import { Button, Card } from 'react-bootstrap';
 
+/**
+ * Implementation of the React Google Map api. Shows job posts as clickable markers on a google map.
+ */
 export class MapContainer extends Component {
   constructor(props) {
     super(props);
@@ -13,12 +15,6 @@ export class MapContainer extends Component {
     this.sendToApplicationPage = this.sendToApplicationPage.bind(this);
     this.onOptionsClick = this.onOptionsClick.bind(this);
     this.state = {
-      // stores: [{lat: 47.49855629475769, lng: -122.14184416996333},
-      //         {latitude: 47.359423, longitude: -122.021071},
-      //         {latitude: 47.2052192687988, longitude: -121.988426208496},
-      //         {latitude: 47.6307081, longitude: -122.1434325},
-      //         {latitude: 47.3084488, longitude: -122.2140121},
-      //         {latitude: 47.5524695, longitude: -122.0425407}]
       jobs: props.jobs,
       showingInfoWindow: false,
       activeMarker: {},
@@ -32,6 +28,10 @@ export class MapContainer extends Component {
       selectedMultiple: {},
     }
   }
+
+  /**
+   * Creates a dictionary of coordinates:count to store how many job posts are at each set of coordinates.
+   */
   componentDidMount() {
     let coords = {};
     for (let i = 0; i < this.state.jobs.length; i++) {
@@ -47,9 +47,6 @@ export class MapContainer extends Component {
     this.setState({
       markerCoords: coords
     })
-    console.log("coords");
-    console.log(coords);
-    console.log(this.state.markerCoords);
   }
 
   concatCoords(jobPost) {
@@ -83,8 +80,6 @@ export class MapContainer extends Component {
         showingOptionsWindow: true,
         selectedMultiple: sameCoordsJobs
       })
-      console.log("test5");
-      console.log(jobPost)
     }
     else {
       this.handleDisplayWindow(jobPost);
@@ -92,8 +87,6 @@ export class MapContainer extends Component {
   }
 
   handleDisplayWindow = (jobPost) => {
-    console.log("testb")
-    console.log(this.state.jobs[jobPost.id]);
     this.setState({
       selected: this.state.jobs[jobPost.id],
       activePosition: {
@@ -109,12 +102,10 @@ export class MapContainer extends Component {
         jobPostId: this.state.jobs[jobPost.id].id
       };
       JobPostDataService.findSaved(data).then(res => {
-        console.log('res.data.found = ' + res.data.found);
         this.setState({
           currentJobPostSaved: res.data.found ? true : false,
         })
       })
-      console.log(this.state.currentJobPostSaved);
     }
   }
 
@@ -147,9 +138,6 @@ export class MapContainer extends Component {
 
   onOptionsClick(e) {
     this.onCloseOptions();
-    console.log("test3");
-    console.log(e.target.value);
-    console.log("testa");
     let index = 0;
     let count = 0;
     while (this.state.jobs[index].id != e.target.value && count < this.state.jobs.length) {
@@ -159,7 +147,6 @@ export class MapContainer extends Component {
       id: index,
       position: { lat: this.state.jobs[index].lat, lng: this.state.jobs[index].lng }
     }
-    console.log(data);
     this.handleDisplayWindow(data);
   }
   displayOptions = () => {
@@ -190,29 +177,17 @@ export class MapContainer extends Component {
     </CustomInfoWindow>
   }
 
-  test() {
-    console.log("hello");
-  }
-
   sendToApplicationPage() {
-    console.log(this.state.selected.id);
     window.location.assign('/apply/' + this.state.selected.id);
   }
 
   render() {
     const { showingOptionsWindow, styling, showingInfoWindow, activePosition, selected, currentUser, currentJobPostSaved } = this.state;
-    // console.log("selected ");
-    // console.log(this.state.selected);
-    // console.log("activeposition ")
-    // console.log(this.state.activePosition);
-    // console.log("showinginfowindow");
-    // console.log(this.state.showingInfoWindow)
     return (
       <Map
         style={styling}
         google={this.props.google}
         zoom={8}
-        //style={mapStyles}
         initialCenter={{ lat: 49, lng: -123 }}
       >
         {this.displayMarkers()}
@@ -226,9 +201,9 @@ export class MapContainer extends Component {
                 <Card.Text>
                   {this.state.selected.description}
                 </Card.Text>
-                <Button variant="primary" onClick={() => this.sendToApplicationPage()}>
+                {currentUser && <Button variant="primary" onClick={() => this.sendToApplicationPage()}>
                   Apply
-            </Button>
+            </Button>}
                 {currentUser && !currentJobPostSaved && <Button variant="primary" value="save" id="savebtn" onClick={this.handleSave}>
                   Save
             </Button>}
