@@ -6,7 +6,9 @@ import { Link } from "react-router-dom";
 import { Button, ToggleButton } from 'react-bootstrap';
 import ViewJobPage from "./ViewJobPage";
 
-
+/**
+ * Creates job board page component
+ */
 class JobBoardPage extends Component {
   constructor(props) {
     super(props);
@@ -20,6 +22,10 @@ class JobBoardPage extends Component {
     };
   }
 
+  /**
+   * Sets currentUser and currentOrgUser fields immediately
+   * upon loading
+   */
   componentDidMount() {
     const user = AuthService.getCurrentUser;
     const orgUser = AuthService.getCurrentOrgUser;
@@ -32,14 +38,23 @@ class JobBoardPage extends Component {
     }
   }
 
+  /**
+   * Logs out individual (job-seeker) user account
+   */
   logOut() {
     AuthService.logout();
   }
 
+  /**
+   * Logs out business user account
+   */
   orgLogOut() {
     AuthService.orgLogout();
   }
 
+    /**
+     * Render job board page component
+     */
     render() {
       const {currentUser, currentOrgUser}=this.state;
       

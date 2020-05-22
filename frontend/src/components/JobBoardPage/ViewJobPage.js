@@ -5,10 +5,11 @@ import AuthService from "../../services/auth.service";
 import { Link } from "react-router-dom";
 import { Button, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import MapContainer from "../GoogleMap/map.component";
-
 import { TwitterTimelineEmbed, TwitterShareButton } from 'react-twitter-embed';
 
-
+/**
+ * Creates view job page component
+ */
 class ViewJobPage extends Component {
   constructor(props) {
     super(props);
@@ -36,12 +37,18 @@ class ViewJobPage extends Component {
     };
   }
 
-  //When the page finishes loading, a list of job posts is retrieved
+  /**
+   * When the page finishes loading, a list of job posts is retrieved
+   */
   componentDidMount() {
     this.retrieveJobPosts();
   }
 
-  //Sets the current searchTitle state to the value of the parameter passed to this function
+  /**
+   * Sets the current searchTitle state to the value of the parameter passed to this function
+   * 
+   * @param {*} e 
+   */
   onChangeSearchTitle(e) {
     const searchTitle = e.target.value;
     this.setState({
@@ -49,6 +56,11 @@ class ViewJobPage extends Component {
     });
   }
 
+  /**
+   * Handles specific job viewing function
+   * 
+   * @param {*} e 
+   */
   handleJobView(e) {
     console.log("target value " + e.target.value);
     if (e.target.value === "1") {
@@ -67,7 +79,11 @@ class ViewJobPage extends Component {
     }
   }
 
-
+  /**
+   * Handles saving of job post
+   * 
+   * @param {*} e 
+   */
   handleSave(e) {
     if (e.target.value === "save") {
       JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentJobPost.id, save: true });
@@ -79,10 +95,11 @@ class ViewJobPage extends Component {
     }
   }
 
-  //Retrieves a list of jobs from the database
+  /**
+   * Retrieves a list of all jobs from the database
+   */
   retrieveJobPosts() {
 
-    //Performs a query that retrieves all of the jobs from the database
     JobPostDataService.getAll()
       .then(response => {
         this.setState({
@@ -95,7 +112,9 @@ class ViewJobPage extends Component {
       });
   }
 
-  //Refreshes the job list by prompting another query to the database that retrieves all jobs
+  /**
+   * Refreshes the job list by prompting another query to the database that retrieves all jobs
+   */
   refreshList() {
     this.retrieveJobPosts();
     this.setState({
@@ -104,7 +123,12 @@ class ViewJobPage extends Component {
     });
   }
 
-  //Sets the state of the currently selected job post
+  /**
+   * Sets the state of the currently selected job post
+   * 
+   * @param {*} jobPost 
+   * @param {*} index 
+   */
   setActiveJobPost(jobPost, index) {
     this.setState({
       currentJobPost: jobPost,
@@ -126,7 +150,9 @@ class ViewJobPage extends Component {
     }
   }
 
-  //Deletes all job posts
+  /**
+   * Deletes all job posts
+   */
   removeAllJobPosts() {
     JobPostDataService.deleteAll()
       .then(response => {
@@ -138,7 +164,9 @@ class ViewJobPage extends Component {
       });
   }
 
-  //Searches for a job with a specified title
+  /**
+   * Retrieves list of jobs with a specified title from database
+   */
   searchTitle() {
     JobPostDataService.findByTitle(this.state.searchTitle)
       .then(response => {
@@ -152,16 +180,23 @@ class ViewJobPage extends Component {
       });
   }
 
-  //Logs the current individual user out of the app
+  /**
+   * Logs the current individual user out of the app
+   */
   logOut() {
     AuthService.logout();
   }
 
-  //Logs the current Organization user out of the app
+  /**
+   * Logs the current Organization user out of the app
+   */
   orgLogOut() {
     AuthService.orgLogout();
   }
 
+  /**
+   * Renders view job page component
+   */
   render() {
     const { searchTitle, jobPosts, currentJobPost, currentIndex, currentUser, currentView } = this.state;
 
