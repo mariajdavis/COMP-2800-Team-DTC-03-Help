@@ -34,9 +34,11 @@ class OrgJobBoardPage extends Component {
     };
   }
 
+  //When this component loads, the list of job posts is retrieved from the database.
   componentDidMount() {
     this.retrieveJobPosts();
   }
+
 
   onChangeSearchTitle(e) {
     const searchTitle = e.target.value;
@@ -45,6 +47,7 @@ class OrgJobBoardPage extends Component {
       searchTitle: searchTitle
     });
   }
+
 
   handleSave(e) {
     if (e.target.value === "save") {
@@ -55,18 +58,25 @@ class OrgJobBoardPage extends Component {
     }
   }
 
+  //Retrieves a list of the current organization's job posts from the database.
   retrieveJobPosts() {
     console.log(this.state.currentUser.id)
+
+    //Gets all of the job posts from the database.
     JobPostDataService.getAll()
       .then(response => {
         console.log(response.data);
         let orgJobList = []
         let i = 0;
+
+        //Creates a list of job posts that have the same orgID property as the currently logged in user.
         for (i = 0; i < response.data.length; i++) {
           if (response.data[i].orgID == this.state.currentUser.id) {
             orgJobList.push(response.data[i])
           }
         }
+
+        //Sets the current state of jobPosts to the orgJobList
         this.setState({
           jobPosts: orgJobList
         });
@@ -77,6 +87,7 @@ class OrgJobBoardPage extends Component {
       });
   }
 
+  //Refreshes the list of job posts being displayed
   refreshList() {
     this.retrieveJobPosts();
     this.setState({
@@ -85,7 +96,10 @@ class OrgJobBoardPage extends Component {
     });
   }
 
+  //Performs the logic allowing a user to select a job post from the job board.
   setActiveJobPost(jobPost, index) {
+
+    //Sets the currently selected job post to the job selected by the user
     this.setState({
       currentJobPost: jobPost,
       currentIndex: index
@@ -106,6 +120,7 @@ class OrgJobBoardPage extends Component {
     }
   }
 
+  //Deletes all job posts from the database
   removeAllJobPosts() {
     JobPostDataService.deleteAll()
       .then(response => {
@@ -117,6 +132,7 @@ class OrgJobBoardPage extends Component {
       });
   }
 
+  //Searches for a job post with a title matching the search parameter
   searchTitle() {
     JobPostDataService.findByTitle(this.state.searchTitle)
       .then(response => {
@@ -130,6 +146,7 @@ class OrgJobBoardPage extends Component {
       });
   }
 
+  //Returns a formatted message about the currently selected job post to share on social media
   createJobMessage(title, description, jobType, rate, startDate, contractLength) {
     return `New Job Listing: ` + title + `\n` + `Description: ` + description + `\n` + `Job Type: ` + jobType + `\n` + `Rate: ` + rate + `\n` + `Start Date: ` + startDate + `\n` + `Contract Length: ` + contractLength + `\n` + `\n`
   }
@@ -155,24 +172,11 @@ class OrgJobBoardPage extends Component {
                 <a href="/viewapplicants">
                   <li id="ex">View Applicants</li>
                 </a>
-
               </ul>
               <form id='searchbar'>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Search by title"
-                  value={searchTitle}
-                  onChange={this.onChangeSearchTitle}
-                />
+                <input type="text" className="form-control" placeholder="Search by title" value={searchTitle} onChange={this.onChangeSearchTitle} />
                 <div className="input-group-append">
-                  <button
-                    className="btn btn-outline-secondary"
-                    type="button"
-                    onClick={this.searchTitle}
-                  >
-                    Search
-                            </button>
+                  <button className="btn btn-outline-secondary" type="button" onClick={this.searchTitle}>Search</button>
                 </div>
               </form>
               <article id='jobboard'>
@@ -190,7 +194,6 @@ class OrgJobBoardPage extends Component {
                               }
                               id={jobPost.title + jobPost.id}
                               onClick={() => {
-
                                 if (this.state.toggleHandler) { // triggers open job post animation             
                                   this.setActiveJobPost(jobPost, index);
                                   this.state.toggleHandler = false;
@@ -204,7 +207,6 @@ class OrgJobBoardPage extends Component {
                                   document.getElementById('job-list').classList.add('job-list');
                                   document.getElementById('contentArea').classList.remove('bgOpacity');
                                 }
-
                               }}
                               key={index}
                               style={{ color: 'black' }}
@@ -254,19 +256,7 @@ class OrgJobBoardPage extends Component {
                             </label>{" "}
                             {currentJobPost.contractLength}
                           </div>
-
-                          <Link
-                            to={"/jobPosts/" + currentJobPost.id}
-                            className="badge badge-warning"
-                          >
-                            Edit
-                                    </Link>
-
-                          <TwitterShareButton
-
-                            url={'https://helpservices.herokuapp.com/jobPosts'}
-                            options={{ text: this.createJobMessage(currentJobPost.title, currentJobPost.description, currentJobPost.jobType, currentJobPost.rate, currentJobPost.startDate, currentJobPost.contractLength) }}
-                          />
+                          <Link to={"/jobPosts/" + currentJobPost.id} className="badge badge-warning">Edit</Link>
                           <FacebookProvider appId="702487117185786">
                             <Share quote={this.createJobMessage(currentJobPost.title, currentJobPost.description, currentJobPost.jobType, currentJobPost.rate, currentJobPost.startDate, currentJobPost.contractLength)} href="https://helpservices.herokuapp.com/jobPosts">
                               {({ handleClick, loading }) => (
@@ -274,15 +264,15 @@ class OrgJobBoardPage extends Component {
                               )}
                             </Share>
                           </FacebookProvider>
+                          <TwitterShareButton
+                            url={'https://helpservices.herokuapp.com/jobPosts'}
+                            options={{ text: this.createJobMessage(currentJobPost.title, currentJobPost.description, currentJobPost.jobType, currentJobPost.rate, currentJobPost.startDate, currentJobPost.contractLength) }}
+                          />
                         </div>
                       )}
-
-
                     </div>
-
                   </div>
                 </div>
-
               </article>
             </section>
           </div>

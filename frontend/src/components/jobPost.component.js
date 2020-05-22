@@ -167,7 +167,7 @@ export default class JobPost extends Component {
             <form id="addJobArea">
               
               <div className="form-group">
-                <label htmlFor="title">Title</label>
+                <label htmlFor="title"><strong>Title</strong></label>
                 <input
                   type="text"
                   className="form-control"
@@ -177,7 +177,7 @@ export default class JobPost extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="description">Description</label>
+                <label htmlFor="description"><strong>Description</strong></label>
                 <input
                   type="text"
                   className="form-control"
@@ -263,7 +263,7 @@ export default class JobPost extends Component {
         ) : (
           <div>
             <br />
-            <p>Please click on a JobPost...</p>
+            <p><center>Job post deleted!</center></p>
           </div>
         )}
         </div>

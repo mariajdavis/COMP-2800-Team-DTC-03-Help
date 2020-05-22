@@ -25,20 +25,20 @@ class ViewApplicantPage extends Component {
         };
     }
 
+    //When this component loads, a list of applicants is retrieved for the organization's job posts 
     componentDidMount() {
         this.retrieveApplicants();
     }
 
+    //An event listener for when a user types in the search bar
     onChangeSearchTitle(e) {
         const searchTitle = e.target.value;
-
         this.setState({
             searchTitle: searchTitle
         });
     }
 
     retrieveApplicants() {
-
         console.log(this.state.currentUser.id);
 
         // Retrieves all data from application/user/jobPost 
@@ -115,7 +115,6 @@ class ViewApplicantPage extends Component {
                                             <li id="ex">View Applicants</li>
                                         </a>
                                     </div>
-
                                 </ul>
                                 <form id='searchbar'>
                                     <input
@@ -140,35 +139,20 @@ class ViewApplicantPage extends Component {
                                         <div id="job-list" className="job-list">
                                             <h4>Applicants</h4>
                                             <div id="jobListWrapper">
-                                            <ul className="list-group">
-                                                {applicants &&
-                                                    applicants.map((applicant, index) => (
-                                                        <li
-                                                            className={
-                                                                "list-group-item " +
-                                                                (index === currentIndex ? "active" : "")
-                                                            }
-                                                            id={applicant.id}
-                                                            onClick={() => {
-
-                                                                if (this.state.toggleHandler) { // triggers open job post animation             
-                                                                    this.setActiveApplicant(applicant, index);
-                                                                    this.state.toggleHandler = false;
-                                                                    document.getElementById('job-list').classList.remove('job-list');
-                                                                    document.getElementById('job-list').classList.add('job-list-clicked');
-                                                                    document.getElementById('contentArea').classList.add('bgOpacity');
-                                                                } else { // revert back
-                                                                    this.setActiveApplicant("", "")
-                                                                    this.state.toggleHandler = true;
-                                                                    document.getElementById('job-list').classList.remove('job-list-clicked');
-                                                                    document.getElementById('job-list').classList.add('job-list');
-                                                                    document.getElementById('contentArea').classList.remove('bgOpacity');
+                                                <ul className="list-group">
+                                                    {applicants &&
+                                                        applicants.map((applicant, index) => (
+                                                            <li
+                                                                className={
+                                                                    "list-group-item " +
+                                                                    (index === currentIndex ? "active" : "")
                                                                 }
-                                                            }}
+
+                                                            
                                                             key={index}
                                                             style={{ color: 'black' }}
                                                         >
-                                                            {applicant.jobPost.title + "    -    " + applicant.user.username}
+                                                            {applicant.jobPost.title + "    -    " + applicant.user.fullName}
                                                         </li>
                                                     ))}
                                             </ul>
@@ -189,13 +173,25 @@ class ViewApplicantPage extends Component {
                                                         <label>
                                                             <h4>Applicant:</h4>
                                                         </label>{" "}
-                                                        {currentApplicant.user.username}
+                                                        {currentApplicant.user.fullName}
                                                     </div>
                                                     <div>
                                                         <label>
-                                                            <h4>Contact Information:</h4>
+                                                            <h4>Comments:</h4>
+                                                        </label>{" "}
+                                                        {currentApplicant.comments}
+                                                    </div>
+                                                    <div>
+                                                        <label>
+                                                            <h4>Email:</h4>
                                                         </label>{" "}
                                                         {currentApplicant.user.email}
+                                                    </div>
+                                                    <div>
+                                                        <label>
+                                                            <h4>Phone Number:</h4>
+                                                        </label>{" "}
+                                                        {currentApplicant.user.phoneNumber}
                                                     </div>
                                                     <a href={currentApplicant.resumePath} >View Resume</a>
                                                     <DropdownButton id="dropdown-basic-button" title="Application Status">
@@ -205,11 +201,9 @@ class ViewApplicantPage extends Component {
                                                     </DropdownButton>
                                                 </div>
                                             )}
+                                            </div>
                                         </div>
-
                                     </div>
-                                    </div>
-
                                 </article>
                             </section>
                         </div>

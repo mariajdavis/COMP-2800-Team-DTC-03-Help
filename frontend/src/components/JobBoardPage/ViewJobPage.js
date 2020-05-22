@@ -36,13 +36,14 @@ class ViewJobPage extends Component {
     };
   }
 
+  //When the page finishes loading, a list of job posts is retrieved
   componentDidMount() {
     this.retrieveJobPosts();
   }
 
+  //Sets the current searchTitle state to the value of the parameter passed to this function
   onChangeSearchTitle(e) {
     const searchTitle = e.target.value;
-
     this.setState({
       searchTitle: searchTitle
     });
@@ -66,6 +67,7 @@ class ViewJobPage extends Component {
     }
   }
 
+
   handleSave(e) {
     if (e.target.value === "save") {
       JobPostDataService.saveHandle({ userId: this.state.currentUser.id, jobPostId: this.state.currentJobPost.id, save: true });
@@ -77,7 +79,10 @@ class ViewJobPage extends Component {
     }
   }
 
+  //Retrieves a list of jobs from the database
   retrieveJobPosts() {
+
+    //Performs a query that retrieves all of the jobs from the database
     JobPostDataService.getAll()
       .then(response => {
         this.setState({
@@ -90,6 +95,7 @@ class ViewJobPage extends Component {
       });
   }
 
+  //Refreshes the job list by prompting another query to the database that retrieves all jobs
   refreshList() {
     this.retrieveJobPosts();
     this.setState({
@@ -98,6 +104,7 @@ class ViewJobPage extends Component {
     });
   }
 
+  //Sets the state of the currently selected job post
   setActiveJobPost(jobPost, index) {
     this.setState({
       currentJobPost: jobPost,
@@ -119,6 +126,7 @@ class ViewJobPage extends Component {
     }
   }
 
+  //Deletes all job posts
   removeAllJobPosts() {
     JobPostDataService.deleteAll()
       .then(response => {
@@ -130,8 +138,8 @@ class ViewJobPage extends Component {
       });
   }
 
+  //Searches for a job with a specified title
   searchTitle() {
-
     JobPostDataService.findByTitle(this.state.searchTitle)
       .then(response => {
         this.setState({
@@ -144,10 +152,12 @@ class ViewJobPage extends Component {
       });
   }
 
+  //Logs the current individual user out of the app
   logOut() {
     AuthService.logout();
   }
 
+  //Logs the current Organization user out of the app
   orgLogOut() {
     AuthService.orgLogout();
   }
@@ -196,7 +206,6 @@ class ViewJobPage extends Component {
                         }
                         id={jobPost.title + jobPost.id}
                         onClick={() => {
-
                           if (this.state.toggleHandler) { // triggers open job post animation             
                             this.setActiveJobPost(jobPost, index);
                             this.state.toggleHandler = false;
@@ -210,67 +219,62 @@ class ViewJobPage extends Component {
                             document.getElementById('job-list').classList.add('job-list');
                             document.getElementById('contentArea').classList.remove('bgOpacity');
                           }
-
                         }}
                         key={index}
-                        style={{ color: 'black' }}
-                      >
+                        style={{ color: 'black' }}>
                         {jobPost.title}
                       </li>
                     ))}
                 </ul>}
               </div>
               {currentView === "1" && <div id="job-description-wrapper">
-                  {currentJobPost && (
-                    <div id='job-description'>
-                      <h4>Job Post</h4>
-                      <div>
-                        <label>
-                          <strong>Title:</strong>
-                        </label>{" "}
-                        {currentJobPost.title}
-                      </div>
-                      <div>
-                        <label>
-                          <strong>Description:</strong>
-                        </label>{" "}
-                        {currentJobPost.description}
-                      </div>
-                      <div>
-                        <label>
-                          <strong>Job Type:</strong>
-                        </label>{" "}
-                        {currentJobPost.jobType}
-                      </div>
-                      <div>
-                        <label>
-                          <strong>Hourly Rate:</strong>
-                        </label>{" "}
-                        {currentJobPost.rate}
-                      </div>
-                      <div>
-                        <label>
-                          <strong>Start Date:</strong>
-                        </label>{" "}
-                        {currentJobPost.startDate}
-                      </div>
-                      <div>
-                        <label>
-                          <strong>Contract Length:</strong>
-                        </label>{" "}
-                        {currentJobPost.contractLength}
-                      </div>
-                      {currentUser && <Link
-                        to={"/apply/" + currentJobPost.id}
-                        className="badge badge-success"
-                      >
-                        Apply
-                                    </Link>}
-                      {currentUser && !this.state.currentJobPostSaved && <Button variant="info" value="save" onClick={this.handleSave}> Save </Button>}
-                      {currentUser && this.state.currentJobPostSaved && <Button variant="info" value="unsave" onClick={this.handleSave}> Unsave </Button>}
+                {currentJobPost && (
+                  <div id='job-description'>
+                    <h4>Job Post</h4>
+                    <div>
+                      <label>
+                        <strong>Title:</strong>
+                      </label>{" "}
+                      {currentJobPost.title}
                     </div>
-                  )}
-                </div>}
+                    <div>
+                      <label>
+                        <strong>Description:</strong>
+                      </label>{" "}
+                      {currentJobPost.description}
+                    </div>
+                    <div>
+                      <label>
+                        <strong>Job Type:</strong>
+                      </label>{" "}
+                      {currentJobPost.jobType}
+                    </div>
+                    <div>
+                      <label>
+                        <strong>Hourly Rate:</strong>
+                      </label>{" "}
+                      {currentJobPost.rate}
+                    </div>
+                    <div>
+                      <label>
+                        <strong>Start Date:</strong>
+                      </label>{" "}
+                      {currentJobPost.startDate}
+                    </div>
+                    <div>
+                      <label>
+                        <strong>Contract Length:</strong>
+                      </label>{" "}
+                      {currentJobPost.contractLength}
+                    </div>
+                    {currentUser && <Link
+                      to={"/apply/" + currentJobPost.id}
+                      className="badge badge-success">Apply</Link>}
+                    {currentUser && !this.state.currentJobPostSaved && <Button variant="info" value="save" onClick={this.handleSave}> Save </Button>}
+                    {currentUser && this.state.currentJobPostSaved && <Button variant="info" value="unsave" onClick={this.handleSave}> Unsave </Button>}
+                  </div>
+                )}
+              </div>}
             </div>
           </div>
         </article>
